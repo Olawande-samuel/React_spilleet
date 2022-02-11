@@ -1,0 +1,54 @@
+
+
+.label {
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.logoWrapper {
+    display: none;  
+    cursor: pointer;
+}
+
+.check {
+    font-size:12px !important;
+}
+.header {
+    text-align: right;
+}
+
+.header span {
+    margin-left: 5px;
+}
+.or {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid black;
+    line-height: 0.1em;
+    margin: 10px 0 10px;
+}
+
+.or span {
+    background: #fff;
+    padding: 0 10px;
+}
+.input {
+    background: #E8E8E8
+}
+
+@media screen and (max-width:600px){
+    .wrapper {
+        padding: 10px;
+        color: rgba(90, 107, 255, 1);
+        background: white;
+    }
+
+    .wrapper form label {
+        font-weight: 700;
+    }
+    .logoWrapper {
+        display: grid;  
+        place-items: center;
+        margin-bottom: 10%;
+    }
+}

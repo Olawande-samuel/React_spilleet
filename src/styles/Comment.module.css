@@ -1,0 +1,52 @@
+.profileWrapper {
+  width: 32px;
+  height: 34px;
+  border-radius: 50%;
+}
+.text {
+    background: #FFFFFF;
+    border-radius: 5px;
+    padding: 8px 14px;
+    padding-left: 30px;
+    width: 100%;
+    border: none;
+    outline: none;
+}
+
+.button{
+    font-size: 14px;
+    font-weight: 700;
+    padding: 4px 19px;
+    background: #271FC6;
+    border: none;
+    outline: none;
+    border-radius: 25px;
+    color: #FFFFFF;
+}
+.small {
+  font-size: 14px;
+  font-weight: 700;
+  padding: 4px 10px;
+  background: #271FC6;
+  border: none;
+  outline: none;
+  border-radius: 25px;
+  color: #FFFFFF;
+  display: none;
+}
+
+@media screen and (max-width:560px){
+  .button {
+    display: none;
+  }
+
+  .small {
+    display: block;
+  }
+}
+@media screen and (max-width:350px){
+  .inputWrapper {
+    width: 80%;
+  }
+}
+

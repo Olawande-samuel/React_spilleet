@@ -1,0 +1,48 @@
+.form {
+    background: #fff;
+    padding: 18px 20px;
+    border-radius: 8px;
+}
+
+.input {
+    padding: 8px;
+    margin-top: 3px ;
+}
+
+
+.text{
+    font-size: 21px;
+    margin-top: 29px;
+}
+
+.contactLink {
+    display: flex;
+    align-items: center;
+    padding: 4px;
+}
+.contactLink span:first-child{
+    font-size: 30px;
+    margin-right:17.22px;
+}
+.socials {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+.socials span {
+    font-size: 24px;
+    
+}
+.button{
+    border: none;
+    outline: none;
+    color: #fff;
+    font-weight:600;
+    padding: 10px 39px;
+    background: rgba(43, 106, 208, 1);
+    border-radius: 3px;
+}
+.buttonWrapper{
+    display: grid;
+    place-items: center;
+}

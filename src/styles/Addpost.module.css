@@ -1,0 +1,42 @@
+.btnContainer {
+  border: 1px solid lightgrey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  width: 25%;
+  margin: auto;
+  background-color: #171194;
+  border-radius: 4px;
+  transition: all 0.5s ease;
+}
+.btnContainer:hover  {
+  background-color: #eee;
+}
+
+.addPostBtn {
+  display: flex;
+  gap: 1rem;
+  border: none;
+  outline: none;
+  padding: 8px 12px;
+  font-weight: 700;
+  font-size: 18px;
+  color: #fff;
+  background-color: inherit;
+  cursor: pointer;
+  /* letter-spacing: 4px; */
+}
+.btnContainer:hover .addPostBtn {
+  color: #171194;
+  background-color: inherit;
+}
+
+@media screen and (max-width: 700px) {
+  .btnContainer {
+    width: 100%;
+  }
+  .addPostBtn {
+    letter-spacing: 4px;
+  }
+}

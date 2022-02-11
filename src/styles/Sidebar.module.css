@@ -1,0 +1,15 @@
+.link {
+  text-align: center;
+  color: white;
+}
+
+.btn {
+  padding: 14px 30px;
+  border: none;
+  outline: none;
+  background: white;
+  color: rgba(23, 17, 148, 0.94);
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 4px;
+}

@@ -1,0 +1,15 @@
+.logo {
+    background: #FC4219;
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+}
+.title {
+    font-size: 35px;
+    font-weight: 700;
+}
+.container{
+    width: 100%;
+}

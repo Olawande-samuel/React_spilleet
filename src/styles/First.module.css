@@ -1,0 +1,35 @@
+.wrapper {
+    display: grid;
+    
+}
+.body {
+    display: grid;
+}
+.bars_wrapper {
+    display: grid;
+    gap: .3rem;
+    justify-content: center;
+}
+.bars {
+    width: 334.35px;
+    height: 6.92px;
+    background: #C4C4C4;
+    /* color: rgba(155, 155, 155, 0.94); */
+}
+
+.left img, .right img {
+    max-width:100%
+}
+
+@media screen and ( max-width: 1020px) {
+    .bars {
+        min-width: 200px;
+        max-width: 220px;
+    }
+}
+@media screen and ( max-width: 720px) {
+    .bars {
+        min-width: 100px;
+        max-width: 180px;
+    }
+}

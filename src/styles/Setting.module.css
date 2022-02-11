@@ -1,0 +1,156 @@
+.wrapper {
+    background: #fff;
+    padding: 2rem 5rem;
+    min-height: 100vh;
+}
+
+.title {
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.63);
+    font-weight: 500;
+}
+
+.P_title {
+    font-size: 20px;
+    color: #282829;
+    font-weight: 500;
+}
+.bottom_title {
+    font-weight: 500;
+    font-size: 19.2829px;
+    line-height: 23px;
+    color: #000000;
+    
+}
+
+.link {
+    color: #636466;;
+    padding: 5px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 15px;
+}
+.activeLink {
+    color: rgba(23, 17, 148, 1);
+    padding: 5px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 15px;
+    background: #b9b8df;
+}
+
+.hr {
+    height: 1px;
+}
+
+.text, .textValue {
+    font-size:  17.8663px;
+    line-height: 21px;
+    color: #000000;
+}
+
+.textValue{
+    font-weight:300;
+    font-size: clamp(10px, .8rem,  17.8663px);
+
+}
+
+.text {
+    font-weight:500;
+}
+.form_control{
+    display: flex;
+    align-items: center;
+}
+.form_control input[type="radio"] {
+    width: 20px;
+    height: 18px;
+
+}
+
+.input {
+  width: 100%;
+  padding: 10px 12px;  
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  background: #eee;
+}
+
+.btn, .disabledBtn {
+    padding: 10px 12px;
+    border: none;
+    outline: none;
+    background: #195FAA;
+    color: white;
+    border-radius:  4px;
+}
+
+.disabledBtn {
+    opacity: .3;
+}
+.secondaryText{
+    margin-right: 8px ;
+font-weight: 300;
+font-size: 14.9978px;
+line-height: 18px;
+letter-spacing: 0.025em;
+color: #939598;
+}
+.linkText {
+    font-weight: 300;
+    font-size: 17.1092px;
+    line-height: 20px;
+    color: #195FAA;
+    cursor: pointer;
+}
+.status {
+    font-weight: 300;
+font-size: 13.9266px;
+line-height: 16px;
+letter-spacing: 0.025em;
+
+color: #939598;
+}
+.googleIcon, .fbIcon {
+    font-size: 30px;
+    display: grid;
+    place-items:center;
+}
+.fbIcon{
+    color: rgba(57, 81, 133, 1);
+}
+
+.actions {
+    border-bottom:1px solid gray;
+    padding:5px;
+    color:rgba(185, 43, 39, 1);
+    padding-left:19px;
+    font-size: 17.8663px;
+}
+/* .form_control input[type="radio"]:checked {
+    color: red;
+} */
+
+.P_title {
+    font-size: 17.8663px;
+    line-height: 21px;
+    color: #282829;;
+}
+
+@media screen and (max-width:780px) {
+    .wrapper {
+        background: #fff;
+        padding: 1.5rem;
+        min-height: 100vh;
+    }
+    
+}
+@media screen and (max-width:360px) {
+    .googleIcon, .fbIcon {
+        display: none;
+    }
+    
+}

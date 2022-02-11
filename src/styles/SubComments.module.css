@@ -1,0 +1,53 @@
+.wrapper {
+    width: 100%;
+    padding: 13px 10px 10px 10px;
+    /* height:270px; */
+    display: flex;
+    gap: .3rem;
+}
+
+.image{
+    width: 100%;
+    height: 100%;
+    border-radius:50% ;
+}
+.profileWrapper {
+    width: 20px;
+height: 21px;
+border-radius: 50%;
+}
+
+
+.nameWrapper{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.nameWrapper p {
+    margin:0 11px;
+    font-weight:700 ;
+    font-size: 11px;
+}
+
+.nameWrapper small {
+    color: #1F28CF;
+    font-size: 11px;
+}
+
+.subContent {
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 131.19%;
+}
+
+.more {
+    display: flex;
+    justify-content: space-between;
+}
+.upvoteValue {
+    margin-left: 4px;
+    background: #C4C4C4;
+    border-radius: 119px;
+    padding: 5px;
+}

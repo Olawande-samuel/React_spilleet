@@ -1,0 +1,31 @@
+
+.copyright {
+    margin-top:11px;
+}
+.footerContainer {
+    justify-content:space-between;
+}
+@media screen and (max-width:834px) {
+    .items{
+        width: 100%;
+        display: flex;
+        justify-content:center
+    }
+    .copyright p,  .creators p {
+        text-align:center !important;
+    }
+
+    .content {
+        margin-top: 20px;
+    }
+}
+@media screen and (max-width:830px) {
+    .items {
+        display: none;
+    }
+
+.footerContainer {
+    justify-content:center;
+}
+    
+}

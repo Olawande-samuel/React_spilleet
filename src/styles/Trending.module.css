@@ -1,0 +1,35 @@
+.logo {
+    background: #0038FD;
+    height: clamp(30px, 3vw, 55px);
+    width: clamp(30px,  3vw, 55px);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+}
+.title {
+    font-size:clamp(15px, 5vw, 34px);
+    font-weight: 700;
+}
+
+.trendingTitle{
+    display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.header{
+    padding-left: 3rem;
+}
+
+.shorts {
+    background:url("../images/trends.jpeg"),linear-gradient(0deg, #000000 -11.77%, rgba(0, 0, 0, 0) 100%);
+    background-blend-mode: multiply;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+@media screen and (max-width: 600px) {
+    .header {
+    padding-left: 0;
+    }
+}

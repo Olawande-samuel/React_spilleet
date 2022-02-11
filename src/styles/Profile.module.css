@@ -1,0 +1,22 @@
+.image{
+    width: 100%;
+    height: 100%;
+}
+.profileWrapper, .profileWrapper img {
+    width: clamp(37px, 1vw, 57px);
+    height: clamp(37px, 1vw, 57px);
+    border-radius: 50%;
+    cursor: pointer;
+}
+.commentProfileWrapper{
+    border-radius: 50%;
+}
+.sides {
+    padding: 24px;
+}
+@media screen and (max-width: 670px){
+
+    .sides {
+    padding: 5px;
+}
+}

@@ -1,0 +1,16 @@
+.linksWrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.link {
+    padding: 4px;
+    transition: all .3s ease;
+    color: #8E8E8E;
+}
+
+.link:hover {
+    margin-bottom: 1px solid #000000;
+    transform: scale(1.5);
+    color: #000000;
+}

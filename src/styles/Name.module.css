@@ -1,0 +1,15 @@
+.wrapper{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.wrapper p {
+    margin-right: 11px;
+    font-weight:700 ;
+}
+
+.wrapper small {
+    color: #1F28CF;
+    font-size: 11px;
+}

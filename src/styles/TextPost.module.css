@@ -1,0 +1,74 @@
+.post {
+  margin: 20px 0;
+}
+.container {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.87);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 0;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+
+.wrapper {
+  display: flex;
+  gap: 0.5rem;
+}
+
+
+.previewParagraph {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: #000000;
+  /* overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 100%; */
+}
+
+.previewTitle {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18.9563px;
+  line-height: 142.71%;
+  color: rgba(0, 0, 0, 1);
+}
+
+.moreBtn {
+  display: flex;
+  align-items: center;
+  background: #c4c4c4;
+  border: 1px solid #000000;
+  border-radius: 22px;
+  padding: 6.6px 13px;
+}
+@media screen and (max-width: 740px) {
+  .post {
+    max-width: 500px;
+    margin: 20px auto;
+  }
+  /* .imageContainer{
+        max-width: 400px;
+    } */
+}
+
+@media screen and (min-width: 800px) {
+  .post {
+    width: 720px;
+  }
+}
+
+@media screen and (max-width:600px) {
+  .wrapper .image {
+    flex: 18%;
+  }
+  .wrapper .content {
+    flex: 80%;
+  }
+}

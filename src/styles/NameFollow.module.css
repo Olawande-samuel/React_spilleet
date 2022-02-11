@@ -1,0 +1,30 @@
+.wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wrapper p {
+    font-weight:500 ;
+}
+.name {
+    font-size: 15px;
+}
+.follow {
+    font-size: 12.03px;
+}
+.dot {
+    Width: 1.7px;
+    Height: 1.7px;
+    background: rgba(31, 40, 207, 1);
+    margin: 0 6.75px  ;
+}
+.wrapper .follow {
+    color: #1F28CF;
+    font-size: 14px;
+    font-weight: 500;
+}
+.time {
+  font-family: 'Inter', sans-serif;
+  font-size: 11.89px;
+}

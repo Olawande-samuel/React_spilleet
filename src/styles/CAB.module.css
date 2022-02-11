@@ -1,0 +1,16 @@
+.more {
+    display: flex;
+    justify-content: space-between;
+}
+.upvoteValue {
+    margin-left: 4px;
+    background: #C4C4C4;
+    border-radius: 119px;
+    padding: 5px;
+}
+.iconWrapper {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}

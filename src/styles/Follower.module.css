@@ -1,0 +1,43 @@
+.followButton {
+  padding: 6px 18px;
+  background: rgba(23, 17, 148, 0.22);
+  border: 1px solid rgba(0, 0, 0, 0.19);
+  box-sizing: border-box;
+  border-radius: 16px;
+  color: rgba(23, 17, 148, 0.75);
+  font-weight: 500;
+}
+
+.followButton span:first-child {
+  margin-right: 8px;
+}
+
+.name {
+  margin-right: 10px;
+  font-size: clamp(12px, 2vw, 14px);
+  font-weight: 500;
+}
+
+.profile, .followerCount {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+ @media screen and (max-width:1070px) {
+   .profile {
+     display: none;
+   }
+ }
+ @media screen and (max-width:670px) {
+   .profile {
+     display: none;
+   }
+   .followButton span:first-child {
+    margin-right: 0;
+  
+ }
+   .followButton .followText {
+   display:  none;
+  
+ }
+}
