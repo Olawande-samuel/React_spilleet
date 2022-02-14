@@ -20,6 +20,7 @@ import { BsEye, BsEyeSlash } from "react-icons/bs";
 import Logo from "../../images/Logo.svg";
 import Google from "../../images/Google.svg";
 import Facebook from "../../images/facebook.svg"
+import * as Yup from "yup"
 const Signup = () => {
   const [status, setStatus] = useState("");
   const [content, setContent] = useState("");
@@ -45,6 +46,9 @@ const Signup = () => {
     initialValues: {
       name: "",
     },
+    validationSchema: Yup.object({
+      email: Yup.string().email('Invalid email address').required('Required'),
+    }),
     onSubmit: (values) => {
       setLoading(true);
       const formData = new FormData();
@@ -77,6 +81,7 @@ const Signup = () => {
         });
     },
   });
+  console.log(formik)
   return (
     <Grid
       container
@@ -211,6 +216,9 @@ const Signup = () => {
                           InputProps={{ className: Style.input }}
                         />
                       </FormControl>
+                      {formik.touched.phone  ? (
+                        <small style={{color:"red"}}>Your phone number and email address will not be made public</small>
+                      ) : null}
                     </Grid>
                   </Grid>
                   <Grid
@@ -235,6 +243,9 @@ const Signup = () => {
                           InputProps={{ className: Style.input }}
                         />
                       </FormControl>
+                      {formik.touched.email && formik.errors.email ? (
+                        <small style={{color:"red"}}>{formik.errors.email}</small>
+                      ) : null}
                     </Grid>
                   </Grid>
 

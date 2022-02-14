@@ -2,8 +2,38 @@ import { Box, Divider, Typography } from "@mui/material";
 import Toggle from "../../Switch/Switch";
 import Style from "../../../styles/Setting.module.css";
 import React from "react"
+import { Fetch } from "../../../Trials/Controller";
 
 const Privacy = () => {
+    const [loading, setLoading] = React.useState(false)
+    const [emailPrivacy, setEmailPrivacy] = React.useState(false)
+    const handleEmailFromSpilleet = ()=>{
+       setEmailPrivacy(!emailPrivacy)
+       console.log("done")
+    }
+    React.useEffect(()=>{
+        const data = localStorage.getItem("user")
+        if (data) {
+            const user = JSON.parse(data)
+        if(emailPrivacy === true) {
+            setLoading(true);
+            const formData = new FormData();
+            formData.append("apptoken", "7FHS8S43N2JF08");
+            formData.append("accept", emailPrivacy ? "Yes" :"No")
+            formData.append("usertoken", user.usertoken)
+      
+            Fetch("https://spilleetapi.spilleet.com/updateEmailPrivacy", formData)
+              .then((res) => {
+                setLoading(false);
+                
+              })
+              .catch((err) => {
+                setLoading(false)
+              });
+        }
+    }
+
+    },[emailPrivacy])
     return (
         <Box>
             <Box my={3}  border="1px solid gray"  borderRadius="8px" boxShadow=" 0px 1px 2px rgba(0, 0, 0, 0.25)">
@@ -37,6 +67,16 @@ const Privacy = () => {
                     </form>
                 </Box>
             </Box> */}
+            <Box my={3} border="1px solid gray"  borderRadius="8px"  boxShadow=" 0px 1px 2px rgba(0, 0, 0, 0.25)">
+                <div style={{borderBottom:"1px solid gray", padding:'4px', paddingLeft:"19px"}}  className={Style.P_title}>Email Preferences</div>
+                <Divider />
+                <Box  py={2} pl={3}  >
+                    <Box display="flex"  alignItems="center">
+                        <Toggle handleToggle={handleEmailFromSpilleet} />
+                        <Typography className={Style.textValue} ml={2}>Receive emails from Spilleet</Typography>
+                    </Box>
+                </Box>
+            </Box>
             <Box my={3} border="1px solid gray"  borderRadius="8px"  boxShadow=" 0px 1px 2px rgba(0, 0, 0, 0.25)">
                 <div style={{borderBottom:"1px solid gray", padding:'4px', paddingLeft:"19px"}}  className={Style.P_title}>Comment Preferences</div>
                 <Divider />

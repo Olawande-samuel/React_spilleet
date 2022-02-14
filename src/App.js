@@ -21,11 +21,12 @@ import AdminOutlet from "./Components/Admin/AdminOutlet";
 import AdminIndex from "./Components/Admin/Index/Index";
 import AdminPosts from "./Components/Admin/AdminPosts";
 import AdminTopics from "./Components/Admin/AdminTopics";
-import Signup from "./Components/Signup/Signup";
 import LoginEntry from "./Components/Login/LoginEntry";
 import AdminEntry from "./Components/Login/AdminEntry";
 import SignupEntry from "./Components/Signup/SignupEntry";
 import RequireAuth, { AdminRequireAuth } from "./Components/Auth/Protected";
+import Notifications from "./Components/Profile/Notification/Notifications"
+import NotFound from "./Components/Error/404"
 function App() {
   const [user, setUser] = useState(null);
   const [search, setSearch] = useState("");
@@ -45,6 +46,7 @@ function App() {
                 <Route path="profile" element={<ProfileOut />}>
                   <Route path=":name" element={<ProfileDeets />} />
                 </Route>
+                <Route path="notifications" element={<Notifications  />} />
                 <Route
                   path="settings"
                   element={
@@ -76,7 +78,7 @@ function App() {
               <Route path="signup" element={<SignupEntry />} />
 
               <Route path="auth/:token" element={<Authenticate />} />
-              <Route path="*" element={<p>Not found</p>}></Route>
+              <Route path="*" element={<NotFound  />}></Route>
             </Routes>
           </Context.Provider>
         </InterestContext.Provider>

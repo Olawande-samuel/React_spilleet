@@ -43,10 +43,10 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
     },
   }));
 
-const Toggle = () => {
+const Toggle = ({handleToggle}) => {
     return (
         <div>
-            <AntSwitch defaultChecked inputProps={{ 'aria-label': 'ant design' }} />
+            <AntSwitch inputProps={{ 'aria-label': 'ant design' }} onChange={handleToggle} />
         </div>
     )
 }

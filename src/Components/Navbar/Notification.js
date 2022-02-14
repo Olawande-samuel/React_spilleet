@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const Notification = () => {
   return (
     <Box className={Styles.notification}>
-      <Link to="/user/notification">
+      <Link to="/user/notifications">
         <IconButton
           size="large"
           aria-label="show 17 new notifications"
