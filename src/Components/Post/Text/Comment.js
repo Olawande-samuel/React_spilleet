@@ -68,6 +68,7 @@ const Comment = ({ item, setReload, setShowComments, reloadComments }) => {
           alignItems="center"
           p={1}
           border="1px solid lightgray"
+          overflow="hidden"
         >
           <Grid item xs={8} display="flex">
             <Box mr={2}>
@@ -75,7 +76,7 @@ const Comment = ({ item, setReload, setShowComments, reloadComments }) => {
                 {/* <Link to="/user/profile"> */}
                 <img
                   src={info.imgurl === "0" ? "/placeholder.png" : info.imgurl}
-                  alt="profile picture"
+                  alt="profile"
                   width={32}
                   height={34}
                   className={Styles.image}

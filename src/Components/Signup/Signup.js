@@ -19,8 +19,8 @@ import Loader from "../Utils/Loader";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import Logo from "../../images/Logo.svg";
 import Google from "../../images/Google.svg";
-import Facebook from "../../images/facebook.svg"
-import * as Yup from "yup"
+import Facebook from "../../images/facebook.svg";
+import * as Yup from "yup";
 const Signup = () => {
   const [status, setStatus] = useState("");
   const [content, setContent] = useState("");
@@ -47,7 +47,7 @@ const Signup = () => {
       name: "",
     },
     validationSchema: Yup.object({
-      email: Yup.string().email('Invalid email address').required('Required'),
+      email: Yup.string().email("Invalid email address").required("Required"),
     }),
     onSubmit: (values) => {
       setLoading(true);
@@ -81,7 +81,7 @@ const Signup = () => {
         });
     },
   });
-  console.log(formik)
+  console.log(formik);
   return (
     <Grid
       container
@@ -145,7 +145,7 @@ const Signup = () => {
                   Login now
                 </Button>
               </Grid>
-              <Grid item width="100%"  xs={12} sm={2}>
+              <Grid item width="100%" xs={12} sm={2}>
                 <Button
                   startIcon={
                     <img
@@ -155,7 +155,7 @@ const Signup = () => {
                       height={27}
                     />
                   }
-                  sx={{ background: "#878888",width: "100%", }}
+                  sx={{ background: "#878888", width: "100%" }}
                   variant="contained"
                   size="large"
                 ></Button>
@@ -216,8 +216,11 @@ const Signup = () => {
                           InputProps={{ className: Style.input }}
                         />
                       </FormControl>
-                      {formik.touched.phone  ? (
-                        <small style={{color:"red"}}>Your phone number and email address will not be made public</small>
+                      {formik.touched.phone ? (
+                        <small style={{ color: "red" }}>
+                          Your phone number and email address will not be made
+                          public
+                        </small>
                       ) : null}
                     </Grid>
                   </Grid>
@@ -244,7 +247,9 @@ const Signup = () => {
                         />
                       </FormControl>
                       {formik.touched.email && formik.errors.email ? (
-                        <small style={{color:"red"}}>{formik.errors.email}</small>
+                        <small style={{ color: "red" }}>
+                          {formik.errors.email}
+                        </small>
                       ) : null}
                     </Grid>
                   </Grid>

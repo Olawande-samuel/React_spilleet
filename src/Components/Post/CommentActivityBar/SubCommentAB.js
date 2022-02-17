@@ -81,16 +81,12 @@ const SubCommentAB = ({upvotes,reply, item, handleClick, reloadComments}) => {
             className={Styles.comment_bookmark}
           >
             <Box className="comment">
-              <Box sx={{ display: "flex", gap: ".5rem", alignItems: "center" }}>
-                <Icon className={Styles.iconWrapper}>
+              <Box sx={{ display: "flex", gap: ".5rem", alignItems: "center", }}>
                   <img
                     src={ReplyIcon}
                     alt="reply"
                     className={Styles.icons}
-                    width={matches ? 10 : 30}
-                    height={matches ? 20 : 30}
                   />
-                </Icon>
                 {/* <span onClick={handleClick}>Reply ({`${ item.total_comments !== undefined ? totalComments : 0 }`})</span> */}
               </Box>
             </Box>

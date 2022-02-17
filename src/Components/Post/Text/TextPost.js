@@ -96,17 +96,13 @@ const TextPost = ({ item, reloader, loadCommentFig }) => {
         />
         {showComments && (
           <Box
-            border="1px solid lightgrey"
-            borderTop="none"
-            maxHeight="300px"
-            overflow="scroll"
-            paddingBottom="4px"
+          className={Style.commentBox}
           >
             {loading ? (
               <Loader />
             ) : (
               comments.length > 0 && (
-                <Box height="85%" overflow="scroll">
+                <Box height="85%" overflow="hidden">
                   {comments.map((item) => (
                     <TextComment key={item.id} item={item} />
                   ))}

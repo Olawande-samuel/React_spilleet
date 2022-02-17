@@ -17,7 +17,9 @@ height: 21px;
 border-radius: 50%;
 }
 
-
+.iconWrapper {
+    border: 1px solid black;
+}
 .nameWrapper{
     display: flex;
     justify-content: flex-start;

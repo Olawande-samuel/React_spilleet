@@ -28,7 +28,7 @@ const TrendingShorts = ({ item }) => {
         <Typography textAlign="center" color="lightgrey" my={1}>
           by
         </Typography>
-        <Typography variant="subtitle1" textAlign="center" fontSize="14px">
+        <Typography lineHeight="15px" variant="subtitle1" textAlign="center" fontSize="14px">
           {item.username}
         </Typography>
       </Box>

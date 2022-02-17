@@ -14,9 +14,9 @@ const Notification = ({item}) => {
             <Grid item xs={8}> 
                 <Detail item={item} />
             </Grid>
-            <Grid item> 
+            {/* <Grid item> 
                 <div><span><FiMoreVertical /></span> </div>
-            </Grid>
+            </Grid> */}
         </Grid>
     )
 }

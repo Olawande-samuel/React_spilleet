@@ -81,7 +81,7 @@ const TextComment = ({ item }) => {
           <Profile item={item} img={item.photo} />
         )}
       </Box>
-      <Box flex="80%">
+      <Box flex="80%" overflow="hidden">
         <Stack spacing={1}>
           <NameDate name={item.username} date={item.timeago} item={item} />
           <Content content={item.comment}  />
@@ -97,7 +97,6 @@ const TextComment = ({ item }) => {
           border="1px solid lightgrey"
           borderTop="none"
           maxHeight="300px"
-          overflow="scroll"
           paddingBottom="4px"
         >
           {comments === true && (

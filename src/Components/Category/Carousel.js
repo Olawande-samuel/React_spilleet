@@ -115,18 +115,10 @@ const CateCarou = ({ handleClick }) => {
             categoryList.length > 0 &&
             categoryList.map((item, index) => (
               <div
+              className={Style.categoryItem}
                 onClick={() => handleClick(item.ctg_id)}
                 key={item.ctg_id}
-                style={{
-                  width: "90%",
-                  height: "148px",
-                  background: `url(/category.jpg)`,
-                  backgroundRepeat: "no-repeat",
-                  backgroundSize: "cover",
-                  borderRadius: "10px",
-                  position: "relative",
-                  border: "1px solid rgba(23, 17, 148, 0.94)",
-                }}
+                
               >
                 <p className={Style.title}>{item.ctg_name}</p>
               </div>

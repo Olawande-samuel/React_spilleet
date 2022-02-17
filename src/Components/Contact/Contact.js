@@ -1,5 +1,4 @@
 import { Grid, Stack, Box, useTheme } from "@mui/material";
-import Imageholder from "Components/First/Imageholder";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
@@ -9,8 +8,8 @@ import { TiSocialLinkedinCircular } from "react-icons/ti";
 import { MdLocationOn } from "react-icons/md";
 import { IoMdMail } from "react-icons/io";
 import Style from "../../styles/Contact.module.css";
-import {useState, useEffect} from "react"
-// import Image from 'next/image';
+import React, {useState, useEffect} from "react"
+import Logo from '../../images/Logo.svg';
 const Contact = () => {
 const [height, setHeight] = useState('')
   useEffect(()=>{
@@ -37,7 +36,7 @@ const [height, setHeight] = useState('')
          <Box mb={6}>
           <div className={Style.logo}>
             <Link to="/">
-                <img src="/Logo.svg" alt="App Logo" width={160} height={48} />
+                <img src={Logo} alt="App Logo" width={160} height={48} />
             </Link>
           </div>
           <div className={Style.text}>
@@ -52,7 +51,8 @@ const [height, setHeight] = useState('')
               <div className={Style.contactLink}> 
                 <span>
                 <BsFillTelephoneFill  />
-                </span> <span>+234 814 536 3728</span> 
+                </span>
+                 <a href="tel:+2348145363728">+234 814 536 3728</a> 
               </div>
               <div className={Style.contactLink}> 
                 <span>
@@ -65,7 +65,7 @@ const [height, setHeight] = useState('')
               <div className={Style.contactLink}>
                 <span>
                     <MdLocationOn />    
-                </span> <span>102 Orogun Street, Ibadan</span>
+                </span> <a href="https://goo.gl/maps/Hvfewf6wdppE54io9">102 Orogun Street, Ibadan</a>
               </div>
               <div>
                 <div className={Style.socials}>

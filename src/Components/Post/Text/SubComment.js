@@ -9,7 +9,7 @@ import Comment from "./Comment";
 import Loader from "../../Utils/Loader";
 const SubComment = ({ item }) => {
   return (
-    <Box className={Style.wrapper}>
+    <Box overflow="hidden" className={Style.wrapper}>
       <Box width="100%">
         <Stack spacing={1}>
           <SubNameDate name={item.username} date={item.timeago} img={item.photo} />

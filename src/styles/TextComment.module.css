@@ -1,7 +1,7 @@
 .wrapper {
     width: 100%;
     padding: 13px 10px 10px 10px;
-    /* height:270px; */
     display: flex;
     gap: .5rem;
 }
+

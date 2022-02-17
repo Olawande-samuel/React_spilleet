@@ -18,7 +18,6 @@
   gap: 0.5rem;
 }
 
-
 .previewParagraph {
   display: -webkit-box;
   -webkit-line-clamp: 4;
@@ -48,6 +47,14 @@
   border-radius: 22px;
   padding: 6.6px 13px;
 }
+
+.commentBox {
+  border: 1px solid lightgrey;
+  border-top: none;
+  max-height: 300px;
+  overflow-y: scroll;
+  padding-bottom: 4px;
+}
 @media screen and (max-width: 740px) {
   .post {
     max-width: 500px;
@@ -64,7 +71,7 @@
   }
 }
 
-@media screen and (max-width:600px) {
+@media screen and (max-width: 600px) {
   .wrapper .image {
     flex: 18%;
   }

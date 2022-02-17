@@ -74,7 +74,7 @@ const CommentActBar = ({
     };
 
     return (
-      <Grid container justifyContent="space-between" alignItems="center">
+      <Grid container overflow="hidden" justifyContent="space-between" alignItems="center">
         <Grid item xs={9}>
           <Box
             sx={{ display: "flex", alignItems: "center", gap: ".5rem" }}
@@ -107,9 +107,7 @@ const CommentActBar = ({
                       src={ReplyIcon}
                       alt="reply"
                       className={Styles.icons}
-                      width={matches ? 20 : 30}
-                      height={matches ? 20 : 30}
-                    />
+                      />
                   </Icon>
                   <span onClick={handleClick}>
                     Reply (
