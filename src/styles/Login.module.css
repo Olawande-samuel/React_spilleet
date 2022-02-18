@@ -1,4 +1,4 @@
-
+@import "./Variables.css";
 
 .logoWrapper {
     display: none; 
@@ -18,6 +18,12 @@
     text-align: center;
 }
 
+.loginBtn {
+    background:var(--greenish) !important;
+}
+.loginBtn:hover {
+    background: #2C5282 !important;
+}
 
 
 .pInput {
@@ -44,7 +50,7 @@
     }
     .loginContainer {
         height: 100vh;
-        color: rgba(90, 107, 255, 1);
+        color: var(--primary);
     }
     .loginContainer, .pInput {
         background-color: #fff;

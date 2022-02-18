@@ -31,7 +31,7 @@ const Profile = ({ img }) => {
       <Link to={`/user/profile/${data.fullname}-${data.usertoken}`}>
         <div className={Styles.profileWrapper}>
           <img
-            src={image ? image : Placeholder}
+            src={image === "0"? Placeholder : image}
             alt="profile"
             className={Styles.image}
           />

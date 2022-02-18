@@ -23,11 +23,11 @@
   color: rgba(0, 0, 0, 0.45);
 }
 
- @media screen and (max-width:1070px) {
+ /* @media screen and (max-width:1070px) {
    .profile {
      display: none;
    }
- }
+ } */
  @media screen and (max-width:670px) {
    .profile {
      display: none;

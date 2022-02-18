@@ -1,3 +1,5 @@
+@import "./Variables.css";
+
 .checkLabel {
     border: 1px solid #000000;
     padding: 17px 16px;
@@ -21,7 +23,7 @@
 }
 
 .input  {
-    background: #5A6BFF;
+    background: var(--primary);
 }
 .checkLabel, .trueLabel {
     display: block;
@@ -50,12 +52,12 @@
 }
   
 .checkLabel:hover, .trueLabel:hover{
-    background: #5A6BFF !important;
+    background: var(--primary) !important;
     color:  white;
 
 }
 .checkLabel:hover input ~ .icon, .trueLabel:hover  input ~ .icon{
-    background: #5A6BFF;
+    background: var(--primary);
 }
   
 
@@ -65,7 +67,7 @@
   
 
  input:checked ~ .icon {
-    background: #5A6BFF;
+    background: var(--primary);
 }
 #interest_label input:checked  {
       display: none;

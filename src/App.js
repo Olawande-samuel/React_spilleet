@@ -28,6 +28,9 @@ import RequireAuth, { AdminRequireAuth } from "./Components/Auth/Protected";
 import Notifications from "./Components/Profile/Notification/Notifications";
 import NotFound from "./Components/Error/404";
 import Contact from "./Components/Contact/Contact";
+import { Interests } from "./Components/Interest/Interests";
+import Forgot from "./Components/Forgot/Forgot";
+import ChangePassword from "./Components/Profile/ChangePassword";
 function App() {
   const [user, setUser] = useState(null);
   const [search, setSearch] = useState("");
@@ -47,7 +50,15 @@ function App() {
                 <Route path="profile" element={<ProfileOut />}>
                   <Route path=":name" element={<ProfileDeets />} />
                 </Route>
-                <Route path="notifications" element={<Notifications />} />
+                <Route
+                  path="notifications"
+                  element={
+                    <RequireAuth redirectTo="/login">
+                      <Notifications />
+                    </RequireAuth>
+                  }
+                />
+
                 <Route
                   path="settings"
                   element={
@@ -60,8 +71,24 @@ function App() {
                   <Route path="email_notification" element={<Email />} />
                   <Route path="privacy" element={<Privacy />} />
                 </Route>
-                <Route path="create-post" element={<Createpost />} />
+                <Route
+                  path="create-post"
+                  element={
+                    <RequireAuth redirectTo="/login">
+                      <Createpost />
+                    </RequireAuth>
+                  }
+                />
+                <Route path="change-password" element={<ChangePassword />} />
               </Route>
+              <Route
+                path="interests"
+                element={
+                  <RequireAuth redirectTo="/login">
+                    <Interests />
+                  </RequireAuth>
+                }
+              />
               <Route
                 path="admin"
                 element={
@@ -74,6 +101,8 @@ function App() {
                 <Route path="posts" element={<AdminPosts />} />
                 <Route path="topics" element={<AdminTopics />} />
               </Route>
+
+              <Route path="forgot-password" element={<Forgot />} />
               <Route path="login" element={<LoginEntry />} />
               <Route path="contact-us" element={<Contact />} />
               <Route path="admin/login" element={<AdminEntry />} />

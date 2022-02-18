@@ -9,7 +9,8 @@ const Notification = ({item}) => {
     return (
         <Grid container borderRadius="4px" padding="10px" borderBottom="0.234px solid gray" justifyContent="space-between" alignItems="center" background="rgba(23, 17, 148, 0.29)">
             <Grid item xs={2} display="flex" justifyContent="center">
-                <Profile img={Placeholder} />
+                {item.senderimgurl === "0" ?  <Profile img={Placeholder} /> : <Profile img={item.senderimgurl} />
+                }
             </Grid>
             <Grid item xs={8}> 
                 <Detail item={item} />

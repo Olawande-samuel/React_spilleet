@@ -66,7 +66,7 @@ const Login = () => {
               router("/posts");
             }else {
               
-            router("/interest");
+            router("/interests");
             }
              
           }
@@ -156,9 +156,10 @@ const Login = () => {
             >
               <Button
                 type="submit"
-                sx={{ width: "100%", background: "#171194", fontWeight: "700" }}
+                sx={{ width: "100%", fontWeight: "700" }}
                 variant="contained"
                 size="large"
+                className={Style.loginBtn}
               >
                 Login now
               </Button>

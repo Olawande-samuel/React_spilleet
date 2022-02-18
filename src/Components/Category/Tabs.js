@@ -56,7 +56,7 @@ export default function CategoryTabs({handleClick}) {
         variant="scrollable"
           value={value}
           onChange={handleChange}
-          aria-label="basic tabs example"
+          aria-label="trends and categories"
         >
           <Tab label="Trending" {...a11yProps(0)} />
           <Tab label="Category" {...a11yProps(1)} />

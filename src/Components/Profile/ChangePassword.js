@@ -7,6 +7,7 @@ import { Fetch } from "../../Trials/Controller";
 import Loader from "../Utils/Loader";
 import Utils from "../Utils/Utils";
 import { Link } from "react-router-dom";
+import Logo from "../../images/Logo.svg"
 
 const ChangePassword = () => {
   const [loading, setLoading] = useState(false);
@@ -86,7 +87,7 @@ const ChangePassword = () => {
       <Box width="100%" className={Style.logo}>
         <Link to="/">
           <div className={Style.logoWrapper}>
-            <img src="/Logo.svg" alt="App Logo" width={264} height={96} />
+            <img src={Logo} alt="App Logo" width={164} height={56} />
           </div>
         </Link>
       </Box>

@@ -1,6 +1,8 @@
+@import "./Variables.css";
+
 .header_container {
   height: 94px;
-  background: rgba(38, 28, 255, 1);
+  background: var(--primary);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -14,11 +16,11 @@
   padding: 26.5px 36px;
   font-weight: 500;
   line-height: 15px;
-  background: rgba(51, 67, 210, 1);
+  background: var(--primary);
   border-bottom: 1px solid gray;
 }
 .activeLink {
-  color: rgba(51, 67, 210, 1);
+  color: var(--primary);
   padding: 26.5px 36px;
   font-weight: 600;
   line-height: 15px;
@@ -26,7 +28,7 @@
   border-bottom: 1px solid gray;
 }
 .wrapper {
-  background: rgba(51, 67, 210, 1);
+  background: var(--primary);
   height: 100%;
   width: 100%;
 }

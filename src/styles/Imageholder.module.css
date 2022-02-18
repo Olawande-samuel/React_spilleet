@@ -1,17 +1,19 @@
+@import "./Variables.css";
+
 .body {
   min-height: 100%;
   width: 100%;
-  background: #5a6bff;
+  background: var(--primary);
   padding: 27px 10px 3px 10px;
   display: flex;
   flex-direction: column;
-justify-content:space-between  
+  justify-content: space-between;
 }
 
 .imageHolder {
   min-height: 100%;
 }
-@media screen and (max-width:600px) { 
+@media screen and (max-width: 600px) {
   .imageHolder {
     display: none;
   }

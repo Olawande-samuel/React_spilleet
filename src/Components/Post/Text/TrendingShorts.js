@@ -14,7 +14,7 @@ const TrendingShorts = ({ item }) => {
         alignItems="center"
         justifyContent="center"
         height="148px"
-        border="1px solid rgba(23, 17, 148, 0.94)"
+        border="1px solid #C035A2"
         padding="5px"
         borderRadius="4px"
       >

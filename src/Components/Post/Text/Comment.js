@@ -7,6 +7,7 @@ import { BsEmojiSmile } from "react-icons/bs";
 import { Picker } from "emoji-mart";
 import "emoji-mart/css/emoji-mart.css";
 import { Link } from "react-router-dom";
+import Placeholder from "../../../images/placeholder.png"
 
 const Comment = ({ item, setReload, setShowComments, reloadComments }) => {
   const [comment, setComment] = useState("");
@@ -75,7 +76,7 @@ const Comment = ({ item, setReload, setShowComments, reloadComments }) => {
               <div className={Styles.commentProfileWimgurlrapper}>
                 {/* <Link to="/user/profile"> */}
                 <img
-                  src={info.imgurl === "0" ? "/placeholder.png" : info.imgurl}
+                  src={info.imgurl === "0" ? Placeholder : info.imgurl}
                   alt="profile"
                   width={32}
                   height={34}

@@ -30,7 +30,7 @@ const [height, setHeight] = useState('')
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('md'))
   return (
-    <Grid container backgroundColor="rgba(38, 28, 255, 1)" minHeight={`${height}px`} padding={matches ? "10px 20px":"20px 82px"}>
+    <Grid container backgroundColor="#C035A2" minHeight={`${height}px`} padding={matches ? "10px 20px":"20px 82px"}>
       <Grid item md={6} >
         <Stack color="#fff" px={1} pt={2} display="flex"  height="100%" spacing={2} >
          <Box mb={6}>

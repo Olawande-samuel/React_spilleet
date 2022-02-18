@@ -11,15 +11,9 @@ const Footer = () => {
   const matches = useMediaQuery("1014px");
   const mobile = useMediaQuery("480px");
   return (
-    <footer style={{ background: "#171194" }}>
+    <footer className={Styles.footer}>
       <Box
-        display="flex"
-        flexWrap="wrap"
-        // sx={{  minHeight: matches ? "109px" : "109px" }}
-        // justifyContent={mobile ? "center" : "space-between"}
-        paddingLeft="20px"
-        paddingRight="20px"
-        alignItems="center"
+       
         className={Styles.footerContainer}
       >
         {/* <Box alignSelf="flex-start" md={2} className={Styles.items}>

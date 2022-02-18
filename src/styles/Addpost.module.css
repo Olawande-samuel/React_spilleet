@@ -1,3 +1,4 @@
+@import "./Variables.css";
 .btnContainer {
   border: 1px solid lightgrey;
   display: flex;
@@ -6,7 +7,7 @@
   padding: 10px;
   width: 25%;
   margin: auto;
-  background-color: #171194;
+  background-color:  var(--primary);
   border-radius: 4px;
   transition: all 0.5s ease;
 }
@@ -28,7 +29,7 @@
   /* letter-spacing: 4px; */
 }
 .btnContainer:hover .addPostBtn {
-  color: #171194;
+  color:  var(--primary);
   background-color: inherit;
 }
 

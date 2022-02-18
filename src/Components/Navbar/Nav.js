@@ -21,6 +21,7 @@ const Nav = ({ setValue }) => {
   };
 
   const openSidebar = () => {
+    console.log("clicked")
     setShowSidebar(true);
   };
   const [userObj, setUserObj] = useState(null);
