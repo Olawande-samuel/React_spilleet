@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/static/css/main.49b02499.css",
+    "main.js": "/static/js/main.b2bcb019.js",
+    "static/js/787.face551e.chunk.js": "/static/js/787.face551e.chunk.js",
+    "static/media/Post.png": "/static/media/Post.e8f313819beaa6edf354.png",
+    "static/media/placeholder.png": "/static/media/placeholder.65f9347f9da59256b8cb.png",
+    "static/media/category.jpg": "/static/media/category.389d40f83cf80fefd2f7.jpg",
+    "static/media/trends.jpeg": "/static/media/trends.c8c439a7669df861310b.jpeg",
+    "static/media/Logo.svg": "/static/media/Logo.3502fcbba9581dac8c432f9dca72a7e5.svg",
+    "static/media/spilleet.svg": "/static/media/spilleet.4094486c8c28fa4bb36b1a489d3388e2.svg",
+    "static/media/revicons.eot": "/static/media/revicons.a77de540a38981833f9e.eot",
+    "static/media/revicons.ttf": "/static/media/revicons.57fd05d4ae650374c8de.ttf",
+    "static/media/sitting-left.png": "/static/media/sitting-left.e045063a15d8467ccdb5.png",
+    "static/media/sitting-right.png": "/static/media/sitting-right.f7fbdc8995e9aa38b7a5.png",
+    "static/media/revicons.woff": "/static/media/revicons.e8746a624ed098489406.woff",
+    "static/media/Google.svg": "/static/media/Google.3c6fb0ef58f850c80128a36d3865a729.svg",
+    "static/media/facebook.svg": "/static/media/facebook.244ae99e6d409161a24c3308405d7b92.svg",
+    "index.html": "/index.html",
+    "static/media/trends.svg": "/static/media/trends.901fff5ab8c5959cb8323aaa2e4ec47b.svg",
+    "static/media/reply.svg": "/static/media/reply.15805cf15f59126761b883f0a7843ccc.svg",
+    "main.49b02499.css.map": "/static/css/main.49b02499.css.map",
+    "main.b2bcb019.js.map": "/static/js/main.b2bcb019.js.map",
+    "787.face551e.chunk.js.map": "/static/js/787.face551e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.49b02499.css",
+    "static/js/main.b2bcb019.js"
+  ]
+}
