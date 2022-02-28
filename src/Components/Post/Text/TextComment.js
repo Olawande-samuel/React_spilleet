@@ -26,9 +26,9 @@ const TextComment = ({ item }) => {
     let mounted = true;
     setLoading(true);
     const formData = new FormData();
-    formData.append("apptoken", "7FHS8S43N2JF08");
+    formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
     formData.append("cnt_id", item.cmt_id);
-    Fetch("https://spilleetapi.spilleet.com/display-comments", formData)
+    Fetch(`${process.env.REACT_APP_END_POINT}/display-comments`, formData)
       .then((res) => {
         setLoading(false);
         if (mounted) {
@@ -51,9 +51,9 @@ const TextComment = ({ item }) => {
     let mounted = true;
     setLoading(true);
     const formData = new FormData();
-    formData.append("apptoken", "7FHS8S43N2JF08");
+    formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
     formData.append("cmt_id", item.cmt_id);
-    Fetch("https://spilleetapi.spilleet.com/displayReplyOfComments", formData)
+    Fetch(`${process.env.REACT_APP_END_POINT}/displayReplyOfComments`, formData)
       .then((res) => {
         setLoading(false);
         if (mounted) {
@@ -84,7 +84,7 @@ const TextComment = ({ item }) => {
       <Box flex="80%" overflow="hidden">
         <Stack spacing={1}>
           <NameDate name={item.username} date={item.timeago} item={item} />
-          <Content content={item.comment}  />
+          <Content content={item.comment} />
           <CommentActBar
             item={item}
             upvotes={item.likes}

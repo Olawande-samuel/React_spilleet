@@ -1,4 +1,4 @@
-.post {
+.post, .profile_post {
   margin: 20px 0;
 }
 .container {
@@ -57,7 +57,7 @@
 }
 @media screen and (max-width: 740px) {
   .post {
-    max-width: 500px;
+    width: calc(95vw - 2vw);
     margin: 20px auto;
   }
   /* .imageContainer{
@@ -68,6 +68,9 @@
 @media screen and (min-width: 800px) {
   .post {
     width: 720px;
+  }
+  .profile_post{
+    width: 100%;
   }
 }
 

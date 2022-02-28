@@ -1,5 +1,7 @@
+@import "./Variables.css";
+
 .logo {
-    background: #0038FD;
+    background: var(--primary);
     height: clamp(30px, 3vw, 55px);
     width: clamp(30px,  3vw, 55px);
     border-radius: 50%;

@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import React from "react";
 import Style from "../../styles/Trending.module.css";
 import Carousell from "./Carousel";
-import Trends from "../../images/trends.svg"
+import Trends from "../../images/trendsarrow2.svg"
 const Trending = () => {
   return (
     <Box  display="flex" flexDirection="column" alignItems="center">

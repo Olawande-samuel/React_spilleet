@@ -104,7 +104,7 @@
   display: none;
 }
 .link:hover {
-color: rgba(23, 17, 148, 0.94);
+color: var(--primary);
 font-weight: bold;
 }
 .link:hover::after {
@@ -130,7 +130,7 @@ font-weight: bold;
   }
   .content {
     display: none;
-  }
+  } 
 
   /* .minSearch{
         display: block;
@@ -138,9 +138,7 @@ font-weight: bold;
 }
 
 @media screen and (max-width: 670px) {
-  .nav {
-    background: var(--primary-light);
-  }
+ 
   .right {
     width: 90%;
     justify-content: space-between;
@@ -148,7 +146,7 @@ font-weight: bold;
   .hamburger {
     display: block;
     font-size: 25px;
-    color: white;
+    color: var(--primary);
   }
   .linksWrapper,
   .notification,
@@ -168,6 +166,7 @@ font-weight: bold;
 
   .mobile .minSearch {
     display: block;
+    color: var(--primary);
   }
   .mobile .logo {
     display: block;

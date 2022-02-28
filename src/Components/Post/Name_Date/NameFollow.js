@@ -21,10 +21,10 @@ const NameFollow = ({ user, date, usertoken, followed, item }) => {
   const handleSubmit = () => {
     setFollowing(!following);
     const formData = new FormData();
-    formData.append("apptoken", "7FHS8S43N2JF08");
+    formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
     formData.append("to_follow", usertoken);
     formData.append("usertoken", username);
-    Fetch("https://spilleetapi.spilleet.com/follow", formData)
+    Fetch(`${process.env.REACT_APP_END_POINT}/follow`, formData)
       .then((res) => {
         if (res.data.success === false) {
           window.alert(res.data.message);
@@ -39,10 +39,10 @@ const NameFollow = ({ user, date, usertoken, followed, item }) => {
   const handleUnfollow = () => {
     setFollowing(!following);
     const formData = new FormData();
-    formData.append("apptoken", "7FHS8S43N2JF08");
+    formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
     formData.append("to_follow", usertoken);
     formData.append("usertoken", username);
-    Fetch("https://spilleetapi.spilleet.com/unfollow", formData)
+    Fetch(`${process.env.REACT_APP_END_POINT}/unfollow`, formData)
       .then((res) => {
         if (res.data.success === false) {
           window.alert(res.data.message);

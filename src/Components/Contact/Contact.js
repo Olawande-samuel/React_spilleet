@@ -8,14 +8,14 @@ import { TiSocialLinkedinCircular } from "react-icons/ti";
 import { MdLocationOn } from "react-icons/md";
 import { IoMdMail } from "react-icons/io";
 import Style from "../../styles/Contact.module.css";
-import React, {useState, useEffect} from "react"
-import Logo from '../../images/Logo.svg';
+import React, { useState, useEffect } from "react";
+import Logo from "../../images/Logo2.png";
 const Contact = () => {
-const [height, setHeight] = useState('')
-  useEffect(()=>{
+  const [height, setHeight] = useState("");
+  useEffect(() => {
     const val = window.innerHeight;
-    setHeight(val)
-  },[])
+    setHeight(val);
+  }, []);
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -28,35 +28,47 @@ const [height, setHeight] = useState('')
   });
 
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down('md'))
+  const matches = useMediaQuery(theme.breakpoints.down("md"));
   return (
-    <Grid container backgroundColor="#C035A2" minHeight={`${height}px`} padding={matches ? "10px 20px":"20px 82px"}>
-      <Grid item md={6} >
-        <Stack color="#fff" px={1} pt={2} display="flex"  height="100%" spacing={2} >
-         <Box mb={6}>
-          <div className={Style.logo}>
-            <Link to="/">
+    <Grid
+      container
+      backgroundColor="#C035A2"
+      minHeight={`${height}px`}
+      padding={matches ? "10px 20px" : "20px 82px"}
+    >
+      <Grid item md={6}>
+        <Stack
+          color="#fff"
+          px={1}
+          pt={2}
+          display="flex"
+          height="100%"
+          spacing={2}
+        >
+          <Box mb={6}>
+            <div className={Style.logo}>
+              <Link to="/">
                 <img src={Logo} alt="App Logo" width={160} height={48} />
-            </Link>
-          </div>
-          <div className={Style.text}>
-            <p>
-              Get Us in Touch. Fill up the form and our Team will get back to
-              you within 24 hours.
-            </p>
-          </div>
-         </Box>
-          <Box display="flex"justifyContent="center" alignItems="center">
-            <Stack spacing={2}> 
-              <div className={Style.contactLink}> 
+              </Link>
+            </div>
+            <div className={Style.text}>
+              <p>
+                Get Us in Touch. Fill up the form and our Team will get back to
+                you within 24 hours.
+              </p>
+            </div>
+          </Box>
+          <Box display="flex" justifyContent="center" alignItems="center">
+            <Stack spacing={2}>
+              <div className={Style.contactLink}>
                 <span>
-                <BsFillTelephoneFill  />
+                  <BsFillTelephoneFill />
                 </span>
-                 <a href="tel:+2348145363728">+234 814 536 3728</a> 
+                <a href="tel:+2348145363728">+234 814 536 3728</a>
               </div>
-              <div className={Style.contactLink}> 
+              <div className={Style.contactLink}>
                 <span>
-                    <IoMdMail />
+                  <IoMdMail />
                 </span>
                 <span>
                   <a href="maiito:itSpilleet@gmail.com">itSpilleet@gmail.com</a>
@@ -64,19 +76,22 @@ const [height, setHeight] = useState('')
               </div>
               <div className={Style.contactLink}>
                 <span>
-                    <MdLocationOn />    
-                </span> <a href="https://goo.gl/maps/Hvfewf6wdppE54io9">102 Orogun Street, Ibadan</a>
+                  <MdLocationOn />
+                </span>{" "}
+                <a href="https://goo.gl/maps/Hvfewf6wdppE54io9">
+                  102 Orogun Street, Ibadan
+                </a>
               </div>
               <div>
                 <div className={Style.socials}>
                   <span className="instagram">
-                  <FaInstagram />
+                    <FaInstagram />
                   </span>
                   <span className="facebook">
-                  <BsFacebook />
+                    <BsFacebook />
                   </span>
                   <span className="linkedin">
-                  <TiSocialLinkedinCircular />
+                    <TiSocialLinkedinCircular />
                   </span>
                 </div>
               </div>
@@ -84,52 +99,54 @@ const [height, setHeight] = useState('')
           </Box>
         </Stack>
       </Grid>
-      <Grid item md={6} display="flex" justifyContent="center" width="100%" >
-        <Box padding={matches ? "40px 0px":"76px"} width={matches ? "100%":"unset"}    >
-          <form className={Style.form} >
+      <Grid item md={6} display="flex" justifyContent="center" width="100%">
+        <Box
+          padding={matches ? "40px 0px" : "76px"}
+          width={matches ? "100%" : "unset"}
+        >
+          <form className={Style.form}>
             <Stack spacing={2}>
-            <Stack spacing={1}>
-              <label htmlFor="name">Your name</label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                value={formik.values.name}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                className={Style.input}
-              />
-            </Stack>
-            <Stack spacing={1}>
-              <label htmlFor="mail">Email</label>
-              <input
-                type="mail"
-                name="mail"
-                id="mail"
-                value={formik.values.mail}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                className={Style.input}
-              />
-            </Stack>
-            <Stack spacing={1}>
-              <label htmlFor="name">Message</label>
-              <textarea
-                name="message"
-                id="message"
-                cols="30"
-                rows="10"
-                placeholder="Write message"
-                value={formik.values.message}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                className={Style.input}
-
-              ></textarea>
-            </Stack>
-            <div className={Style.buttonWrapper}>
+              <Stack spacing={1}>
+                <label htmlFor="name">Your name</label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  value={formik.values.name}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  className={Style.input}
+                />
+              </Stack>
+              <Stack spacing={1}>
+                <label htmlFor="mail">Email</label>
+                <input
+                  type="mail"
+                  name="mail"
+                  id="mail"
+                  value={formik.values.mail}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  className={Style.input}
+                />
+              </Stack>
+              <Stack spacing={1}>
+                <label htmlFor="name">Message</label>
+                <textarea
+                  name="message"
+                  id="message"
+                  cols="30"
+                  rows="10"
+                  placeholder="Write message"
+                  value={formik.values.message}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  className={Style.input}
+                ></textarea>
+              </Stack>
+              <div className={Style.buttonWrapper}>
                 <button className={Style.button}>Send message</button>
-            </div>
+              </div>
             </Stack>
           </form>
         </Box>

@@ -13,7 +13,7 @@ import TextComment from "./TextComment";
 import { Fetch } from "../../../Trials/Controller";
 import EmptyImageProfile from "../Profile/EmptyImageProfile";
 import Loader from "../../Utils/Loader";
-const TextPost = ({ item, reloader, loadCommentFig }) => {
+const TextPost = ({ item, reloader, loadCommentFig, profile }) => {
   const [comments, setComments] = useState([]);
   const [reload, setReload] = useState(false);
   const [reloadComments, setReloadComments] = useState(false);
@@ -27,9 +27,9 @@ const TextPost = ({ item, reloader, loadCommentFig }) => {
     let mounted = true;
     setLoading(true);
     const formData = new FormData();
-    formData.append("apptoken", "7FHS8S43N2JF08");
+    formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
     formData.append("cnt_id", item.cnt_id);
-    Fetch("https://spilleetapi.spilleet.com/display-comments", formData)
+    Fetch(`${process.env.REACT_APP_END_POINT}/display-comments`, formData)
       .then((res) => {
         setLoading(false);
         if (mounted) {
@@ -50,7 +50,7 @@ const TextPost = ({ item, reloader, loadCommentFig }) => {
   }, [reload, showComments]);
 
   return (
-    <Box className={Style.post}>
+    <Box className={profile ? Style.profile_post :Style.post}>
       <Box className={Style.container}>
         <CardContent>
           <Box className={Style.wrapper}>
@@ -95,9 +95,7 @@ const TextPost = ({ item, reloader, loadCommentFig }) => {
           reloadComments={setReloadComments}
         />
         {showComments && (
-          <Box
-          className={Style.commentBox}
-          >
+          <Box className={Style.commentBox}>
             {loading ? (
               <Loader />
             ) : (

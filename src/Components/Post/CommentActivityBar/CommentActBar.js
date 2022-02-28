@@ -4,7 +4,7 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import Styles from "../../../styles/CAB.module.css";
 import { Fetch } from "../../../Trials/Controller";
-import ReplyIcon from "../../../images/reply.svg"
+import ReplyIcon from "../../../images/reply.svg";
 
 const CommentActBar = ({
   upvotes,
@@ -13,7 +13,6 @@ const CommentActBar = ({
   item,
   reloadComments,
 }) => {
-
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -47,23 +46,22 @@ const CommentActBar = ({
         setLiked(false);
         setTotalLikes(totalLikes - 1);
         const formData = new FormData();
-        formData.append("apptoken", "7FHS8S43N2JF08");
+        formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
         formData.append("usertoken", uData.usertoken);
         formData.append("cnt_id", item.cmt_id);
-        Fetch("https://spilleetapi.spilleet.com/likes", formData)
+        Fetch(`${process.env.REACT_APP_END_POINT}/likes`, formData)
           .then((res) => {
             setLiked(false);
           })
-          .catch((err) => {
-          });
+          .catch((err) => {});
       } else {
         setTotalLikes(totalLikes + 1);
         setLiked(!liked);
         const formData = new FormData();
-        formData.append("apptoken", "7FHS8S43N2JF08");
+        formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
         formData.append("usertoken", uData.usertoken);
         formData.append("cnt_id", item.cmt_id);
-        Fetch("https://spilleetapi.spilleet.com/likes", formData)
+        Fetch(`${process.env.REACT_APP_END_POINT}/likes`, formData)
           .then((res) => {
             console.log(res);
           })
@@ -74,7 +72,12 @@ const CommentActBar = ({
     };
 
     return (
-      <Grid container overflow="hidden" justifyContent="space-between" alignItems="center">
+      <Grid
+        container
+        overflow="hidden"
+        justifyContent="space-between"
+        alignItems="center"
+      >
         <Grid item xs={9}>
           <Box
             sx={{ display: "flex", alignItems: "center", gap: ".5rem" }}
@@ -103,16 +106,11 @@ const CommentActBar = ({
                   sx={{ display: "flex", gap: ".5rem", alignItems: "center" }}
                 >
                   <Icon className={Styles.iconWrapper}>
-                    <img
-                      src={ReplyIcon}
-                      alt="reply"
-                      className={Styles.icons}
-                      />
+                    <img src={ReplyIcon} alt="reply" className={Styles.icons} />
                   </Icon>
                   <span onClick={handleClick}>
                     Reply (
-                    {`${item.total_replies !== undefined ? totalComments : 0}`}
-                    )
+                    {`${item.total_replies !== undefined ? totalComments : 0}`})
                   </span>
                 </Box>
               </Box>

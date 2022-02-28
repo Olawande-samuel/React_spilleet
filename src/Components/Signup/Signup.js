@@ -17,7 +17,7 @@ import Utils from "../Utils/Utils";
 import { Fetch } from "../../Trials/Controller";
 import Loader from "../Utils/Loader";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
-import Logo from "../../images/Logo.svg";
+import Logo from "../../images/Logo2.png";
 import Google from "../../images/Google.svg";
 import Facebook from "../../images/facebook.svg";
 import * as Yup from "yup";
@@ -52,7 +52,7 @@ const Signup = () => {
     onSubmit: (values) => {
       setLoading(true);
       const formData = new FormData();
-      formData.append("apptoken", "7FHS8S43N2JF08");
+      formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
       formData.append("email", values.email);
       formData.append("pword", values.password);
       formData.append("cpword", values.cpassword);
@@ -60,16 +60,20 @@ const Signup = () => {
       formData.append("fullname", values.name);
       // formData.append("username", values.username)
 
-      Fetch("https://spilleetapi.spilleet.com/register", formData)
+      Fetch(`${process.env.REACT_APP_END_POINT}/register`, formData)
         .then((res) => {
           setLoading(false);
           if (res.data.success === false) {
             setStatus("error");
             setContent(res.data.message);
             setShowAlert(true);
-          } else {
+          } else if(res.data.success === true) {
             setStatus("success");
             setContent(res.data.message);
+            setShowAlert(true);
+          } else {
+            setStatus("error");
+            setContent(res.data);
             setShowAlert(true);
           }
         })
@@ -99,7 +103,7 @@ const Signup = () => {
           <Grid item xs={12} className={Style.logo}>
             <Link to="/">
               <div className={Style.logoWrapper}>
-                <img src={Logo} alt="App Logo" width={264} height={96} />
+                <img src={Logo} alt="App Logo" width={160} height="auto" />
               </div>
             </Link>
           </Grid>
@@ -123,42 +127,21 @@ const Signup = () => {
               alignItems="center"
               gap={1}
             >
-              <Grid item width="100%" sm={8}>
-                <Button
-                  type="submit"
-                  startIcon={
-                    <img
-                      src={Google}
-                      alt="Google Logo"
-                      width={20}
-                      height={20}
-                    />
-                  }
-                  sx={{
-                    width: "100%",
-                    background: "#3F96D4",
-                    fontWeight: "700",
-                  }}
-                  variant="contained"
-                  size="large"
-                >
-                  Login now
-                </Button>
-              </Grid>
-              <Grid item width="100%" xs={12} sm={2}>
-                <Button
-                  startIcon={
-                    <img
-                      src={Facebook}
-                      alt="Facebook Logo"
-                      width={15}
-                      height={27}
-                    />
-                  }
-                  sx={{ background: "#878888", width: "100%" }}
-                  variant="contained"
-                  size="large"
-                ></Button>
+              <Grid item width="100%">
+                <Link to="/login">
+                  <Button
+                    type="submit"
+                    sx={{
+                      width: "100%",
+                      background: "#3F96D4",
+                      fontWeight: "700",
+                    }}
+                    variant="contained"
+                    size="large"
+                  >
+                    Login now
+                  </Button>
+                </Link>
               </Grid>
             </Grid>
             <Grid
@@ -182,10 +165,10 @@ const Signup = () => {
                     justifyContent="space-between"
                     alignItems="center"
                   >
-                    <Grid item xs={12} md={6} mb={1}>
+                    <Grid item xs={12}  mb={1}>
                       <FormControl sx={{ width: "100%" }}>
                         <label htmlFor="name" className={Style.label}>
-                          Full Name
+                          Preferred Name
                         </label>
                         <TextField
                           id="name"
@@ -199,7 +182,7 @@ const Signup = () => {
                         />
                       </FormControl>
                     </Grid>
-                    <Grid item xs={12} md={5} mb={1}>
+                    {/* <Grid item xs={12} md={5} mb={1}>
                       <FormControl sx={{ width: "100%" }}>
                         <label htmlFor="phone" className={Style.label}>
                           Phone
@@ -222,7 +205,7 @@ const Signup = () => {
                           public
                         </small>
                       ) : null}
-                    </Grid>
+                    </Grid> */}
                   </Grid>
                   <Grid
                     container
@@ -250,6 +233,14 @@ const Signup = () => {
                         <small style={{ color: "red" }}>
                           {formik.errors.email}
                         </small>
+                      ) : null}
+                      {formik.touched.email ? (
+                        <p>
+                        <small style={{ color: "green" }}>
+                          Your email address will not be made
+                          public
+                        </small>
+                        </p>
                       ) : null}
                     </Grid>
                   </Grid>

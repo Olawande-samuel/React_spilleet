@@ -3,8 +3,8 @@ import Styles from "../../styles/Imageholder.module.css";
 import Bars from "./Bars";
 import Images from "./Images";
 import { Link } from "react-router-dom";
-import React from "react"
-import Logo from "../../images/Logo.svg"
+import React from "react";
+import Logo from "../../images/Logo2.png";
 const Imageholder = () => {
   return (
     <Stack className={Styles.body}>

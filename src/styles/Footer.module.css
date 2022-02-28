@@ -7,6 +7,15 @@
 .copyright {
     margin-top:11px;
 }
+
+.login .login_btn:hover {
+    color: #fff ;
+    border: 1px var(--primary) !important;
+}
+.login button:last-child:hover {
+    color: #fff ;
+    background: var(--primary);
+}
 .footerContainer {
     display:flex;
     flex-wrap:wrap;

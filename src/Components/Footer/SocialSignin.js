@@ -5,6 +5,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import { FaFacebookSquare, FaInstagram } from "react-icons/fa";
 import style from "../../styles/Footer.module.css";
 import { FiFacebook } from "react-icons/fi";
+import { Link } from "react-router-dom";
 const SocialSignin = () => {
   const [userObj, setUserObj] = useState(null);
 
@@ -40,7 +41,7 @@ const SocialSignin = () => {
               placeItems: "center",
               borderRadius: "50%",
               fontSize: "24px",
-              color: "#171194",
+              color: "#C035A2",
             }}
           >
             <FiFacebook />
@@ -56,7 +57,7 @@ const SocialSignin = () => {
               placeItems: "center",
               borderRadius: "50%",
               fontSize: "24px",
-              color: "#171194",
+              color: "#C035A2",
             }}
           >
             <FaInstagram />
@@ -65,21 +66,29 @@ const SocialSignin = () => {
       </Box>
       {!userObj && (
         <Box item md={10} className={style.login}>
+          <Link to="/login">
+
           <Button
             variant="outlined"
-            sx={{ marginRight: "20px", padding: "12px 57px", color: "#fff" }}
-          >
+            border="1px solid #fff"
+            className={style.login_btn}
+            sx={{ marginRight: "20px", border:"1px solid #fff", padding: "12px 57px", color: "#fff" }}
+            >
             Log in
           </Button>
+            </Link>
+
+            <Link to="/signup">
           <Button
             sx={{
-              backgroundColor: "#2B6AD0",
+              backgroundColor: "#fff",
               padding: "12px 57px",
-              color: "#fff",
+              color: " #C035A2",
             }}
-          >
+            >
             Sign Up
           </Button>
+            </Link>
         </Box>
       )}
     </Box>

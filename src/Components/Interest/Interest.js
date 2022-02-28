@@ -72,8 +72,8 @@ const Interest = () => {
       setUsertoken(user.usertoken);
     }
     const formData = new FormData();
-    formData.append("apptoken", "7FHS8S43N2JF08");
-    Fetch("https://spilleetapi.spilleet.com/display-category", formData)
+    formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
+    Fetch(`${process.env.REACT_APP_END_POINT}/display-category`, formData)
       .then((res) => {
         if (mounted) {
           if (res.data.success === false) {
@@ -101,11 +101,14 @@ const Interest = () => {
     },
     onSubmit: (values) => {
       const formData = new FormData();
-      formData.append("apptoken", "7FHS8S43N2JF08");
+      formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
       formData.append("usertoken", usertoken);
       formData.append("interests", interests.toString());
 
-      Fetch("https://spilleetapi.spilleet.com/update-user-interests", formData)
+      Fetch(
+        `${process.env.REACT_APP_END_POINT}/update-user-interests`,
+        formData
+      )
         .then((res) => {
           if (res.data.success === false) {
             setStatus("error");

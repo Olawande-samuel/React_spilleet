@@ -6,6 +6,9 @@ import Usertable from "./table/Usertable";
 import Utils from "../../Utils/Utils";
 import { Fetch } from "../../../Trials/Controller";
 import Loader from "../../Utils/Loader";
+import ErrorBoundary from "../../Error/ErrorBoundary";
+import Searchbar from "./Searchbar";
+
 const AdminUser = () => {
   const [display, setDisplay] = useState(false);
   const [status, setStatus] = useState("");
@@ -15,10 +18,36 @@ const AdminUser = () => {
     setShowAlert(false);
   };
   const [loading, setLoading] = useState(false);
-
-  const { qValue, setValue } = useState("");
+  const [users, setUsers] = useState([]);
+  const [search, setSearch] = useState("");
   const [userObj, setUserObj] = useState(null);
 
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
+  const getAllUsers = () => {
+    setLoading(true);
+    const formData = new FormData();
+    formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
+    formData.append("admintoken", userObj.admintoken);
+
+    Fetch(`${process.env.REACT_APP_END_POINT}/adminListUsers`, formData)
+      .then((res) => {
+        setLoading(false);
+        if (res.data.success === false) {
+          setStatus("error");
+          setContent(res.data.message);
+          setShowAlert(true);
+        }
+        setUsers(res.data);
+      })
+      .catch((err) => {
+        setLoading(false);
+        setStatus("error");
+        setContent(err.message);
+        setShowAlert(true);
+      });
+  };
   useEffect(() => {
     const data = localStorage.getItem("admin");
 
@@ -27,7 +56,11 @@ const AdminUser = () => {
     }
   }, []);
 
-
+  useEffect(() => {
+    if (userObj) {
+      getAllUsers();
+    }
+  }, [userObj]);
   const handleSwitch = (e) => {
     e.preventDefault();
     setDisplay(!display);
@@ -37,19 +70,18 @@ const AdminUser = () => {
       // username: "",
       email: "",
       password: "",
-     
     },
     onSubmit: async (values) => {
-      setLoading(true)
+      setLoading(true);
       const formData = new FormData();
-      formData.append("apptoken", "7FHS8S43N2JF08");
+      formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
       formData.append("admintoken", userObj.admintoken);
       formData.append("email", values.email);
       formData.append("password", values.password);
-     
-      Fetch("https://spilleetapi.spilleet.com/add-admin", formData)
+
+      Fetch(`${process.env.REACT_APP_END_POINT}/add-admin`, formData)
         .then((res) => {
-          setLoading(false)
+          setLoading(false);
           if (res.data.success === false) {
             setStatus("error");
             setContent(res.data.message);
@@ -61,7 +93,7 @@ const AdminUser = () => {
           }
         })
         .catch((err) => {
-          setLoading(false)
+          setLoading(false);
           setStatus("error");
           setContent(err.message);
           setShowAlert(true);
@@ -69,31 +101,42 @@ const AdminUser = () => {
     },
   });
   return (
-    <Stack className={style.admin_container}>
+    <Stack className={style.admin_container} height="90vh" overflow="scroll">
       <Box mt={1}>
-              {showAlert && (
-                <Utils status={status} content={content} handleAlert={close} />
-              )}
-        </Box>
+        {showAlert && (
+          <Utils status={status} content={content} handleAlert={close} />
+        )}
+      </Box>
       <Box display="flex" gap="5px">
-        <button
-          className={display === false ? style.admin_false : style.admin_btn}
+        {/* <button
+          className={display === false ? style.admin_btn : style.admin_false}
           onClick={handleSwitch}
         >
           Add Admin
-        </button>
+        </button> */}
         <button
-          className={display === true ? style.admin_true : style.admin_btn}
+          className={display === false ? style.admin_btn : style.admin_true}
           onClick={handleSwitch}
         >
-          Manage Admin
+          Manage User
         </button>
       </Box>
       <Box>
-        {display === true ? (
-          <Box>
-            <h2 className={style.admin_title}>Manage Admin</h2>
-            <Box width="100%" style={{overflowX:"scroll"}}>
+        {/* {display === true ? ( */}
+        <Box>
+          <h2 className={style.admin_title}>Manage Users</h2>
+          <Searchbar search={search} handleSearch={handleSearch} />
+          <Box width="100%" style={{ overflowX: "scroll" }}>
+            {loading ? (
+              <Box
+                display="flex"
+                width="100%"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Loader />
+              </Box>
+            ) : (
               <table className={style.table}>
                 <thead>
                   <tr className={style.thead_row}>
@@ -104,15 +147,30 @@ const AdminUser = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <Usertable />
+                  {users.length > 0 &&
+                    users
+                      .filter(
+                        (user) =>
+                          user.fullname.includes(search) ||
+                          user.email.includes(search)
+                      )
+                      .map((user, index) => (
+                        <Usertable
+                          data={user}
+                          index={index}
+                          getAllUsers={getAllUsers}
+                        />
+                      ))}
                 </tbody>
               </table>
-            </Box>
+            )}
           </Box>
-        ) : (
+        </Box>
+
+        {/* : (
           <Box>
             <form className={style.form} onSubmit={formik.handleSubmit}>
-              <h2 className={style.admin_title}>Create user admin</h2>
+              <h2 className={style.admin_title}>Create user</h2>
               { loading ? (
                 <Box
                   height="90%"
@@ -160,7 +218,7 @@ const AdminUser = () => {
             )}
             </form>
           </Box>
-        )}
+        )} */}
       </Box>
     </Stack>
   );

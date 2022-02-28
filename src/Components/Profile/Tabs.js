@@ -68,7 +68,9 @@ export default function BasicTabs({ data }) {
           variant="scrollable"
           value={value}
           onChange={handleChange}
-          aria-label="basic tabs example"
+          aria-label="profile options"
+          textColor='secondary'
+          indicatorColor="secondary"
           // ml="auto"
         >
           <Tab

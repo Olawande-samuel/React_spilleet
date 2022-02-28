@@ -1,56 +1,55 @@
-import {FiUserPlus} from "react-icons/fi";
-import Style from "../../../styles/Follower.module.css"
-import {useState, useEffect} from 'react'
+import { FiUserPlus } from "react-icons/fi";
+import Style from "../../../styles/Follower.module.css";
+import { useState, useEffect } from "react";
 import React, { Fetch } from "../../../Trials/Controller";
 import { BsFillCheckCircleFill } from "react-icons/bs";
-const FollowButton = ({item}) => {
+const FollowButton = ({ item }) => {
+  const [username, setUsername] = useState("");
+  const [following, setFollowing] = useState(false);
 
-  const [username, setUsername] = useState('')
-  const [following, setFollowing] = useState(false)
-
-  useEffect(()=>{
-    const data = localStorage.getItem("user")
-    if(data){
-        const user = JSON.parse(data)
-        setUsername(user.usertoken)
+  useEffect(() => {
+    const data = localStorage.getItem("user");
+    if (data) {
+      const user = JSON.parse(data);
+      setUsername(user.usertoken);
     }
-},[])
+  }, []);
 
-
-
-const handleClick = (token)=>{
-  setFollowing(!following)
+  const handleClick = (token) => {
+    setFollowing(!following);
     const formData = new FormData();
-    formData.append("apptoken", "7FHS8S43N2JF08");
+    formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
     formData.append("to_follow", token);
     formData.append("usertoken", username);
-    Fetch("https://spilleetapi.spilleet.com/follow", formData)
+    Fetch(`${process.env.REACT_APP_END_POINT}/follow`, formData)
       .then((res) => {
         if (res.data.success === false) {
-        window.alert(res.message)
-        } 
+          window.alert(res.message);
+        }
       })
       .catch((err) => {
-        window.alert(err.message)
+        window.alert(err.message);
       });
-}
+  };
 
   return (
-    <button className={Style.followButton} type="submit" onClick={()=> handleClick(item.followed_token || item.follower_token)}>
-        {
-       following ? (
+    <button
+      className={Style.followButton}
+      type="submit"
+      onClick={() => handleClick(item.followed_token || item.follower_token)}
+    >
+      {following ? (
         <span>
-        <BsFillCheckCircleFill />
+          <BsFillCheckCircleFill />
         </span>
-       ):(
-            <>
-            <span>
+      ) : (
+        <>
+          <span>
             <FiUserPlus />
-            </span>
-            <span className={Style.followText}>Follow</span>
-            </>
-            )
-          }
+          </span>
+          <span className={Style.followText}>Follow</span>
+        </>
+      )}
     </button>
   );
 };

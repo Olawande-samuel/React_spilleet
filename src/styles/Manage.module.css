@@ -59,9 +59,9 @@
 
 .layout_main {
   grid-column: 4 / span 9;
-  grid-row: 2 / span 12;
+  grid-row: 1 / span 12;
   padding:  0 78px 0 25px;
-  margin-top: 7%;
+  margin-top: 15%;
 }
 .user_wrapper {
   display: flex;
@@ -80,6 +80,21 @@
 .smallSidebar {
   display: none;
 }
+@media screen and (min-width:600px){
+  .layout_main {
+    margin-top: 22%;
+  }
+}
+@media screen and (min-width:800px){
+  .layout_main {
+    margin-top: 17%;
+  }
+}
+@media screen and (min-width:1200px){
+  .layout_main {
+    margin-top: 10%;
+  }
+}
 @media screen and (max-width: 600px){
   .layout_sidebar {
     display: none;
@@ -87,9 +102,10 @@
   
   .layout_main {
     grid-column: 1 / span 12;
-    grid-row: 2 / span 12;
     padding: 15% 10px;
     overflow: scroll;
+    margin-top: 20%;
+
   }
   .admin_container {
     width: 100%;
@@ -113,7 +129,7 @@
     /* left: 0; */
     min-height: 100vh;
     width: 80%;
-    background: rgba(51, 67, 210, 1);
+    background: var(--primary);
     padding: 20px;
     transition: left .5s ease; 
   }
@@ -127,7 +143,8 @@
   /* border: 1px solid red; */
 }
 .admin_btn {
-  background: rgba(51, 67, 210, 1);
+  /* background: rgba(51, 67, 210, 1); */
+  background: var(--primary);
   color: white;
   font-size: 16px;
   border-radius: 9px;
@@ -139,6 +156,7 @@
 .admin_false,
 .admin_true {
   color: rgba(51, 67, 210, 1);
+  color: var(--primary);
   background: #eee;
   font-size: 16px;
   border-radius: 9px;
@@ -179,28 +197,34 @@
 .desc_input {
     padding: 25px 12px;
 }
+
+.searchbar{
+  padding: 10px 12px;
+  outline: none;
+  border-radius:20px;
+  border:1px solid lightgrey;
+}
 /* ***********************TABLE************************** */
 .table {
-  min-width: 100vw;
+  min-width: 100%;
   text-align: center;
   border-collapse: collapse;
 
 }
+
 .table .thead_row th,
 .table tbody tr td {
   border-bottom: 1px solid rgba(0, 0, 0, 1);
   padding: 15px 5px;
   font-weight: 600;
-  font-size: 16px;
+  font-size: clamp(13px, 2vw, 16px);
 }
-/* .table .thead_row th:last-child,
-.table tbody tr td:last-child {
-  text-align: right;
-} */
+
+
 
 .action button {
   font-weight: 600;
-  font-size: 18px;
+  font-size: clamp(13px, 2vw, 18px);
   line-height: 22px;
   border: none;
   outline: none;

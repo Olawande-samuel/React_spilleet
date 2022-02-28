@@ -7,7 +7,7 @@ import { BsEmojiSmile } from "react-icons/bs";
 import { Picker } from "emoji-mart";
 import "emoji-mart/css/emoji-mart.css";
 import { Link } from "react-router-dom";
-import Placeholder from "../../../images/placeholder.png"
+import Placeholder from "../../../images/placeholder.png";
 
 const Comment = ({ item, setReload, setShowComments, reloadComments }) => {
   const [comment, setComment] = useState("");
@@ -38,13 +38,13 @@ const Comment = ({ item, setReload, setShowComments, reloadComments }) => {
         setLoading(item.cnt_id);
         e.preventDefault();
         const formData = new FormData();
-        formData.append("apptoken", "7FHS8S43N2JF08");
+        formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
         formData.append("usertoken", uData.usertoken);
         formData.append("cnt_id", item.cnt_id);
         formData.append("comment", comment);
         formData.append("cmt_id_cmt", item.cmt_id ? item.cmt_id : "");
 
-        Fetch("https://spilleetapi.spilleet.com/add-comment", formData)
+        Fetch(`${process.env.REACT_APP_END_POINT}/add-comment`, formData)
           .then((res) => {
             setReload(true);
             setShowComments(true);

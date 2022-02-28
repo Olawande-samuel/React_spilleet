@@ -6,44 +6,44 @@ import Utils from "../Utils/Utils";
 import { Fetch } from "../../Trials/Controller";
 const Authenticate = () => {
   const router = useNavigate();
-  
+
   const { token } = useParams();
   const [status, setStatus] = useState("");
   const [content, setContent] = useState("");
   const [showAlert, setShowAlert] = useState(false);
-  
+
   const close = () => {
     setShowAlert(false);
   };
 
   useEffect(() => {
     let mounted = true;
-      const formData = new FormData();
-      formData.append("apptoken", "7FHS8S43N2JF08");
-      formData.append("usertoken", token);
+    const formData = new FormData();
+    formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
+    formData.append("usertoken", token);
 
-      Fetch("https://spilleetapi.spilleet.com/activate-account", formData)
-        .then((res) => {
-          if (mounted) {
-            if (res.data.success === false) {
-              setStatus("error");
-              setContent(res.data.message);
-              setShowAlert(true);
-            } else {
-              setStatus("success");
-              setContent(res.data.message);
-              setShowAlert(true);
-              setTimeout(() => {
-                router('/login')
-              }, 1000);
-            }
+    Fetch(`${process.env.REACT_APP_END_POINT}/activate-account`, formData)
+      .then((res) => {
+        if (mounted) {
+          if (res.data.success === false) {
+            setStatus("error");
+            setContent(res.data.message);
+            setShowAlert(true);
+          } else {
+            setStatus("success");
+            setContent(res.data.message);
+            setShowAlert(true);
+            setTimeout(() => {
+              router("/login");
+            }, 1000);
           }
-        })
-        .catch((err) => {
-          setStatus("error");
-          setContent(err.message);
-          setShowAlert(true);
-        });
+        }
+      })
+      .catch((err) => {
+        setStatus("error");
+        setContent(err.message);
+        setShowAlert(true);
+      });
 
     return () => {
       mounted = false;

@@ -8,8 +8,6 @@ import Utils from "../Utils/Utils";
 import { useNavigate } from "react-router-dom";
 import Loader from "../Utils/Loader";
 
-
-
 const CustomToolbar = () => (
   <Box id="toolbar" width="100%" borderRadius="10px" marginBottom="4px">
     <select
@@ -49,7 +47,18 @@ const Editor = () => {
   const [options, setOptions] = useState([]);
   const [image, setImage] = useState("");
   const [height, setHeight] = useState("");
+  const [preview, setPreview] = useState("");
 
+  useEffect(() => {
+    if (!image) {
+      setPreview(undefined);
+      return;
+    }
+    const objUrl = URL.createObjectURL(image);
+    setPreview(objUrl);
+    return () => URL.revokeObjectURL(objUrl);
+  }, [image]);
+  
   const close = () => {
     setShowAlert(false);
   };
@@ -73,8 +82,8 @@ const Editor = () => {
     setHeight(val);
     let mounted = true;
     const formData = new FormData();
-    formData.append("apptoken", "7FHS8S43N2JF08");
-    Fetch("https://spilleetapi.spilleet.com/display-category", formData)
+    formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
+    Fetch(`${process.env.REACT_APP_END_POINT}/display-category`, formData)
       .then((res) => {
         if (mounted) {
           if (res.data.success === false) {
@@ -110,7 +119,7 @@ const Editor = () => {
     onSubmit: async (values) => {
       setLoading(true);
       const formData = new FormData();
-      formData.append("apptoken", "7FHS8S43N2JF08");
+      formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
       formData.append("usertoken", userObj.usertoken);
       formData.append("title", values.title);
       formData.append("body", holder);
@@ -118,7 +127,7 @@ const Editor = () => {
       formData.append("ctg_id", values.topic);
       formData.append("image", image);
 
-      Fetch("https://spilleetapi.spilleet.com/create-content", formData)
+      Fetch(`${process.env.REACT_APP_END_POINT}/create-content`, formData)
         .then((res) => {
           setLoading(false);
           if (res.data.success === false) {
@@ -250,6 +259,7 @@ const Editor = () => {
                         fontWeight: "700",
                         fontSize: "18px",
                         marginBottom: "4px",
+                        color:"#C035A2"
                       }}
                     >
                       Title
@@ -275,6 +285,7 @@ const Editor = () => {
                         fontWeight: "700",
                         fontSize: "18px",
                         marginBottom: "4px",
+                        color:"#C035A2"
                       }}
                     >
                       Content
@@ -299,17 +310,23 @@ const Editor = () => {
                     my={2}
                     px={matches ? 1 : 4}
                   >
+                  {preview && 
+                    <Box width="250px" height="250px">
+                      <img src={preview} alt="preview" style={{maxWidth:"100%"}} />
+                    </Box>
+                    }
                     <label
                       htmlFor="image"
                       style={{
                         fontWeight: "700",
                         fontSize: "18px",
                         marginBottom: "4px",
+                        color:"#C035A2"
                       }}
                     >
                       Add Image
                       <small>
-                        <em>(jpeg/jpg)</em>
+                        <em>(jpeg/jpg/gif)</em>
                       </small>
                     </label>
                     <input
@@ -331,6 +348,7 @@ const Editor = () => {
                         fontWeight: "700",
                         fontSize: "18px",
                         marginBottom: "4px",
+                        color:"#C035A2"
                       }}
                     >
                       Category
@@ -368,7 +386,7 @@ const Editor = () => {
                       style={{
                         border: "none",
                         outline: "none",
-                        background: "#171194",
+                        background: "#C035A2",
                         padding: "8px 12px",
                         color: "white",
                         fontSize: "18px",

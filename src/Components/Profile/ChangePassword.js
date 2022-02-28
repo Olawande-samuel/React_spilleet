@@ -7,7 +7,7 @@ import { Fetch } from "../../Trials/Controller";
 import Loader from "../Utils/Loader";
 import Utils from "../Utils/Utils";
 import { Link } from "react-router-dom";
-import Logo from "../../images/Logo.svg"
+import Logo from "../../images/Logo2.png";
 
 const ChangePassword = () => {
   const [loading, setLoading] = useState(false);
@@ -52,7 +52,7 @@ const ChangePassword = () => {
     onSubmit: (values) => {
       setLoading(true);
       const formData = new FormData();
-      formData.append("apptoken", "7FHS8S43N2JF08");
+      formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
       formData.append("usertoken", usertoken);
       formData.append("opword", values.oPassword);
       formData.append("npword", values.password);
@@ -60,7 +60,7 @@ const ChangePassword = () => {
 
       // formData.append("username", values.username)
 
-      Fetch("https://spilleetapi.spilleet.com/update-password", formData)
+      Fetch(`${process.env.REACT_APP_END_POINT}/update-password`, formData)
         .then((res) => {
           setLoading(false);
           if (res.data.success === false) {

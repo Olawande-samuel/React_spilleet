@@ -1,4 +1,4 @@
-
+@import "./Variables.css";
 
 .label {
     font-weight: 700;
@@ -39,7 +39,7 @@
 @media screen and (max-width:600px){
     .wrapper {
         padding: 10px;
-        color: rgba(90, 107, 255, 1);
+        color: var(--primary);
         background: white;
     }
 

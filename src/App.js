@@ -1,9 +1,8 @@
 import "./styles/globals.css";
 import React, { useState } from "react";
-import { Routes, Route, Outlet, Link } from "react-router-dom";
-import Test from "./Components/Test";
+import { Routes, Route } from "react-router-dom";
 import Index from "./Components/Index/Index";
-import { SearchContext, UserContext } from "./Components/Auth/User";
+import { SearchContext, UserContext, SidebarContext } from "./Components/Auth/User";
 import { Context, Items, List } from "./Trials/Controller";
 import InterestContext from "./Trials/Controller";
 import Details from "./Components/Post/PostDetails/Details";
@@ -34,10 +33,13 @@ import ChangePassword from "./Components/Profile/ChangePassword";
 function App() {
   const [user, setUser] = useState(null);
   const [search, setSearch] = useState("");
+  const [showSidebar, setShowSidebar] = useState(false);
+
   return (
     <SearchContext.Provider value={[search, setSearch]}>
       <UserContext.Provider value={[user, setUser]}>
         <InterestContext.Provider value={List}>
+        <SidebarContext.Provider value={[showSidebar, setShowSidebar]}>
           <Context.Provider value={Items}>
             <Routes>
               <Route path="/" element={<Index />} />
@@ -112,6 +114,8 @@ function App() {
               <Route path="*" element={<NotFound />}></Route>
             </Routes>
           </Context.Provider>
+          </SidebarContext.Provider>
+
         </InterestContext.Provider>
       </UserContext.Provider>
     </SearchContext.Provider>

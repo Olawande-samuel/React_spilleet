@@ -1,78 +1,91 @@
 @import "./Variables.css";
 
 .logoWrapper {
-    display: none; 
-    cursor: pointer; 
-    
+  display: none;
+  cursor: pointer;
 }
 .header {
-    margin-top: 5px;
-    margin-bottom: 15px;
+  margin-top: 5px;
+  margin-bottom: 15px;
 }
 .forgot {
-    color: #2C5282;
-    /* font-size: 14px; */
+  color: #2c5282;
+  /* font-size: 14px; */
 }
 
 .join {
-    text-align: center;
+  text-align: center;
 }
 
 .loginBtn {
-    background:var(--greenish) !important;
+  background: var(--greenish) !important;
 }
 .loginBtn:hover {
-    background: #2C5282 !important;
+  background: #2c5282 !important;
 }
-
 
 .pInput {
-    border: 1px solid rgba(0, 0, 0, 0.131);
-    outline: none;
-    background-color: white !important;
-    border-radius: 4px;
-    
+  border: 1px solid rgba(0, 0, 0, 0.131);
+  outline: none;
+  background-color: white !important;
+  border-radius: 4px;
 }
-
+.google_login {
+  background-color: rgb(255, 255, 255);
+  display: inline-flex;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.54);
+  box-shadow: rgb(0 0 0 / 24%) 0px 2px 2px 0px, rgb(0 0 0 / 24%) 0px 0px 1px 0px;
+  padding: 5px;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: Roboto, sans-serif;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .loginContent {
-    height:100%;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 @media screen and (max-width: 600px) {
-    .logoWrapper {
-        display: grid;  
-        place-items: center;
-        margin-bottom: 10%;
-        height: 20%;
-    }
-    .loginContainer {
-        height: 100vh;
-        color: var(--primary);
-    }
-    .loginContainer, .pInput {
-        background-color: #fff;
-    }    
-    .label {
-        margin-bottom: 5px;
-    }
-    .loginContent {
-        height:100%;
-        display:flex;
-        flex-direction:column;
-        justify-content: unset;
-    }
-    .loginContent form {
-        height: 70%;
-        display: flex;
-        flex-direction: column;
-        justify-content:center;
-        align-items: center;
-    }
-    .loginContent form label {
-        font-weight: 700;
-    }
-
+  .logoWrapper {
+    display: grid;
+    place-items: center;
+    margin-bottom: 10%;
+    height: 20%;
+  }
+  .loginContainer {
+    height: 100vh;
+    color: var(--primary);
+  }
+  .loginContainer,
+  .pInput {
+    background-color: #fff;
+  }
+  .label {
+    margin-bottom: 5px;
+  }
+  .loginContent {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: unset;
+  }
+  .loginContent form {
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .loginContent form label {
+    font-weight: 700;
+  }
 }

@@ -5,17 +5,18 @@ import FollowButton from "./FollowButton";
 import Style from "../../../styles/Follower.module.css";
 import FollowerImage from "./FollowerImage";
 import React from "react"
+import Placeholder from "../../../images/placeholder.png"
 const Follower = ({ item }) => {
   return (
     <Grid container padding="10px 5px" borderBottom="0.234px solid gray" justifyContent="space-between" alignItems="center" >
       <Grid item xs={2} display="flex" justifyContent="center">
         {item.photo === "0"? (
-          <FollowerImage photo={"/placeholder.png"} />
+          <FollowerImage photo={Placeholder} />
         ) : (
           <FollowerImage photo={item.photo} />
         )}
       </Grid>
-      <Grid
+      <Grid 
         item
         xs={9}
         display="flex"

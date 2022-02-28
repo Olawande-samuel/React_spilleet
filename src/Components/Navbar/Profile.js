@@ -12,9 +12,9 @@ const Profile = ({ img }) => {
       const useable = JSON.parse(access);
 
       const formData = new FormData();
-      formData.append("apptoken", "7FHS8S43N2JF08");
+      formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
       formData.append("usertoken", useable.usertoken);
-      Fetch("https://spilleetapi.spilleet.com/getUserData", formData)
+      Fetch(`${process.env.REACT_APP_END_POINT}/getUserData`, formData)
         .then((res) => {
           setData(res.data);
           setimage(res.data.imgurl);
@@ -31,7 +31,7 @@ const Profile = ({ img }) => {
       <Link to={`/user/profile/${data.fullname}-${data.usertoken}`}>
         <div className={Styles.profileWrapper}>
           <img
-            src={image === "0"? Placeholder : image}
+            src={image === "0" ? Placeholder : image}
             alt="profile"
             className={Styles.image}
           />

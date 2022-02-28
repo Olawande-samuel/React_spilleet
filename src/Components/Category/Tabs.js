@@ -57,6 +57,8 @@ export default function CategoryTabs({handleClick}) {
           value={value}
           onChange={handleChange}
           aria-label="trends and categories"
+          textColor='secondary'
+          indicatorColor="secondary"
         >
           <Tab label="Trending" {...a11yProps(0)} />
           <Tab label="Category" {...a11yProps(1)} />

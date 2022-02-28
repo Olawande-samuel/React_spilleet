@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import Comment from "../Text/Comment";
 import { Box } from "@mui/material";
 
-const ImagePost = ({ item, reloader, key}) => {
+const ImagePost = ({ item, reloader, key, profile }) => {
   const [comments, setComments] = useState(false);
   const [reload, setReload] = useState(false);
   const [reloadComments, setReloadComments] = useState(false);
@@ -21,9 +21,9 @@ const ImagePost = ({ item, reloader, key}) => {
   useEffect(() => {
     if (item) {
       const formData = new FormData();
-      formData.append("apptoken", "7FHS8S43N2JF08");
+      formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
       formData.append("cnt_id", item.cnt_id);
-      Fetch("https://spilleetapi.spilleet.com/display-comments", formData)
+      Fetch(`${process.env.REACT_APP_END_POINT}/display-comments`, formData)
         .then((res) => {
           if (res.data.success !== false) {
             setComments(res.data);
@@ -37,7 +37,7 @@ const ImagePost = ({ item, reloader, key}) => {
 
   return (
     item !== undefined && (
-      <div className={Style.container} key={key}>
+      <div className={ profile ? Style.profile_container : Style.container} key={key}>
         <div className={Style.content}>
           <Link to={`/posts/${item.cnt_id}`}>
             <div
@@ -47,7 +47,7 @@ const ImagePost = ({ item, reloader, key}) => {
                 backgroundRepeat: "no-repeat",
                 backgroundBlendMode: "multiply",
                 backgroundSize: "cover",
-                backgroundPosition: "center",
+                backgroundPosition: "top center",
               }}
             >
               <div className={Style.title}>

@@ -20,9 +20,9 @@ const NoImage = ({ data }) => {
 
   useEffect(() => {
     const formData = new FormData();
-    formData.append("apptoken", "7FHS8S43N2JF08");
+    formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
     formData.append("cnt_id", data.cnt_id);
-    Fetch("https://spilleetapi.spilleet.com/display-comments", formData)
+    Fetch(`${process.env.REACT_APP_END_POINT}/display-comments`, formData)
       .then((res) => {
         if (res.data.success !== false) {
           setComments(res.data);

@@ -30,7 +30,7 @@ const Btn = () => {
         sx={{ fontWeight: "700" }}
         variant="contained"
         >
-        Sign in
+        Log in
       </button>
       </Link>
     </div>

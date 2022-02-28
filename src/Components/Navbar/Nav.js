@@ -10,20 +10,12 @@ import { Grid, useTheme, Box } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Sidebar from "./SideBar/Sidebar";
 import SearchNav from "./SearchNav";
-import { SearchContext } from "../Auth/User";
+import { SearchContext, SidebarContext } from "../Auth/User";
 
 const Nav = ({ setValue }) => {
+  
   const [search, setSearch] = useContext(SearchContext);
-  const [showSidebar, setShowSidebar] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const handleClick = () => {
-    setShowSidebar(false);
-  };
-
-  const openSidebar = () => {
-    console.log("clicked")
-    setShowSidebar(true);
-  };
   const [userObj, setUserObj] = useState(null);
 
   useEffect(() => {
@@ -33,8 +25,10 @@ const Nav = ({ setValue }) => {
       setUserObj(data);
     }
   }, []);
+  
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("990px"));
+
   const openSearch = () => {
     setShowSearch(true);
   };
@@ -42,7 +36,11 @@ const Nav = ({ setValue }) => {
     setSearch("");
     setShowSearch(false);
   };
+  const [showSidebar, setShowSidebar] = useContext(SidebarContext);
 
+  const handleClick = () => {
+    setShowSidebar(false);
+  };
   return (
     <>
       <Grid container className={Navbar.nav}>
@@ -50,7 +48,7 @@ const Nav = ({ setValue }) => {
           <>
             <Grid md={matches ? 8 : 5} item className={Navbar.left}>
               <Logo />
-              <NavLinks openSidebar={openSidebar} />
+              <NavLinks />
             </Grid>
             <Grid md={matches ? 4 : 7} item className={Navbar.right}>
               <Searchh />

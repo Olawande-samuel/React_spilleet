@@ -3,7 +3,7 @@
 .body {
   min-height: 100%;
   width: 100%;
-  background: var(--primary);
+  background: var(--primary-light);
   padding: 27px 10px 3px 10px;
   display: flex;
   flex-direction: column;

@@ -4,7 +4,7 @@ import { Box, Button, Grid } from "@mui/material";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import Style from "../../styles/Manage.module.css";
-import Logo from "../../images/Logo.svg";
+import Logo from "../../images/Logo2.png";
 import { AiOutlineClose } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 const Admin = ({ children }) => {

@@ -24,9 +24,9 @@ const ProfileDeets = () => {
   //     const token = separate.slice(-1);
   //     setUsertoken(token[0]);
   //     const formData = new FormData();
-  //     formData.append("apptoken", "7FHS8S43N2JF08");
+  //     formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
   //     formData.append("usertoken", token[0]);
-  //     Fetch("https://spilleetapi.spilleet.com/getUserData", formData)
+  //     Fetch(`${process.env.REACT_APP_END_POINT}/getUserData`, formData)
   //       .then((res) => {
   //         setLoading(false);
   //         if (res.data.success === false) {
@@ -57,4 +57,4 @@ const ProfileDeets = () => {
   );
 };
 
-export default ProfileDeets
+export default ProfileDeets;

@@ -1,4 +1,4 @@
-.container {
+.container, .profile_container {
     margin: 20px 0;
 }
 .content{
@@ -39,15 +39,16 @@
 
 @media screen and (max-width:740px) {
     .container{
-        max-width:500px;
+        width:calc(95vw - 2vw);
         margin: 25px auto;
     }
-    .imageContainer{
-        max-width: 500px;
-    }
+    
 }
-@media screen and (min-width:800px){
+@media screen and (min-width:741px){
     .container{
         width:720px;
+    }
+    .profile_container{
+        width: 100%;
     }
 }

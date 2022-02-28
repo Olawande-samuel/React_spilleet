@@ -75,13 +75,9 @@ export const Items = {
             title:"Profile",
             link: "/user/profile"
         },
+        
         {
             id: 3,
-            title:"Pricing",
-            link: "/pricing"
-        },
-        {
-            id: 4,
             title:"Contact us",
             link:'/contact-us'
         }
