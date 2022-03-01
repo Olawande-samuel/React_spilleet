@@ -5,7 +5,7 @@ import {useLocation, Link} from "react-router-dom"
 import Style from "../../styles/Manage.module.css"
 const sideLinks = [
     {id:1, title:"Manage Posts",path:"/admin/posts"},
-    {id:2,title:"Manage Admins",path:"/admin"},
+    {id:2,title:"Manage Users",path:"/admin"},
     {id:3,title:"Manage Topics",path:"/admin/topics"},
     // {id:4,title:"Manage Categories",path:"/admin/categories"},
 ]

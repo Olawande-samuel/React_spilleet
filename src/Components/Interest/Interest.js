@@ -129,6 +129,8 @@ const Interest = () => {
     },
   });
 
+  
+
   return (
     <>
       <Grid
@@ -188,7 +190,22 @@ const Interest = () => {
                 flexDirection="column"
                 justifyContent="flex-end"
               >
-                <Box className={Style.footer} mb={3}>
+                <Box className={Style.footer} my={3}>
+
+                  <Button
+                    type="submit"
+                    sx={{
+                      fontWeight: "700",
+                      borderRadius: "23px",
+                      padding: "12px 41px",
+                    }}
+                    variant="outlined"
+                    size="large"
+                    color="error"
+                    onClick={()=>{router("/")}}
+                  >
+                    Skip
+                  </Button>
                   <Button
                     type="submit"
                     sx={{

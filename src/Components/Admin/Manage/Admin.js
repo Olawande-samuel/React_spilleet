@@ -142,7 +142,7 @@ const AdminUser = () => {
                   <tr className={style.thead_row}>
                     <th>N</th>
                     <th>Username</th>
-                    <th>Role</th>
+                    <th>Email</th>
                     <th>Action</th>
                   </tr>
                 </thead>

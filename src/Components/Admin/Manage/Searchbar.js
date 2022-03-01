@@ -5,7 +5,7 @@ import style from "../../../styles/Manage.module.css";
 const Searchbar = ({search, handleSearch}) => {
   return (
     <Box>
-    <input type="text" name="search" id="search" className={style.searchbar} placeholder="Search user"  value={search} onChange={handleSearch}  />
+    <input type="text" name="search" id="search" className={style.searchbar} placeholder="Search..."  value={search} onChange={handleSearch}  />
   </Box>
   )
 }

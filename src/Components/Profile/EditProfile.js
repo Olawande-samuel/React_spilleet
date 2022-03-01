@@ -22,7 +22,7 @@ const style = {
   placeItems: "center",
 };
 
-export default function EditProfile({ handleOpen, handleClose, open }) {
+export default function EditProfile({ handleOpen, handleClose, open, reloadProfile }) {
   const [image, setImage] = useState("");
   const [usertoken, setUsertoken] = useState("");
 
@@ -61,9 +61,11 @@ export default function EditProfile({ handleOpen, handleClose, open }) {
           setContent(res.data.message);
           setShowAlert(true);
         } else {
+          reloadProfile()
           setStatus("success");
           setContent(res.data.message);
           setShowAlert(true);
+          window.location.reload()
         }
       })
       .catch((err) => {
@@ -112,7 +114,7 @@ export default function EditProfile({ handleOpen, handleClose, open }) {
                   />
                 )}
                 {preview && 
-                <Box width="250px" height="250px">
+                <Box width="250px" maxHeight="250px">
                   <img src={preview} alt="preview" style={{maxWidth:"100%"}} />
                 </Box>
                 }
@@ -126,8 +128,10 @@ export default function EditProfile({ handleOpen, handleClose, open }) {
                   />
                 </Box>
               </Box>
-              <Box>
-                
+              <Box display="flex" alignItems="center" justifyContent="center" gap={2} mt={2}>
+                <Button variant="outlined" color="error" onClick={handleClose} >
+                  Cancel
+                </Button>
                 <Button variant="contained" onClick={uploadImage}>
                   Upload
                 </Button>

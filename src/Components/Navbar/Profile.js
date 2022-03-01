@@ -6,7 +6,8 @@ import Placeholder from "../../images/placeholder.png";
 const Profile = ({ img }) => {
   const [data, setData] = useState([]);
   const [image, setimage] = useState(null);
-  useEffect(() => {
+
+  const getUserData = ()=>{
     const access = localStorage.getItem("user");
     if (access) {
       const useable = JSON.parse(access);
@@ -16,6 +17,7 @@ const Profile = ({ img }) => {
       formData.append("usertoken", useable.usertoken);
       Fetch(`${process.env.REACT_APP_END_POINT}/getUserData`, formData)
         .then((res) => {
+          console.log(res)
           setData(res.data);
           setimage(res.data.imgurl);
           localStorage.setItem("deets", JSON.stringify(res.data));
@@ -24,6 +26,10 @@ const Profile = ({ img }) => {
           console.error(err);
         });
     }
+  }
+
+  useEffect(() => {
+   getUserData()
   }, []);
   const access = localStorage.getItem("user");
   if (access) {

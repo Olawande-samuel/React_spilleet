@@ -373,7 +373,9 @@ const Posts = () => {
                 </thead>
                 <tbody>
                   {posts.length > 0 &&
-                    posts.map((post, index) => (
+                    posts.filter(post=>(
+                      post.title.includes(search) || post.username.includes(search)
+                    )).map((post, index) => (
                       <Tabledata
                         data={post}
                         index={index}

@@ -12,7 +12,7 @@ import EditProfile from "../../Profile/EditProfile";
 
 export const Account = () => {
   const [toggleOpen, setToggleOpen] = useState(false);
-
+  const [helpPageReload, setHelpPageReload]= useState(false)
   const openModal = () => {
     setToggleOpen(true);
   };
@@ -43,19 +43,33 @@ export const Account = () => {
     setEdited(true);
     setName({ ...name, [e.target.name]: e.target.value });
   };
-  useEffect(() => {
-    const data = localStorage.getItem("user");
+  function getUserData(){
+    const access = localStorage.getItem("user");
+    if (access) {
+      const useable = JSON.parse(access);
 
-    if (data) {
-      const user = JSON.parse(data);
-      setName({
-        ...name,
-        fullname: user.fullname,
-        usertoken: user.usertoken,
-        phone: user.phone,
-        email: user.email,
-      });
+      const formData = new FormData();
+      formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
+      formData.append("usertoken", useable.usertoken);
+      Fetch(`${process.env.REACT_APP_END_POINT}/getUserData`, formData)
+        .then((res) => {
+          // setimage(res.data.imgurl);
+          setName({
+            ...name,
+            fullname: res.data.fullname,
+            usertoken: res.data.usertoken,
+            phone: res.data.phone,
+            email: res.data.email,
+          });
+          localStorage.setItem("user", JSON.stringify(res.data));
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     }
+  }
+  useEffect(() => {
+    getUserData()
   }, []);
 
   const handleSubmit = (e) => {
@@ -77,6 +91,7 @@ export const Account = () => {
           setContent(res.data.message);
           setShowAlert(true);
         } else {
+          getUserData()
           setStatus("success");
           setContent(res.data.message);
           setShowAlert(true);
@@ -258,6 +273,8 @@ export const Account = () => {
           handleOpen={openModal}
           handleClose={closeModal}
           open={toggleOpen}
+          reloadProfile={getUserData}
+          
         />
       </Box>
     </form>
