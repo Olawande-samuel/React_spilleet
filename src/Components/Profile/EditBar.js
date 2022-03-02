@@ -1,11 +1,15 @@
-import { Box, Icon } from "@mui/material";
+import { Box, Button, Icon } from "@mui/material";
 import { BsPencil } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React from "react"
 const EditBar = () => {
+  const navigate = useNavigate()
+  const handleLogout = () => {
+    localStorage.clear();
+      navigate("/login")
+  }
   return (
-    <Box>
-      <Link to="/user/settings">
+    <Box  display="flex"  alignItems="center">
         <Box
           display="flex"
           justifyContent="center"
@@ -13,10 +17,11 @@ const EditBar = () => {
           backgroundColor="#C4C4C4"
           borderRadius="3px"
           py={1}
-          width={"55%"}
+          width="70%"
           margin="auto"
-          padding=""
         >
+      <Link to="/user/settings" style={{ width:"100%"}} >
+
           <Box
             className="content"
             display="flex"
@@ -29,8 +34,11 @@ const EditBar = () => {
             </i>
             <p style={{ fontSize: "12px", cursor: "pointer" }}>Edit Profile</p>
           </Box>
-        </Box>
       </Link>
+        </Box>
+      <Box>
+        <Button onClick={handleLogout} variant="contained" sx={{textTransform:"capitalize", padding:"6px 16px", fontSize:"12px", backgroundColor:"#C035A2"}}>Log out</Button>
+      </Box>
     </Box>
   );
 };

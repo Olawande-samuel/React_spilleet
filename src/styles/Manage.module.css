@@ -2,7 +2,7 @@
 
 .header_container {
   height: 94px;
-  background: var(--primary);
+  background: var(--primary-light);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,11 +16,11 @@
   padding: 26.5px 36px;
   font-weight: 500;
   line-height: 15px;
-  background: var(--primary);
+  background: var(--primary-light);
   border-bottom: 1px solid gray;
 }
 .activeLink {
-  color: var(--primary);
+  color: var(--primary-light);
   padding: 26.5px 36px;
   font-weight: 600;
   line-height: 15px;
@@ -28,7 +28,7 @@
   border-bottom: 1px solid gray;
 }
 .wrapper {
-  background: var(--primary);
+  background: var(--primary-light);
   height: 100%;
   width: 100%;
 }

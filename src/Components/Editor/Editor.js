@@ -117,6 +117,8 @@ const Editor = () => {
       image: null,
     },
     onSubmit: async (values) => {
+      if(values.topic !== ""){
+
       setLoading(true);
       const formData = new FormData();
       formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
@@ -147,6 +149,11 @@ const Editor = () => {
           setShowAlert(true);
           setLoading(false);
         });
+      } else {
+        setStatus("error");
+        setContent("Please select a category");
+        setShowAlert(true);
+      }
     },
   });
 

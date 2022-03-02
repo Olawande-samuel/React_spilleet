@@ -150,9 +150,9 @@ const AdminUser = () => {
                   {users.length > 0 &&
                     users
                       .filter(
-                        (user) =>
-                          user.fullname.includes(search) ||
-                          user.email.includes(search)
+                        (user) =>(
+                          user.fullname.toLowerCase().includes(search.toLowerCase()) ||
+                          user.email.toLowerCase().includes(search.toLowerCase()))
                       )
                       .map((user, index) => (
                         <Usertable

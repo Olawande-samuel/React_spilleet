@@ -9,6 +9,7 @@ function getAuth(){
     } 
     return null
 }
+
 function getAdminAuth(){
     const data = localStorage.getItem("admin")
     if(data){

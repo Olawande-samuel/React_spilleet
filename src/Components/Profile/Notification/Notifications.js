@@ -29,7 +29,12 @@ const Notifications = () => {
       Fetch(`${process.env.REACT_APP_END_POINT}/getUserNotifications`, formData)
         .then((res) => {
           setLoading(false);
-          setNotifications([res.data]);
+          if (res.data.success === false){
+            setStatus("error");
+            setContent(res.data.message);
+            setShowAlert(true);
+          }
+          setNotifications(res.data);
         })
         .catch((err) => {
           setLoading(false);
