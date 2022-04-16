@@ -2,9 +2,8 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 import Style from "../../../styles/Trending.module.css";
 import { Link } from "react-router-dom";
-const TrendingShorts = ({ item }) => {
+const TrendingShorts = ({ item, key }) => {
   return (
-    <Link to={`/posts/${item.cnt_id}`}>
       <Box
         className={Style.shorts}
         width="160px"
@@ -32,7 +31,6 @@ const TrendingShorts = ({ item }) => {
           {item.username}
         </Typography>
       </Box>
-    </Link>
   );
 };
 

@@ -6,19 +6,23 @@ import style from "../../../styles/Sidebar.module.css";
 import { Context } from "../../../Trials/Controller";
 
 const Sidebar = ({ handleClick }) => {
-    const { NavLinks } = useContext(Context);
+  const { NavLinks } = useContext(Context);
   const [user, setUser] = useState({});
-    const router = useNavigate();
+  const router = useNavigate();
 
   useEffect(() => {
-    const data = localStorage.getItem("user");
+    const data = localStorage.getItem("Spilleet_user");
     if (data) {
       const uData = JSON.parse(data);
       setUser(uData);
     }
   }, []);
-  const logout = () => {
+  const logout = async () => {
     localStorage.clear();
+    const regs = await navigator.serviceWorker.getRegistrations();
+    for (let reg of regs) {
+      reg.unregister();
+    }
     handleClick();
     router("/");
     window.location.reload();

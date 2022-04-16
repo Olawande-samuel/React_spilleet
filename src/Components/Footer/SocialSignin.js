@@ -10,7 +10,7 @@ const SocialSignin = () => {
   const [userObj, setUserObj] = useState(null);
 
   useEffect(() => {
-    const data = localStorage.getItem("user");
+    const data = localStorage.getItem("Spilleet_user");
 
     if (data) setUserObj(data);
   }, []);
@@ -67,28 +67,32 @@ const SocialSignin = () => {
       {!userObj && (
         <Box item md={10} className={style.login}>
           <Link to="/login">
-
-          <Button
-            variant="outlined"
-            border="1px solid #fff"
-            className={style.login_btn}
-            sx={{ marginRight: "20px", border:"1px solid #fff", padding: "12px 57px", color: "#fff" }}
+            <Button
+              variant="outlined"
+              border="1px solid #fff"
+              className={style.login_btn}
+              sx={{
+                marginRight: "20px",
+                border: "1px solid #fff",
+                padding: "12px 57px",
+                color: "#fff",
+              }}
             >
-            Log in
-          </Button>
-            </Link>
+              Log in
+            </Button>
+          </Link>
 
-            <Link to="/signup">
-          <Button
-            sx={{
-              backgroundColor: "#fff",
-              padding: "12px 57px",
-              color: " #C035A2",
-            }}
+          <Link to="/signup">
+            <Button
+              sx={{
+                backgroundColor: "#fff",
+                padding: "12px 57px",
+                color: " #C035A2",
+              }}
             >
-            Sign Up
-          </Button>
-            </Link>
+              Sign Up
+            </Button>
+          </Link>
         </Box>
       )}
     </Box>

@@ -7,7 +7,7 @@ import { Fetch } from "../../Trials/Controller";
 import Utils from "../Utils/Utils";
 import { useNavigate } from "react-router-dom";
 import Loader from "../Utils/Loader";
-
+import axios from "axios";
 const CustomToolbar = () => (
   <Box id="toolbar" width="100%" borderRadius="10px" marginBottom="4px">
     <select
@@ -45,7 +45,7 @@ const Editor = () => {
   const [content, setContent] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [options, setOptions] = useState([]);
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null);
   const [height, setHeight] = useState("");
   const [preview, setPreview] = useState("");
 
@@ -58,7 +58,7 @@ const Editor = () => {
     setPreview(objUrl);
     return () => URL.revokeObjectURL(objUrl);
   }, [image]);
-  
+
   const close = () => {
     setShowAlert(false);
   };
@@ -70,7 +70,7 @@ const Editor = () => {
   const [userObj, setUserObj] = useState(null);
 
   useEffect(() => {
-    const data = localStorage.getItem("user");
+    const data = localStorage.getItem("Spilleet_user");
 
     if (data) {
       setUserObj(JSON.parse(data));
@@ -117,42 +117,83 @@ const Editor = () => {
       image: null,
     },
     onSubmit: async (values) => {
-      if(values.topic !== ""){
+      if (values.topic !== "") {
+        setLoading(true);
+        const formData = new FormData();
+        formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
+        formData.append("usertoken", userObj.usertoken);
+        formData.append("title", values.title);
+        formData.append("body", holder);
+        // formData.append("body", values.body);
+        formData.append("ctg_id", values.topic);
+        if (image) {
+          formData.append("image", image);
+        }
 
-      setLoading(true);
-      const formData = new FormData();
-      formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
-      formData.append("usertoken", userObj.usertoken);
-      formData.append("title", values.title);
-      formData.append("body", holder);
-      // formData.append("body", values.body);
-      formData.append("ctg_id", values.topic);
-      formData.append("image", image);
-
-      Fetch(`${process.env.REACT_APP_END_POINT}/create-content`, formData)
-        .then((res) => {
+        const data = {
+          apptoken: process.env.REACT_APP_APP_TOKEN,
+          usertoken: userObj.usertoken,
+          title: values.title,
+          body: holder,
+          ctg_id: values.topic,
+          // image: image
+        };
+        try {
+          const response = await axios.post(
+            `http://localhost:5000/api/create-post`,
+            formData,
+            {
+              headers: {
+                "content-type": "multipart/form-data",
+              },
+            }
+          );
           setLoading(false);
-          if (res.data.success === false) {
+          if (response.data.success === false) {
             setStatus("error");
-            setContent(res.data.message);
+            setContent(response.data.message);
             setShowAlert(true);
           } else {
             setStatus("success");
-            setContent(res.data.message);
+            setContent(response.data.message);
             setShowAlert(true);
-            router(`/posts/${res.data.cnt_id}`);
+            // router(`/posts/${response.data.cnt_id}`);
           }
-        })
-        .catch((err) => {
-          setStatus("error");
-          setContent(err.message);
-          setShowAlert(true);
+          console.log(response);
+        } catch (error) {
           setLoading(false);
-        });
-      } else {
-        setStatus("error");
-        setContent("Please select a category");
-        setShowAlert(true);
+          setStatus("error");
+          setContent(error.message);
+          setShowAlert(true);
+          console.error(error);
+        }
+
+        //   Fetch(`http://localhost:5000/api/create-post`, JSON.stringify(data))
+        //     .then((res) => {
+        //       console.log(res)
+        //       setLoading(false);
+        //       if (res.data.success === false) {
+        //         setStatus("error");
+        //         setContent(res.data.message);
+        //         setShowAlert(true);
+        //       } else {
+        //         setStatus("success");
+        //         setContent(res.data.message);
+        //         setShowAlert(true);
+        //         router(`/posts/${res.data.cnt_id}`);
+        //       }
+        //     })
+        //     .catch((err) => {
+        //       setStatus("error");
+        //       setContent(err.message);
+        //       setShowAlert(true);
+        //       setLoading(false);
+        //     });
+        //   } else {
+        //     setStatus("error");
+        //     setContent("Please select a category");
+        //     setShowAlert(true);
+        //   }
       }
     },
   });
@@ -266,7 +307,7 @@ const Editor = () => {
                         fontWeight: "700",
                         fontSize: "18px",
                         marginBottom: "4px",
-                        color:"#C035A2"
+                        color: "#C035A2",
                       }}
                     >
                       Title
@@ -292,7 +333,7 @@ const Editor = () => {
                         fontWeight: "700",
                         fontSize: "18px",
                         marginBottom: "4px",
-                        color:"#C035A2"
+                        color: "#C035A2",
                       }}
                     >
                       Content
@@ -317,18 +358,22 @@ const Editor = () => {
                     my={2}
                     px={matches ? 1 : 4}
                   >
-                  {preview && 
-                    <Box width="250px" height="250px">
-                      <img src={preview} alt="preview" style={{maxWidth:"100%"}} />
-                    </Box>
-                    }
+                    {preview && (
+                      <Box width="250px" height="250px">
+                        <img
+                          src={preview}
+                          alt="preview"
+                          style={{ maxWidth: "100%" }}
+                        />
+                      </Box>
+                    )}
                     <label
                       htmlFor="image"
                       style={{
                         fontWeight: "700",
                         fontSize: "18px",
                         marginBottom: "4px",
-                        color:"#C035A2"
+                        color: "#C035A2",
                       }}
                     >
                       Add Image
@@ -355,7 +400,7 @@ const Editor = () => {
                         fontWeight: "700",
                         fontSize: "18px",
                         marginBottom: "4px",
-                        color:"#C035A2"
+                        color: "#C035A2",
                       }}
                     >
                       Category

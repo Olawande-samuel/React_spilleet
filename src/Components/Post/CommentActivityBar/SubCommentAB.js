@@ -35,7 +35,7 @@ const SubCommentAB = ({
   // }, [reloadComments]);
 
   if (typeof window !== "undefined") {
-    const data = localStorage.getItem("user");
+    const data = localStorage.getItem("Spilleet_user");
     const uData = JSON.parse(data);
 
     const handleLike = () => {
@@ -62,7 +62,7 @@ const SubCommentAB = ({
         // formData.append("cnt_id", item.cmt_id);
         Fetch(`${process.env.REACT_APP_END_POINT}/likes`, formData)
           .then((res) => {
-            console.log(res);
+            return;
           })
           .catch((err) => {
             console.log(err);

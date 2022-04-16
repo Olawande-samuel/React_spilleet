@@ -81,7 +81,7 @@ export default function EditModal({ open, setOpen, item }) {
   const [userObj, setUserObj] = useState(null);
 
   useEffect(() => {
-    const data = localStorage.getItem("user");
+    const data = localStorage.getItem("Spilleet_user");
 
     if (data) {
       setUserObj(JSON.parse(data));

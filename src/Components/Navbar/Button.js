@@ -4,17 +4,14 @@ import React from "react";
 import Styles from "../../styles/Nav.module.css";
 import { Link } from "react-router-dom";
 const Btn = () => {
-    const access = localStorage.getItem("user");
+  const access = localStorage.getItem("Spilleet_user");
 
   if (access) {
     const useable = JSON.parse(access);
     return (
       <div className={Styles.buttonWrapper}>
         <Link to="/user/create-post">
-          <button
-            type="submit"
-            className={Styles.addPost}
-          >
+          <button type="submit" className={Styles.addPost}>
             Add Post
           </button>
         </Link>
@@ -24,14 +21,14 @@ const Btn = () => {
   return (
     <div className={Styles.buttonWrapper}>
       <Link to="/login">
-      <button
-        type="submit"
-        className={Styles.addPost}
-        sx={{ fontWeight: "700" }}
-        variant="contained"
+        <button
+          type="submit"
+          className={Styles.addPost}
+          sx={{ fontWeight: "700" }}
+          variant="contained"
         >
-        Log in
-      </button>
+          Log in
+        </button>
       </Link>
     </div>
   );

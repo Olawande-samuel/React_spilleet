@@ -66,7 +66,7 @@ const Interest = () => {
 
   useEffect(() => {
     let mounted = true;
-    const data = localStorage.getItem("user");
+    const data = localStorage.getItem("Spilleet_user");
     if (data) {
       const user = JSON.parse(data);
       setUsertoken(user.usertoken);
@@ -129,8 +129,6 @@ const Interest = () => {
     },
   });
 
-  
-
   return (
     <>
       <Grid
@@ -191,7 +189,6 @@ const Interest = () => {
                 justifyContent="flex-end"
               >
                 <Box className={Style.footer} my={3}>
-
                   <Button
                     type="submit"
                     sx={{
@@ -202,7 +199,9 @@ const Interest = () => {
                     variant="outlined"
                     size="large"
                     color="error"
-                    onClick={()=>{router("/")}}
+                    onClick={() => {
+                      router("/");
+                    }}
                   >
                     Skip
                   </Button>

@@ -4,20 +4,18 @@ import { Context } from "../../Trials/Controller";
 import { Link } from "react-router-dom";
 import Style from "../../styles/Nav.module.css";
 import { BiMenu } from "react-icons/bi";
-import {SidebarContext} from "../Auth/User"
+import { SidebarContext } from "../Auth/User";
 const NavLinks = () => {
   const { NavLinks } = useContext(Context);
-  const [showSidebar, setShowSidebar] = useContext(SidebarContext)
+  const [showSidebar, setShowSidebar] = useContext(SidebarContext);
   const [userData, setUserData] = useState({});
 
   const openSidebar = () => {
-    console.log("clicked")
     setShowSidebar(true);
   };
 
-
   useEffect(() => {
-    const data = localStorage.getItem("user");
+    const data = localStorage.getItem("Spilleet_user");
     if (data) {
       const user = JSON.parse(data);
       setUserData(user);

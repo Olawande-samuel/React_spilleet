@@ -9,10 +9,9 @@ const Privacy = () => {
   const [emailPrivacy, setEmailPrivacy] = React.useState(false);
   const handleEmailFromSpilleet = () => {
     setEmailPrivacy(!emailPrivacy);
-    console.log("done");
   };
   React.useEffect(() => {
-    const data = localStorage.getItem("user");
+    const data = localStorage.getItem("Spilleet_user");
     if (data) {
       const user = JSON.parse(data);
       if (emailPrivacy === true) {

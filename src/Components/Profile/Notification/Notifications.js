@@ -19,7 +19,7 @@ const Notifications = () => {
   React.useEffect(() => {
     let mounted = true;
     setLoading(true);
-    const data = localStorage.getItem("user");
+    const data = localStorage.getItem("Spilleet_user");
     if (data) {
       const user = JSON.parse(data);
 
@@ -29,7 +29,7 @@ const Notifications = () => {
       Fetch(`${process.env.REACT_APP_END_POINT}/getUserNotifications`, formData)
         .then((res) => {
           setLoading(false);
-          if (res.data.success === false){
+          if (res.data.success === false) {
             setStatus("error");
             setContent(res.data.message);
             setShowAlert(true);
@@ -48,7 +48,6 @@ const Notifications = () => {
       mounted = false;
     };
   }, []);
-  console.log(notifications);
   return (
     <Layout>
       <Stack minHeight="100vh" mt={5} spacing={2} pt={9} px={5}>

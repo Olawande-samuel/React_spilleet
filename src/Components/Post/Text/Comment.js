@@ -8,6 +8,8 @@ import { Picker } from "emoji-mart";
 import "emoji-mart/css/emoji-mart.css";
 import { Link } from "react-router-dom";
 import Placeholder from "../../../images/placeholder.png";
+import axios from "axios";
+import { responsiveProperty } from "@mui/material/styles/cssUtils";
 
 const Comment = ({ item, setReload, setShowComments, reloadComments }) => {
   const [comment, setComment] = useState("");
@@ -26,7 +28,7 @@ const Comment = ({ item, setReload, setShowComments, reloadComments }) => {
   };
 
   if (typeof window != "undefined") {
-    const data = localStorage.getItem("user");
+    const data = localStorage.getItem("Spilleet_user");
     const anotherData = localStorage.getItem("deets");
     const uData = JSON.parse(data);
     const info = JSON.parse(anotherData);
@@ -34,32 +36,68 @@ const Comment = ({ item, setReload, setShowComments, reloadComments }) => {
       const handleChange = (e) => {
         setComment(e.target.value);
       };
-      const handleComment = (e) => {
+      const handleComment = async (e) => {
         setLoading(item.cnt_id);
         e.preventDefault();
-        const formData = new FormData();
-        formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
-        formData.append("usertoken", uData.usertoken);
-        formData.append("cnt_id", item.cnt_id);
-        formData.append("comment", comment);
-        formData.append("cmt_id_cmt", item.cmt_id ? item.cmt_id : "");
+        const data = {
+          apptoken: process.env.REACT_APP_APP_TOKEN,
+          usertoken: uData.usertoken,
+          cnt_id: item.cnt_id,
+          comment: comment,
+          cmt_id_cmt: item.cmt_id ? item.cmt_id : "",
+          creator: item.usertoken,
+        };
 
-        Fetch(`${process.env.REACT_APP_END_POINT}/add-comment`, formData)
-          .then((res) => {
+        try {
+          const response = await axios.post(
+            `http://localhost:5000/api/comment`,
+            JSON.stringify(data),
+            {
+              headers: {
+                "content-type": "application/json",
+              },
+            }
+          );
+
+          setLoading(false);
+          if (response.data.success === true) {
             setReload(true);
             setShowComments(true);
             setComment("");
-            setLoading(false);
             reloadComments(true);
             setTimeout(() => {
               reloadComments(false);
               setReload(false);
             }, 1000);
-          })
-          .catch((err) => {
-            console.log(err);
-            setLoading(false);
-          });
+          }
+          console.log(response);
+        } catch (error) {
+          setLoading(false);
+          console.error(error);
+        }
+        // const formData = new FormData();
+        // formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
+        // formData.append("usertoken", uData.usertoken);
+        // formData.append("cnt_id", item.cnt_id);
+        // formData.append("comment", comment);
+        // formData.append("cmt_id_cmt", item.cmt_id ? item.cmt_id : "");
+
+        // Fetch(`${process.env.REACT_APP_END_POINT}/add-comment`, formData)
+        //   .then((res) => {
+        //     setReload(true);
+        //     setShowComments(true);
+        //     setComment("");
+        //     setLoading(false);
+        //     reloadComments(true);
+        //     setTimeout(() => {
+        //       reloadComments(false);
+        //       setReload(false);
+        //     }, 1000);
+        //   })
+        //   .catch((err) => {
+        //     console.log(err);
+        //     setLoading(false);
+        //   });
       };
       return (
         <Grid

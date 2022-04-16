@@ -13,19 +13,18 @@ import SearchNav from "./SearchNav";
 import { SearchContext, SidebarContext } from "../Auth/User";
 
 const Nav = ({ setValue }) => {
-  
   const [search, setSearch] = useContext(SearchContext);
   const [showSearch, setShowSearch] = useState(false);
   const [userObj, setUserObj] = useState(null);
 
   useEffect(() => {
-    const data = localStorage.getItem("user");
+    const data = localStorage.getItem("Spilleet_user");
     if (data) {
       const user = JSON.parse(data);
       setUserObj(data);
     }
   }, []);
-  
+
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("990px"));
 
@@ -73,7 +72,6 @@ const Nav = ({ setValue }) => {
             </Grid>
           </>
         ) : (
-          
           <SearchNav handleClose={handleClose} />
         )}
       </Grid>

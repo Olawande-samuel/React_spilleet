@@ -2,14 +2,14 @@ import { Grid, TextField, Box, FormControl } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
-import Style from "../../styles/Changepassword.module.css";
-import { Fetch } from "../../Trials/Controller";
-import Loader from "../Utils/Loader";
-import Utils from "../Utils/Utils";
+import Style from "../../../styles/Changepassword.module.css";
+import { Fetch } from "../../../Trials/Controller";
+import Loader from "../../Utils/Loader";
+import Utils from "../../Utils/Utils";
 import { Link } from "react-router-dom";
-import Logo from "../../images/LightLogo.png";
+import Logo from "../../../images/Logo2.png";
 
-const ChangePassword = () => {
+const ChangeAdminPassword = () => {
   const [loading, setLoading] = useState(false);
 
   const [status, setStatus] = useState("");
@@ -28,11 +28,11 @@ const ChangePassword = () => {
   useEffect(() => {
     const val = window.innerHeight;
     setHeight(val);
-    const data = localStorage.getItem("Spilleet_user");
+    const data = localStorage.getItem("admin");
 
     if (data) {
       const user = JSON.parse(data);
-      setUsertoken(user.usertoken);
+      setUsertoken(user.admintoken);
     }
   }, []);
   const handleClickShowOldPassword = () => {
@@ -56,14 +56,14 @@ const ChangePassword = () => {
       setLoading(true);
       const formData = new FormData();
       formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
-      formData.append("usertoken", usertoken);
+      formData.append("admintoken", usertoken);
       formData.append("opword", values.oPassword);
       formData.append("npword", values.password);
       formData.append("cpword", values.cpassword);
 
       // formData.append("username", values.username)
 
-      Fetch(`${process.env.REACT_APP_END_POINT}/update-password`, formData)
+      Fetch(`${process.env.REACT_APP_END_POINT}/adminChangePassword`, formData)
         .then((res) => {
           setLoading(false);
           if (res.data.success === false) {
@@ -94,21 +94,23 @@ const ChangePassword = () => {
           </div>
         </Link>
       </Box>
-      {loading ? (
-        <Loader />
-      ) : (
-        <form className={Style.form} onSubmit={formik.handleSubmit}>
-          <h2>Change Password</h2>
+        {loading ? (
+          <Loader />
+        ) : (
+      <form className={Style.form} onSubmit={formik.handleSubmit}>
+        <h2>Change Password</h2>
 
           <Grid
             container
             justifyContent="space-between"
             alignItems="center"
             gap={1}
-          >
+          > 
+          <Box display="flex" justifyContent="center" width="100%">
             {showAlert && (
               <Utils status={status} content={content} handleAlert={close} />
             )}
+          </Box>
 
             <Grid item xs={12}>
               <FormControl sx={{ width: "100%" }}>
@@ -216,9 +218,9 @@ const ChangePassword = () => {
               <button className={Style.btn}>Submit</button>
             </Grid>
           </Grid>
-        </form>
-      )}
+      </form>
+        )}
     </Box>
   );
 };
-export default ChangePassword;
+export default ChangeAdminPassword;

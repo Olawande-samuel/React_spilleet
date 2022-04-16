@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import Style from "../../../styles/ImagePost.module.css";
+import Styles from "../../../styles/NameFollow.module.css";
 import ActivityBar from "../ActivityBar/ActivityBar";
 import Time from "../Time/Time";
 import TextComment from "../Text/TextComment";
@@ -13,6 +14,8 @@ const ImagePost = ({ item, reloader, key, profile }) => {
   const [reload, setReload] = useState(false);
   const [reloadComments, setReloadComments] = useState(false);
   const [showComments, setShowComments] = useState(false);
+  const [following, setFollowing] = useState("");
+  const [username, setUsername] = useState(null);
 
   const handleShowComment = () => {
     setShowComments(!showComments);
@@ -20,6 +23,7 @@ const ImagePost = ({ item, reloader, key, profile }) => {
 
   useEffect(() => {
     if (item) {
+      setFollowing(item.following);
       const formData = new FormData();
       formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
       formData.append("cnt_id", item.cnt_id);
@@ -35,10 +39,57 @@ const ImagePost = ({ item, reloader, key, profile }) => {
     }
   }, [reload, item]);
 
+  useEffect(() => {
+    const data = localStorage.getItem("Spilleet_user");
+    if (data) {
+      const user = JSON.parse(data);
+      setUsername(user.usertoken);
+    }
+  }, []);
+
+  const handleSubmit = () => {
+    setFollowing("Yes");
+    const formData = new FormData();
+    formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
+    formData.append("to_follow", item.usertoken);
+    formData.append("usertoken", username);
+    Fetch(`${process.env.REACT_APP_END_POINT}/follow`, formData)
+      .then((res) => {
+        if (res.data.success === false) {
+          window.alert(res.data.message);
+        } else {
+          return;
+        }
+      })
+      .catch((err) => {
+        window.alert(err.message);
+      });
+  };
+  const handleUnfollow = () => {
+    setFollowing("No");
+    const formData = new FormData();
+    formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
+    formData.append("to_follow", item.usertoken);
+    formData.append("usertoken", username);
+    Fetch(`${process.env.REACT_APP_END_POINT}/unfollow`, formData)
+      .then((res) => {
+        if (res.data.success === false) {
+          window.alert(res.data.message);
+        } else {
+          return;
+        }
+      })
+      .catch((err) => {
+        window.alert(err.message);
+      });
+  };
   return (
     item !== undefined && (
-      <div className={ profile ? Style.profile_container : Style.container} key={key}>
-        <div className={Style.content}>
+      <div
+        className={profile ? Style.profile_container : Style.container}
+        key={key}
+      >
+        <div className={Style.content} style={{ position: "relative" }}>
           <Link to={`/posts/${item.cnt_id}`}>
             <div
               className={Style.imageContainer}
@@ -56,6 +107,31 @@ const ImagePost = ({ item, reloader, key, profile }) => {
               </div>
             </div>
           </Link>
+          <span
+            style={{
+              position: "absolute",
+              color: "#fff",
+              zIndex: "2001",
+              bottom: "40px",
+              left: "15px",
+            }}
+          >
+            {username &&
+              username !== item.usertoken &&
+              (following === "Yes" ? (
+                <Box display="flex">
+                  <p className={Styles.follow} onClick={handleUnfollow}>
+                    Following
+                  </p>
+                </Box>
+              ) : (
+                <Box display="flex" justifyContent="center" alignItems="center">
+                  <p className={Styles.follow} onClick={handleSubmit}>
+                    Follow
+                  </p>
+                </Box>
+              ))}
+          </span>
           <ActivityBar
             reloadComments={reloadComments}
             item={item}

@@ -16,7 +16,7 @@ const WithImage = ({ post }) => {
     setShowComments(!showComments);
   };
   useEffect(() => {
-    const data = localStorage.getItem("user");
+    const data = localStorage.getItem("Spilleet_user");
 
     if (data) setUserObj(data);
   }, []);

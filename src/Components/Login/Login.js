@@ -71,7 +71,7 @@ const Login = () => {
             setContent(res.data.message);
             setShowAlert(true);
             let user = JSON.stringify(res.data);
-            localStorage.setItem("user", user);
+            localStorage.setItem("Spilleet_user", user);
             if (res.data.interests === true) {
               router("/posts");
             } else {

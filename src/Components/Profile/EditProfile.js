@@ -22,7 +22,12 @@ const style = {
   placeItems: "center",
 };
 
-export default function EditProfile({ handleOpen, handleClose, open, reloadProfile }) {
+export default function EditProfile({
+  handleOpen,
+  handleClose,
+  open,
+  reloadProfile,
+}) {
   const [image, setImage] = useState("");
   const [usertoken, setUsertoken] = useState("");
 
@@ -36,7 +41,7 @@ export default function EditProfile({ handleOpen, handleClose, open, reloadProfi
 
   const [preview, setPreview] = useState("");
   useEffect(() => {
-    const data = localStorage.getItem("user");
+    const data = localStorage.getItem("Spilleet_user");
     if (data) {
       const user = JSON.parse(data);
       setUsertoken(user.usertoken);
@@ -61,11 +66,11 @@ export default function EditProfile({ handleOpen, handleClose, open, reloadProfi
           setContent(res.data.message);
           setShowAlert(true);
         } else {
-          reloadProfile()
+          reloadProfile();
           setStatus("success");
           setContent(res.data.message);
           setShowAlert(true);
-          window.location.reload()
+          window.location.reload();
         }
       })
       .catch((err) => {
@@ -113,11 +118,15 @@ export default function EditProfile({ handleOpen, handleClose, open, reloadProfi
                     handleAlert={close}
                   />
                 )}
-                {preview && 
-                <Box width="250px" maxHeight="250px">
-                  <img src={preview} alt="preview" style={{maxWidth:"100%"}} />
-                </Box>
-                }
+                {preview && (
+                  <Box width="250px" maxHeight="250px">
+                    <img
+                      src={preview}
+                      alt="preview"
+                      style={{ maxWidth: "100%" }}
+                    />
+                  </Box>
+                )}
                 <Box display="flex" flexDirection="column" alignItems="center">
                   <label htmlFor="profile">Select an image</label>
                   <input
@@ -128,8 +137,14 @@ export default function EditProfile({ handleOpen, handleClose, open, reloadProfi
                   />
                 </Box>
               </Box>
-              <Box display="flex" alignItems="center" justifyContent="center" gap={2} mt={2}>
-                <Button variant="outlined" color="error" onClick={handleClose} >
+              <Box
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                gap={2}
+                mt={2}
+              >
+                <Button variant="outlined" color="error" onClick={handleClose}>
                   Cancel
                 </Button>
                 <Button variant="contained" onClick={uploadImage}>

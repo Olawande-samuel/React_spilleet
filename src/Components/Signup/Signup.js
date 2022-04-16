@@ -85,7 +85,6 @@ const Signup = () => {
         });
     },
   });
-  console.log(formik);
   return (
     <Grid
       container

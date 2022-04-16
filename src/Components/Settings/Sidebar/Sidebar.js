@@ -11,7 +11,6 @@ const Sidebar = () => {
 
     const router = useLocation();
 
-    console.log(router)
     return (
         <Stack spacing={1.5}>
             <Box py={1} borderBottom="1px solid gray">

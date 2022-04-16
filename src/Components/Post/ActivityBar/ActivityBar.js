@@ -6,7 +6,7 @@ import { Fetch } from "../../../Trials/Controller";
 import { FaRegComment, FaRegBookmark, FaBookmark } from "react-icons/fa";
 import { BiPencil } from "react-icons/bi";
 import EditModal from "../Text/EditModal";
-
+import axios from "axios";
 const ActivityBar = ({
   likes,
   comment,
@@ -42,11 +42,11 @@ const ActivityBar = ({
     }
   }, [reloadComments]);
 
-  const data = localStorage.getItem("user");
+  const data = localStorage.getItem("Spilleet_user");
   const uData = JSON.parse(data);
 
   if (data) {
-    const handleLike = () => {
+    const handleLike = async () => {
       // if(liked === true){
       //   setLiked(false);
       //   setTotalLikes(totalLikes - 1);
@@ -71,13 +71,36 @@ const ActivityBar = ({
       formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
       formData.append("usertoken", uData.usertoken);
       formData.append("cnt_id", item.cnt_id);
-      Fetch(`${process.env.REACT_APP_END_POINT}/likes`, formData)
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+
+      const data = {
+        usertoken: uData.usertoken,
+        cnt_id: item.cnt_id,
+        apptoken: process.env.REACT_APP_APP_TOKEN,
+        creator: item.usertoken,
+      };
+      const dat = JSON.stringify(data);
+      try {
+        const response = await axios.post(
+          `http://localhost:5000/api/like-post`,
+          dat,
+          {
+            headers: {
+              "content-type": "application/json",
+            },
+          }
+        );
+      } catch (error) {
+        console.error(error);
+      }
+
+      // Fetch(`${process.env.REACT_APP_END_POINT}/likes`, formData)
+      // .then((res) => {
+      //   console.log("likes", res)
+      //   return
+      // })
+      // .catch((err) => {
+      //   console.log(err);
+      // });
 
       // }
     };
@@ -90,7 +113,7 @@ const ActivityBar = ({
       formData.append("cnt_id", item.cnt_id);
       Fetch(`${process.env.REACT_APP_END_POINT}/favorite`, formData)
         .then((res) => {
-          console.log(res);
+          return;
         })
         .catch((err) => {
           console.log(err);
@@ -107,15 +130,13 @@ const ActivityBar = ({
       >
         <Grid xs={6} item className={Styles.left}>
           <Box
-            sx={{
-              display: "flex",
-              alignitems: "center",
-              gap: ".5rem",
-              justifycontent: "space-between",
-            }}
+            display="flex"
+            alignItems="center"
+            gap=".5rem"
+            justifyContent="space-between"
             className={Styles.buttonGroup}
           >
-            <Box sx={{ display: "flex", alignItems: "center" }} gap={2} pr={1}>
+            <Box display="flex" alignitems="center" gap={2} pr={1}>
               {item.usertoken !== uData.usertoken ? (
                 <button
                   className={Styles.like_btn}
@@ -214,7 +235,7 @@ const ActivityBar = ({
           className={Styles.right}
         >
           {item.usertoken === uData.usertoken && (
-            <div
+            <Box
               className={Styles.share}
               display="flex"
               justifyContent="center"
@@ -223,7 +244,7 @@ const ActivityBar = ({
               <i className={Styles.icon} onClick={handleOpen}>
                 <BiPencil />
               </i>
-            </div>
+            </Box>
           )}
         </Grid>
         {item.cnt_id === details.cnt_id && (

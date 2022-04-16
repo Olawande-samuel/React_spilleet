@@ -2,18 +2,17 @@ import { Grid, Box, Stack } from "@mui/material";
 import ProfileDetails from "./ProfileDetails";
 import ProfileImg from "./ProfileImg";
 import EditBar from "./EditBar";
-import {useState, useEffect} from "react"
+import { useState, useEffect } from "react";
 
-const Top = ({data}) => {
-  const [id, setId]= useState("")
-  useEffect(()=>{
-    const person = localStorage.getItem("user");
-    if(person) {
+const Top = ({ data }) => {
+  const [id, setId] = useState("");
+  useEffect(() => {
+    const person = localStorage.getItem("Spilleet_user");
+    if (person) {
       const user = JSON.parse(person);
-      setId(user.usertoken)
+      setId(user.usertoken);
     }
-
-  },[])
+  }, []);
   return (
     <Stack spacing={1} display="flex" justifyContent="center">
       <Grid container justifyContent="center">
@@ -43,7 +42,7 @@ const Top = ({data}) => {
           </Box>
         </Grid>
       </Grid>
-      {data.usertoken === id ? <EditBar /> : "" }
+      {data.usertoken === id ? <EditBar /> : ""}
     </Stack>
   );
 };

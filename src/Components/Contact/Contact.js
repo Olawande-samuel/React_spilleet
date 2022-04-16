@@ -9,7 +9,7 @@ import { MdLocationOn } from "react-icons/md";
 import { IoMdMail } from "react-icons/io";
 import Style from "../../styles/Contact.module.css";
 import React, { useState, useEffect } from "react";
-import Logo from "../../images/Logo2.png";
+import LightLogo from "../../images/LightLogo.png";
 const Contact = () => {
   const [height, setHeight] = useState("");
   useEffect(() => {
@@ -47,9 +47,9 @@ const Contact = () => {
         >
           <Box mb={6}>
             <div className={Style.logo}>
-              <Link to="/">
-                <img src={Logo} alt="App Logo" width={160} height={48} />
-              </Link>
+            <Link to="/">
+              <img src={LightLogo} alt="App Logo" width={160} height={48} />
+            </Link>
             </div>
             <div className={Style.text}>
               <p>

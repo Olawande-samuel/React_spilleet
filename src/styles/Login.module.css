@@ -9,7 +9,7 @@
   margin-bottom: 15px;
 }
 .forgot {
-  color: #2c5282;
+  color: rgb(85, 83, 83);
   /* font-size: 14px; */
 }
 
@@ -18,7 +18,7 @@
 }
 
 .loginBtn {
-  background: var(--greenish) !important;
+  background: var(--primary) !important;
 }
 .loginBtn:hover {
   background: #2c5282 !important;

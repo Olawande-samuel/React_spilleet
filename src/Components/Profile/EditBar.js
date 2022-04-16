@@ -4,8 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import React from "react"
 const EditBar = () => {
   const navigate = useNavigate()
-  const handleLogout = () => {
+  const handleLogout = async () => {
     localStorage.clear();
+    const regs = await navigator.serviceWorker.getRegistrations()
+    for(let reg of regs){
+      reg.unregister()
+    }
       navigate("/login")
   }
   return (

@@ -8,7 +8,7 @@ const FollowButton = ({ item }) => {
   const [following, setFollowing] = useState(false);
 
   useEffect(() => {
-    const data = localStorage.getItem("user");
+    const data = localStorage.getItem("Spilleet_user");
     if (data) {
       const user = JSON.parse(data);
       setUsername(user.usertoken);

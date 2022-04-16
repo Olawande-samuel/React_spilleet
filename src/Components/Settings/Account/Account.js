@@ -12,7 +12,7 @@ import EditProfile from "../../Profile/EditProfile";
 
 export const Account = () => {
   const [toggleOpen, setToggleOpen] = useState(false);
-  const [helpPageReload, setHelpPageReload]= useState(false)
+  const [helpPageReload, setHelpPageReload] = useState(false);
   const openModal = () => {
     setToggleOpen(true);
   };
@@ -35,16 +35,20 @@ export const Account = () => {
 
   const [loading, setLoading] = useState(false);
   const [edited, setEdited] = useState(false);
-  const handleLogout = () => {
+  const handleLogout = async () => {
     localStorage.clear();
+    const regs = await navigator.serviceWorker.getRegistrations();
+    for (let reg of regs) {
+      reg.unregister();
+    }
     router("/");
   };
   const handleChange = (e) => {
     setEdited(true);
     setName({ ...name, [e.target.name]: e.target.value });
   };
-  function getUserData(){
-    const access = localStorage.getItem("user");
+  function getUserData() {
+    const access = localStorage.getItem("Spilleet_user");
     if (access) {
       const useable = JSON.parse(access);
 
@@ -61,7 +65,7 @@ export const Account = () => {
             phone: res.data.phone,
             email: res.data.email,
           });
-          localStorage.setItem("user", JSON.stringify(res.data));
+          localStorage.setItem("Spilleet_user", JSON.stringify(res.data));
         })
         .catch((err) => {
           console.error(err);
@@ -69,7 +73,7 @@ export const Account = () => {
     }
   }
   useEffect(() => {
-    getUserData()
+    getUserData();
   }, []);
 
   const handleSubmit = (e) => {
@@ -91,7 +95,7 @@ export const Account = () => {
           setContent(res.data.message);
           setShowAlert(true);
         } else {
-          getUserData()
+          getUserData();
           setStatus("success");
           setContent(res.data.message);
           setShowAlert(true);
@@ -274,7 +278,6 @@ export const Account = () => {
           handleClose={closeModal}
           open={toggleOpen}
           reloadProfile={getUserData}
-          
         />
       </Box>
     </form>

@@ -22,7 +22,6 @@ const Item = ({
   }
   // })()
 
-  console.log(sets);
 
   return (
     <label

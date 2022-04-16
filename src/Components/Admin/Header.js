@@ -8,7 +8,9 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import React from "react"
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import LightLogo from "../../images/LightLogo.png"
+
 const Header = ({showSidebar}) => {
     return (
         <Box className={style.header_container}>
@@ -18,7 +20,9 @@ const Header = ({showSidebar}) => {
                 </i>
             </Box>
             <Box className={style.logo}>
-                <Logo />
+            <Link to="/admin">
+              <img src={LightLogo} alt="App Logo" width={160} height={48} />
+            </Link>
             </Box>
             <Box className={style.user}>
                 <div className={style.user_wrapper}>
@@ -79,6 +83,9 @@ const Header = ({showSidebar}) => {
       >
         {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem> */}
+        <MenuItem>
+        <Link to="/admin/change-password">Change Password</Link>
+        </MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
     </div>

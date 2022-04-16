@@ -9,7 +9,7 @@ const Details = ({item}) => {
                 <p className={Style.profile}>{item.about}</p>
             </Box>
             <Box>
-                <div className={Style.followerCount}><span>{item.followers}</span> Followers</div>
+                <div className={Style.followerCount}><span>{item.allfollowers}</span> Followers</div>
             </Box>
         </Stack>
     )

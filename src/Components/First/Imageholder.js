@@ -4,13 +4,14 @@ import Bars from "./Bars";
 import Images from "./Images";
 import { Link } from "react-router-dom";
 import React from "react";
-import Logo from "../../images/Logo2.png";
+// import Logo from "../../images/Logo2.png";
+import LightLogo from "../../images/LightLogo.png"
 const Imageholder = () => {
   return (
     <Stack className={Styles.body}>
       <Box className={Styles.imgWrapper} height="50%">
         <Link to="/">
-          <img src={Logo} alt="App Logo" width={160} height={48} />
+          <img src={LightLogo} alt="App Logo" width={160} height={48} />
         </Link>
         <Box display="grid" placeItems="center" marginTop="43px">
           <Bars />

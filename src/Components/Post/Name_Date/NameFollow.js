@@ -9,17 +9,19 @@ import EditModal from "../Text/EditModal";
 
 const NameFollow = ({ user, date, usertoken, followed, item }) => {
   const [username, setUsername] = useState(null);
-  const [following, setFollowing] = useState(false);
+  const [following, setFollowing] = useState("");
 
   useEffect(() => {
-    const data = localStorage.getItem("user");
+    const data = localStorage.getItem("Spilleet_user");
     if (data) {
       const user = JSON.parse(data);
       setUsername(user.usertoken);
     }
+    setFollowing(followed);
   }, []);
+
   const handleSubmit = () => {
-    setFollowing(!following);
+    setFollowing("Yes");
     const formData = new FormData();
     formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
     formData.append("to_follow", usertoken);
@@ -37,7 +39,7 @@ const NameFollow = ({ user, date, usertoken, followed, item }) => {
       });
   };
   const handleUnfollow = () => {
-    setFollowing(!following);
+    setFollowing("No");
     const formData = new FormData();
     formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
     formData.append("to_follow", usertoken);
@@ -56,6 +58,7 @@ const NameFollow = ({ user, date, usertoken, followed, item }) => {
   };
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
+
   return (
     <Stack spacing={1}>
       <Box className={Styles.wrapper}>
@@ -69,21 +72,24 @@ const NameFollow = ({ user, date, usertoken, followed, item }) => {
           >
             <p className={Styles.name}>{user}</p>
           </Link>
-          {username && followed === "No" && (
-            <>
-              <div className={Styles.dot}></div>
-              {username !== usertoken &&
-                (following ? (
-                  <p className={Styles.follow} onClick={handleUnfollow}>
-                    Following
-                  </p>
-                ) : (
-                  <p className={Styles.follow} onClick={handleSubmit}>
-                    Follow
-                  </p>
-                ))}
-            </>
-          )}
+
+          {username &&
+            username !== usertoken &&
+            (following === "Yes" ? (
+              <>
+                <div className={Styles.dot}></div>
+                <p className={Styles.follow} onClick={handleUnfollow}>
+                  Following
+                </p>
+              </>
+            ) : (
+              <>
+                <div className={Styles.dot}></div>
+                <p className={Styles.follow} onClick={handleSubmit}>
+                  Follow
+                </p>
+              </>
+            ))}
         </Box>
         {/* <i style={{justifySelf:"flex-end"}} onClick={handleOpen}><BsThreeDotsVertical /></i> */}
       </Box>

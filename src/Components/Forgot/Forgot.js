@@ -1,7 +1,7 @@
 import { Box, Button, FormControl, Stack, TextField } from "@mui/material";
 import Loader from "../Utils/Loader";
 import Utils from "../Utils/Utils";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Fetch } from "../../Trials/Controller";
 import Style from "../../styles/Changepassword.module.css";
 import { Link } from "react-router-dom";
@@ -12,7 +12,7 @@ const Forgot = () => {
   const handleChange = (e) => {
     setEmail(e.target.value);
   };
-
+  const  [height, setHeight] = useState("")
   const [status, setStatus] = useState("");
   const [content, setContent] = useState("");
   const [showAlert, setShowAlert] = useState(false);
@@ -37,7 +37,7 @@ const Forgot = () => {
           setContent(res.data.message);
           setShowAlert(true);
           let user = JSON.stringify(res.data);
-          localStorage.setItem("user", user);
+          localStorage.setItem("Spilleet_user", user);
           //   router.push("/posts");
         }
       })
@@ -49,27 +49,36 @@ const Forgot = () => {
       });
   };
 
+  useEffect(() => {
+    const val = window.innerHeight;
+    setHeight(val);
+  
+    
+  }, [])
+  
   return (
     <Box
       width="100%"
-      height="100vh"
-      backgroundColor="#C035A2"
+      height={height}
+      backgroundColor="#fff"
       display="flex"
       justifyContent="center"
       alignItems="center"
       flexDirection="column"
+      paddingTop="1rem"
+      color="#C035A2"
     >
       <Box width="100%" className={Style.logo}>
         <Link to="/">
           <div className={Style.logoWrapper}>
-            <img src={Logo} alt="App Logo" width={264} height={96} />
+            <img src={Logo} alt="App Logo" width={164} height={56} />
           </div>
         </Link>
       </Box>
       <form
         className={Style.forgotForm}
         style={{
-          height: "40%",
+          height: "80%",
           backgroundColor: "white",
           display: "grid",
           placeItems: "center",
@@ -98,7 +107,7 @@ const Forgot = () => {
               />
             </FormControl>
             <Box>
-              <Button variant="contained" onClick={handleSubmit}>
+              <Button sx={{background:"#C035A2"}} variant="contained" onClick={handleSubmit}>
                 Submit
               </Button>
             </Box>

@@ -11,7 +11,7 @@ import AddPost from "../AddPost/AddPost";
 import { Box } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../Navbar/SideBar/Sidebar";
-import ErrorBoundary from "../Error/ErrorBoundary"
+import ErrorBoundary from "../Error/ErrorBoundary";
 const Index = () => {
   const { Posts } = useContext(Context);
   const context = useContext(UserContext);
@@ -32,7 +32,7 @@ const Index = () => {
   const [search, setSearch] = useContext(SearchContext);
 
   useEffect(() => {
-    const data = localStorage.getItem("user");
+    const data = localStorage.getItem("Spilleet_user");
     if (data) {
       const user = JSON.parse(data);
       setUsertoken(user.usertoken);
@@ -52,7 +52,7 @@ const Index = () => {
           setStatus("error");
           setContent(res.data.message);
           setShowAlert(true);
-        } else if(Array.isArray(res.data)) {
+        } else if (Array.isArray(res.data)) {
           setStatus("success");
           setContent(res.data.message);
           setShowAlert(true);
@@ -107,47 +107,49 @@ const Index = () => {
             </Box>
             <ErrorBoundary>
               <CategoryTabs handleClick={changeCategory} />
-            </ErrorBoundary> 
+            </ErrorBoundary>
           </div>
 
           <ErrorBoundary>
-            
-          <div className={styles.mainContainer}>
-            <ImagePost />
-            {loading ? (
-              <Loader />
-            ) : (
-              <>
-                {data.length > 0 &&
-                  data
-                    .filter(
-                      (item) =>
-                        item.body.toLowerCase().includes(search) ||
-                        item.title.toLowerCase().includes(search) ||
-                        item.username.toLowerCase().includes(search)
-                    )
-                    .map((item) =>
-                      item.image_url === 0 ? (
-                        <TextPost
-                          key={item.ctn_id}
-                          item={item}
-                          reloader={setReload}
-                          loadCommentFig={setLoadCommentFig}
-                        />
-                      ) : (
-                        <ImagePost
-                          key={item.ctn_id}
-                          item={item}
-                          reloader={setReload}
-                          loadCommentFig={setLoadCommentFig}
-                        />
+            <div className={styles.mainContainer}>
+              <ImagePost />
+              {loading ? (
+                <Loader />
+              ) : (
+                <>
+                  {data.length > 0 &&
+                    data
+                      .filter(
+                        (item) =>
+                          item.body.toLowerCase().includes(search) ||
+                          item.title.toLowerCase().includes(search) ||
+                          item.username.toLowerCase().includes(search)
                       )
-                    )}
-              </>
-            )}
-          </div>
+                      .map((item, index) =>
+                        item.image_url === 0 ? (
+                          <div key={index}>
+                            <TextPost
+                              key={item.ctn_id}
+                              item={item}
+                              reloader={setReload}
+                              loadCommentFig={setLoadCommentFig}
+                            />
+                          </div>
+                        ) : (
+                          <div key={index}>
+                            <ImagePost
+                              key={item.ctn_id}
+                              item={item}
+                              reloader={setReload}
+                              loadCommentFig={setLoadCommentFig}
+                            />
+                          </div>
+                        )
+                      )}
+                </>
+              )}
+            </div>
           </ErrorBoundary>
-
         </main>
       </Layout>
       {/* <Outlet /> */}

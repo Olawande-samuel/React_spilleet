@@ -58,7 +58,7 @@ const TextComment = ({ item }) => {
         setLoading(false);
         if (mounted) {
           if (res.data.success === false) {
-            console.log(comments);
+            return
           } else {
             setSubComments(res.data);
           }

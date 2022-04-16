@@ -34,7 +34,7 @@ const NoImage = ({ data }) => {
   }, [reload, data]);
 
   useEffect(() => {
-    const user = localStorage.getItem("user");
+    const user = localStorage.getItem("Spilleet_user");
 
     if (user) setUserObj(user);
   }, []);
