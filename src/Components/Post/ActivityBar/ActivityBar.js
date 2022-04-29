@@ -7,63 +7,47 @@ import { FaRegComment, FaRegBookmark, FaBookmark } from "react-icons/fa";
 import { BiPencil } from "react-icons/bi";
 import EditModal from "../Text/EditModal";
 import axios from "axios";
-const ActivityBar = ({
-  likes,
-  comment,
-  handleComment,
-  handleShowComment,
-  item,
-  reloadComments,
-}) => {
+
+const ActivityBar = ({ setOpenBoxAndId, item, reloadComments,hasCommented, totalComments }) => {
   const [liked, setLiked] = useState(false);
   const [commented, setHasCommented] = useState(false);
   const [isFavourited, setIsFavourited] = useState(false);
   const [totalLikes, setTotalLikes] = useState("");
-  const [totalComments, setTotalComments] = useState("");
+  // const [totalComments, setTotalComments] = useState("");
   const [details, setDetails] = useState({});
-
-  useEffect(() => {
-    setTotalLikes(item.total_likes);
-    item.faved !== "Yes" ? setIsFavourited(false) : setIsFavourited(true);
-    setTotalComments(item.total_comments);
-    if (item.liked === "Yes") {
-      setLiked(true);
-    }
-  }, [item]);
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => {
-    setOpen(true);
-    setDetails(item);
-  };
-  useEffect(() => {
-    if (reloadComments === true) {
-      setHasCommented(!commented);
-      setTotalComments(totalComments + 1);
-    }
-  }, [reloadComments]);
 
   const data = localStorage.getItem("Spilleet_user");
   const uData = JSON.parse(data);
 
-  if (data) {
+
+  useEffect(() => {
+    item.faved !== "Yes" ? setIsFavourited(false) : setIsFavourited(true);
+    if (item.liked === "Yes") {
+      setLiked(true);
+    }
+    // Set number of likes and comments
+    setTotalLikes(item.total_likes);
+    // setTotalComments(item.total_comments);
+  }, [item]);
+
+
+  
+  // modal control
+  const [open, setOpen] = React.useState(false);
+// set items to populate modal
+  const handleOpen = () => {
+    setOpen(true);
+    setDetails(item);
+  };
+
+  useEffect(() => {
+    if (hasCommented === true) {
+      setHasCommented(!commented);
+      // setTotalComments(totalComments + 1);
+    }
+  }, [hasCommented]);
+
     const handleLike = async () => {
-      // if(liked === true){
-      //   setLiked(false);
-      //   setTotalLikes(totalLikes - 1);
-      //   const formData = new FormData();
-      //   formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
-      //   formData.append("usertoken", uData.usertoken);
-      //   formData.append("cnt_id", item.cnt_id);
-      //   Fetch(`${process.env.REACT_APP_END_POINT}/likes`, formData)
-      //   .then((res) => {
-      //     setLiked(false);
-      //   })
-      //   .catch((err) => {
-      //     console.log(err);
-      //   });
-
-      // } else {
-
       setTotalLikes(totalLikes + 1);
       // setLiked(!liked);
       setLiked(true);
@@ -81,7 +65,7 @@ const ActivityBar = ({
       const dat = JSON.stringify(data);
       try {
         const response = await axios.post(
-          `http://localhost:5000/api/like-post`,
+          `${process.env.REACT_APP_NODE_ENDPOINT}/like-post`,
           dat,
           {
             headers: {
@@ -91,18 +75,8 @@ const ActivityBar = ({
         );
       } catch (error) {
         console.error(error);
+        window.alert("Error liking post")
       }
-
-      // Fetch(`${process.env.REACT_APP_END_POINT}/likes`, formData)
-      // .then((res) => {
-      //   console.log("likes", res)
-      //   return
-      // })
-      // .catch((err) => {
-      //   console.log(err);
-      // });
-
-      // }
     };
 
     const favourite = () => {
@@ -156,14 +130,6 @@ const ActivityBar = ({
                 item.total_likes !== undefined ? totalLikes : 0
               }`}</span>
             </Box>
-            {/* <div className={Styles.line}></div> */}
-            {/* <Box className={Styles.buttonGroup}>
-                <button className={Styles.like_btn} onClick={handleDisLike}>
-                  <ArrowDropDownIcon
-                    sx={{ fontSize: "30px", color: "#E11E1E" }}
-                  />
-                </button>
-              </Box> */}
           </Box>
           <Box
             sx={{
@@ -176,20 +142,13 @@ const ActivityBar = ({
             <Box className="comment">
               <Box
                 sx={{ display: "flex", gap: ".5rem", alignItems: "center" }}
-                onClick={handleShowComment}
+                onClick={()=>setOpenBoxAndId(item.cnt_id)}
               >
                 <i className={Styles.icon}>
                   {" "}
                   <FaRegComment />{" "}
                 </i>
-                {/* <Icon className={Styles.iconWrapper}>
-                    <img
-                      src="/comment.svg"
-                      alt="comments"
-                      className={Styles.icons}
-                      
-                    />
-                  </Icon> */}
+                
                 <span className={Styles.icon}>
                   {item !== undefined ? totalComments : 0}
                 </span>
@@ -216,14 +175,7 @@ const ActivityBar = ({
                   <FaRegBookmark />{" "}
                 </i>
               )}
-              {/* <Icon className={Styles.iconWrapper}>
-                  <img
-                    src="/bookmark.svg"
-                    alt="bookmark"
-                    className={Styles.icons}
-                   
-                  />
-                </Icon> */}
+              
             </Box>
           </Box>
         </Grid>
@@ -248,12 +200,11 @@ const ActivityBar = ({
           )}
         </Grid>
         {item.cnt_id === details.cnt_id && (
-          <EditModal open={open} setOpen={setOpen} item={item} />
+          <EditModal open={open} setOpen={setOpen} item={item}  />
         )}
       </Grid>
     );
-  }
-  return null;
+ 
 };
 
 export default ActivityBar;

@@ -5,6 +5,7 @@ import Comment from "../Text/Comment";
 import React, { useState, useEffect } from "react";
 import { Fetch } from "../../../Trials/Controller";
 import TextComment from "../Text/TextComment";
+import Actions from "../Actions/Actions";
 
 const WithImage = ({ post }) => {
   const [userObj, setUserObj] = useState(null);
@@ -70,39 +71,7 @@ const WithImage = ({ post }) => {
       {userObj && (
         <Box className={style.comment_wrapper}>
           <Box className={style.comment} backgroundColor="#eee">
-            <ActivityBar
-              reloadComments={reloadComments}
-              handleShowComment={handleShowComment}
-              item={post}
-              likes={post.total_comments}
-              comment={post.total_likes}
-            />
-            <Comment
-              item={post}
-              setReload={setReload}
-              setShowComments={setShowComments}
-              reloadComments={setReloadComments}
-            />
-            {showComments === true && comments.length > 0 && (
-              <Box
-                border="1px solid lightgrey"
-                borderTop="none"
-                maxHeight="400px"
-                overflow="hidden"
-                paddingBottom="4px"
-              >
-                <>
-                  <Box height="85%" overflow="hidden">
-                    {comments.map((item) => (
-                      <TextComment key={item.id} item={item} />
-                    ))}
-                  </Box>
-                  {/* <Box display="flex" height="10%" justifyContent="center" alignItems="center">
-                                  <button className={Style.moreBtn}> <i style={{fontSize:"18px"}}> <RiArrowDropDownLine /> </i> View more comments</button>
-                              </Box> */}
-                </>
-              </Box>
-            )}
+            <Actions item={post} />
           </Box>
         </Box>
       )}

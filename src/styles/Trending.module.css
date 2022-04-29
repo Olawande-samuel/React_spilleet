@@ -8,11 +8,28 @@
     display: grid;
     place-items: center;
 }
+
 .title {
     font-size:clamp(15px, 5vw, 34px);
     font-weight: 700;
 }
 
+
+@supports not (font-size: clamp(15px, 5vw, 34px)){
+    .logo {
+        background: var(--primary);
+        height: 35px;
+        width: 35px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+    }
+    
+    .title {
+        font-size:25px;
+        font-weight: 700;
+    }
+}
 .trendingTitle{
     display: -webkit-box;
   -webkit-line-clamp: 2;

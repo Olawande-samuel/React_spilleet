@@ -1,54 +1,18 @@
 import { Stack, Box, CardContent } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ActivityBar from "../ActivityBar/ActivityBar";
-// import Content from '../Content/Content'
-// import NameDate from '../Name_Date/NameDate'
 import NameFollow from "../Name_Date/NameFollow";
 import Profile from "../Profile/Profile";
 import Style from "../../../styles/TextPost.module.css";
 import Title from "../Content/Title";
 import PostContent from "../Content/PostContent";
 import Comment from "./Comment";
-import TextComment from "./TextComment";
-import { Fetch } from "../../../Trials/Controller";
 import EmptyImageProfile from "../Profile/EmptyImageProfile";
-import Loader from "../../Utils/Loader";
+import CommentContainer from "./CommentContainer";
+import Actions from "../Actions/Actions";
+
 const TextPost = ({ item, reloader, loadCommentFig, profile }) => {
-  const [comments, setComments] = useState([]);
-  const [reload, setReload] = useState(false);
-  const [reloadComments, setReloadComments] = useState(false);
-  const [showComments, setShowComments] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const handleShowComment = () => {
-    setShowComments(!showComments);
-  };
-
-  useEffect(() => {
-    let mounted = true;
-    setLoading(true);
-    const formData = new FormData();
-    formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
-    formData.append("cnt_id", item.cnt_id);
-    Fetch(`${process.env.REACT_APP_END_POINT}/display-comments`, formData)
-      .then((res) => {
-        setLoading(false);
-        if (mounted) {
-          if (res.data.success === false) {
-            return;
-          } else {
-            setComments(res.data);
-          }
-        }
-      })
-      .catch((err) => {
-        setLoading(false);
-
-        console.error(err);
-      });
-
-    return () => (mounted = false);
-  }, [reload, showComments]);
-
+ 
   return (
     <Box className={profile ? Style.profile_post :Style.post}>
       <Box className={Style.container}>
@@ -78,38 +42,28 @@ const TextPost = ({ item, reloader, loadCommentFig, profile }) => {
           </Box>
         </CardContent>
       </Box>
-      <Box>
+      {/* <Box>
         <ActivityBar
           reloadComments={reloadComments}
           likes={item.total_likes}
-          //   handleComment={openComment}
           reloader={reloader}
           handleShowComment={handleShowComment}
           item={item}
           comment={item.total_comments}
+          commentReload={handleCommentReload}
         />
         <Comment
           item={item}
           setReload={setReload}
           setShowComments={setShowComments}
           reloadComments={setReloadComments}
+          postId={setClickedPostID}
+
         />
-        {showComments && (
-          <Box className={Style.commentBox}>
-            {loading ? (
-              <Loader />
-            ) : (
-              comments.length > 0 && (
-                <Box height="85%" overflow="hidden">
-                  {comments.map((item) => (
-                    <TextComment key={item.id} item={item} />
-                  ))}
-                </Box>
-              )
-            )}
-          </Box>
-        )}
-      </Box>
+       {showComments === true && <CommentContainer item={item} postID={clickedPostID} reload={showComments}   />}
+        
+      </Box> */}
+      <Actions item={item} />
     </Box>
   );
 };

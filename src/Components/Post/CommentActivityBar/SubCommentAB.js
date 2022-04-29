@@ -19,20 +19,6 @@ const SubCommentAB = ({
 
   const [totalLikes, setTotalLikes] = useState("");
 
-  // useEffect(() => {
-  //   setTotalLikes(item.total_likes);
-  //   setTotalComments(item.total_comments);
-  //   if (item.liked === "Yes") {
-  //     setLiked(true);
-  //   }
-  // }, [item]);
-
-  // useEffect(() => {
-  //   if (reloadComments === true) {
-  //     setHasCommented(!commented);
-  //     setTotalComments(totalComments + 1);
-  //   }
-  // }, [reloadComments]);
 
   if (typeof window !== "undefined") {
     const data = localStorage.getItem("Spilleet_user");
@@ -83,7 +69,7 @@ const SubCommentAB = ({
           >
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <ArrowDropUpIcon
-                sx={{ fontSize: "30px", color: "#30C06A" }}
+                sx={{ fontSize: "12px", color: "#30C06A" }}
                 onClick={handleLike}
               />
               {/* <span>Upvote</span> */}
@@ -113,7 +99,7 @@ const SubCommentAB = ({
         <Grid item justifySelf="flex-end" xs={2} className={Styles.right}>
           <div className={Styles.more}>
             <Box>
-              <MoreHorizIcon sx={{ fontSize: "20px" }} />
+              <MoreHorizIcon sx={{ fontSize: "12px" }} />
             </Box>
           </div>
         </Grid>

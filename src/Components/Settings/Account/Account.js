@@ -36,11 +36,11 @@ export const Account = () => {
   const [loading, setLoading] = useState(false);
   const [edited, setEdited] = useState(false);
   const handleLogout = async () => {
-    localStorage.clear();
-    const regs = await navigator.serviceWorker.getRegistrations();
-    for (let reg of regs) {
-      reg.unregister();
-    }
+    // const regs = await navigator.serviceWorker.getRegistrations();
+    // for (let reg of regs) {
+    //   reg.unregister();
+    // }
+    localStorage.removeItem("Spilleet_user");
     router("/");
   };
   const handleChange = (e) => {
@@ -253,9 +253,6 @@ export const Account = () => {
         <Divider />
       </Box>
       <Box mt={6}>
-        <div className={Style.bottom_title}>
-          <p className={Style.text}>Connected Accounts &amp; Contacts</p>
-        </div>
         <Divider />
         <Grid
           container

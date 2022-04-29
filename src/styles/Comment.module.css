@@ -1,3 +1,5 @@
+@import "./Variables.css";
+
 .profileWrapper {
   width: 32px;
   height: 34px;
@@ -17,7 +19,7 @@
     font-size: 14px;
     font-weight: 700;
     padding: 4px 19px;
-    background: #271FC6;
+    background:  var(--primary);
     border: none;
     outline: none;
     border-radius: 25px;
@@ -27,7 +29,7 @@
   font-size: 14px;
   font-weight: 700;
   padding: 4px 10px;
-  background: #271FC6;
+  background: var(--primary);
   border: none;
   outline: none;
   border-radius: 25px;

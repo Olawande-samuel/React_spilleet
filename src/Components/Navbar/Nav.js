@@ -51,10 +51,10 @@ const Nav = ({ setValue }) => {
             </Grid>
             <Grid md={matches ? 4 : 7} item className={Navbar.right}>
               <Searchh />
+              <Notification />
               <div className={Navbar.mobile}>
                 <Logo />
               </div>
-              <Notification />
               <Box className={Navbar.desktop}>
                 <Btn />
                 <Profile />

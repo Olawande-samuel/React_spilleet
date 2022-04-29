@@ -5,7 +5,7 @@ import Styles from "../../styles/Setting.module.css"
 import Sidebar from './Sidebar/Sidebar'
 const Settings = ({children}) => {
     return (
-        <Layout>
+      
         <Box className={Styles.wrapper} mt={10}>
             <Grid container gap={4}>
                 <Grid item pr={6} xs={0} md={3}>
@@ -16,7 +16,7 @@ const Settings = ({children}) => {
                 </Grid>
             </Grid>
         </Box>
-        </Layout>
+       
     )
 }
 

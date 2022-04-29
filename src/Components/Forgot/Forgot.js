@@ -36,8 +36,6 @@ const Forgot = () => {
           setStatus("success");
           setContent(res.data.message);
           setShowAlert(true);
-          let user = JSON.stringify(res.data);
-          localStorage.setItem("Spilleet_user", user);
           //   router.push("/posts");
         }
       })

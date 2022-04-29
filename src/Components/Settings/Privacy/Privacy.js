@@ -99,7 +99,7 @@ const Privacy = () => {
         <Divider />
         <Box py={2} pl={3}>
           <Box display="flex" alignItems="center">
-            <Toggle handleToggle={handleEmailFromSpilleet} />
+            <Toggle handleToggle={handleEmailFromSpilleet} selected={emailPrivacy}  />
             <Typography className={Style.textValue} ml={2}>
               Receive emails from Spilleet
             </Typography>

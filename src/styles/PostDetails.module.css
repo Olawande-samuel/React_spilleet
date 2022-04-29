@@ -25,9 +25,20 @@
     margin: 0;
     font-family: 'Ropa Sans', sans-serif;
     font-weight: 400;
-    /* text-align: center; */
-  /* width: 80%; */
+
 }
+
+
+@supports not (font-size: clamp(15px, 5vw, 34px)){
+  .title_wrapper h1 {
+      font-size: 65.5px;
+      padding: 0;
+      margin: 0;
+      font-family: 'Ropa Sans', sans-serif;
+      font-weight: 400;
+  }
+}
+
 .header_container a{
   align-self: flex-end;
 }
@@ -148,10 +159,10 @@ padding-bottom: 4px;
     margin-top:10%;
   }
   .content, .post_container {
-    width: 97%;
+    width: 90%;
   }
   .comment {
-    width: 90%;
+    width: 98%;
 }
 .title_wrapper {
   width: 90%;

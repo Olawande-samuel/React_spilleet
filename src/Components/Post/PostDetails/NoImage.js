@@ -6,6 +6,8 @@ import ActivityBar from "../ActivityBar/ActivityBar";
 import TextComment from "../Text/TextComment";
 import { Fetch } from "../../../Trials/Controller";
 import { Link } from "react-router-dom";
+import CommentContainer from "../Text/CommentContainer";
+import Actions from "../Actions/Actions";
 const NoImage = ({ data }) => {
   const [userObj, setUserObj] = useState(null);
 
@@ -62,39 +64,8 @@ const NoImage = ({ data }) => {
         </div>
         {userObj && (
           <div className={style.comment}>
-            <ActivityBar
-              reloadComments={reloadComments}
-              handleShowComment={handleShowComment}
-              item={data}
-              likes={data.total_comments}
-              comment={data.total_likes}
-            />
-            <Comment
-              item={data}
-              setReload={setReload}
-              setShowComments={setShowComments}
-              reloadComments={setReloadComments}
-            />
-            {showComments === true && comments.length > 0 && (
-              <Box
-                border="1px solid lightgrey"
-                borderTop="none"
-                maxHeight="400px"
-                overflow="hidden"
-                paddingBottom="4px"
-              >
-                <>
-                  <Box height="85%" overflow="hidden">
-                    {comments.map((item) => (
-                      <TextComment key={item.id} item={item} />
-                    ))}
-                  </Box>
-                  {/* <Box display="flex" height="10%" justifyContent="center" alignItems="center">
-                                <button className={Style.moreBtn}> <i style={{fontSize:"18px"}}> <RiArrowDropDownLine /> </i> View more comments</button>
-                            </Box> */}
-                </>
-              </Box>
-            )}
+                  <Actions item={data} />
+
           </div>
         )}
       </Box>

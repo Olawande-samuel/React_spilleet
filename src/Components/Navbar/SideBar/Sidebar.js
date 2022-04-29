@@ -18,11 +18,8 @@ const Sidebar = ({ handleClick }) => {
     }
   }, []);
   const logout = async () => {
-    localStorage.clear();
-    const regs = await navigator.serviceWorker.getRegistrations();
-    for (let reg of regs) {
-      reg.unregister();
-    }
+    localStorage.removeItem("Spilleet_user");
+
     handleClick();
     router("/");
     window.location.reload();

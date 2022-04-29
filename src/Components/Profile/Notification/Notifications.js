@@ -1,6 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Stack } from "@mui/material";
-import { Context } from "../../../Trials/Controller";
 import Notification from "./Notification";
 import Layout from "../../Layout/Layout";
 import { Fetch } from "../../../Trials/Controller";
@@ -13,6 +12,7 @@ const Notifications = () => {
   const [status, setStatus] = useState("");
   const [content, setContent] = useState("");
   const [showAlert, setShowAlert] = useState(false);
+
   const close = () => {
     setShowAlert(false);
   };
@@ -49,7 +49,7 @@ const Notifications = () => {
     };
   }, []);
   return (
-    <Layout>
+    <>
       <Stack minHeight="100vh" mt={5} spacing={2} pt={9} px={5}>
         {showAlert && (
           <Utils status={status} content={content} handleAlert={close} />
@@ -65,7 +65,7 @@ const Notifications = () => {
           ))
         )}
       </Stack>
-    </Layout>
+     </>
   );
 };
 

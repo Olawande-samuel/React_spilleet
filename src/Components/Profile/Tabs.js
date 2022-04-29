@@ -54,7 +54,12 @@ export default function BasicTabs({ data }) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const style={
+    minWidth: "80px",
+    padding: "12px 5px",
+    fontSize: "clamp(0.675rem, 1vw, 16px)",
 
+  }
   return (
     <Box sx={{ width: "100%" }}>
       <Box
@@ -76,38 +81,22 @@ export default function BasicTabs({ data }) {
           <Tab
             label="Post"
             {...a11yProps(0)}
-            style={{
-              minWidth: "80px",
-              padding: "12px 5px",
-              fontSize: "clamp(0.675rem, 1vw, 16px)",
-            }}
+            style={style}
           />
           <Tab
             label="Followers"
             {...a11yProps(1)}
-            style={{
-              minWidth: "80px",
-              padding: "12px 5px",
-              fontSize: "clamp(0.675rem, 1vw, 16px)",
-            }}
+            style={style}
           />
           <Tab
             label="Following"
             {...a11yProps(2)}
-            style={{
-              minWidth: "80px",
-              padding: "12px 5px",
-              fontSize: "clamp(0.675rem, 1vw, 16px)",
-            }}
+            style={style}
           />
           <Tab
             label="Saves"
             {...a11yProps(3)}
-            style={{
-              minWidth: "80px",
-              padding: "12px 5px",
-              fontSize: "clamp(0.675rem, 1vw, 16px)",
-            }}
+            style={style}
           />
         </Tabs>
         {/* <Box display="flex" justifyContent="flex-end"  alignItems="center">

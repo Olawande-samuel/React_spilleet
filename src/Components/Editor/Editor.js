@@ -124,76 +124,54 @@ const Editor = () => {
         formData.append("usertoken", userObj.usertoken);
         formData.append("title", values.title);
         formData.append("body", holder);
-        // formData.append("body", values.body);
         formData.append("ctg_id", values.topic);
         if (image) {
           formData.append("image", image);
         }
 
-        const data = {
-          apptoken: process.env.REACT_APP_APP_TOKEN,
-          usertoken: userObj.usertoken,
-          title: values.title,
-          body: holder,
-          ctg_id: values.topic,
-          // image: image
-        };
+        
         try {
-          const response = await axios.post(
-            `http://localhost:5000/api/create-post`,
-            formData,
-            {
-              headers: {
-                "content-type": "multipart/form-data",
-              },
-            }
+          const response = await Fetch(
+            `${process.env.REACT_APP_END_POINT}/create-content`,
+            formData
           );
-          setLoading(false);
-          if (response.data.success === false) {
+
+         
+
+        if (response.data.success === false) {
+            setLoading(false);
             setStatus("error");
             setContent(response.data.message);
             setShowAlert(true);
           } else {
-            setStatus("success");
-            setContent(response.data.message);
-            setShowAlert(true);
-            // router(`/posts/${response.data.cnt_id}`);
+               const notification = await axios.post( `${process.env.REACT_APP_NODE_ENDPOINT}/create-post`, JSON.stringify({ 
+                 apptoken: process.env.REACT_APP_APP_TOKEN,
+                usertoken: userObj.usertoken,
+                message: response.data.note 
+                }),
+                {
+                  headers: {
+                    "content-type": "application/json",
+                  },
+              });
+              if(notification.data){
+                setLoading(false);
+                setStatus("success");
+                setContent(response.data.message);
+                setShowAlert(true);
+                router(`/posts/${response.data.cnt_id}`);
+              }
           }
-          console.log(response);
         } catch (error) {
-          setLoading(false);
           setStatus("error");
           setContent(error.message);
           setShowAlert(true);
-          console.error(error);
+          setLoading(false);
         }
-
-        //   Fetch(`http://localhost:5000/api/create-post`, JSON.stringify(data))
-        //     .then((res) => {
-        //       console.log(res)
-        //       setLoading(false);
-        //       if (res.data.success === false) {
-        //         setStatus("error");
-        //         setContent(res.data.message);
-        //         setShowAlert(true);
-        //       } else {
-        //         setStatus("success");
-        //         setContent(res.data.message);
-        //         setShowAlert(true);
-        //         router(`/posts/${res.data.cnt_id}`);
-        //       }
-        //     })
-        //     .catch((err) => {
-        //       setStatus("error");
-        //       setContent(err.message);
-        //       setShowAlert(true);
-        //       setLoading(false);
-        //     });
-        //   } else {
-        //     setStatus("error");
-        //     setContent("Please select a category");
-        //     setShowAlert(true);
-        //   }
+      } else {
+        setStatus("error");
+        setContent("Please select a category");
+        setShowAlert(true);
       }
     },
   });
@@ -387,6 +365,7 @@ const Editor = () => {
                       id="image"
                       style={{ padding: "8px 4px", width: "100%" }}
                       onChange={handleChange}
+                      // value={image}
                     />
                   </Box>
                   <Box

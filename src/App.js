@@ -36,26 +36,46 @@ import { Interests } from "./Components/Interest/Interests";
 import Forgot from "./Components/Forgot/Forgot";
 import ChangePassword from "./Components/Profile/ChangePassword";
 import { notificationSubscription } from "./SWnotification";
+import Layout from "./Components/Layout/Layout";
 function App() {
   React.useEffect(() => {
+    localStorage.removeItem("subObj");
+    localStorage.removeItem("user");
+
     const subObj = localStorage.getItem("spilleet_subObj");
     const user = localStorage.getItem("Spilleet_user");
     // confirm that subscription object is null and user is logged in
+
     if (subObj === null && user !== null) {
-      notificationSubscription();
+      getNotificationStatus();
     }
+    // if both user and subscription object exist
     if (user !== null && subObj !== null) {
-      if (JSON.parse(subObj).usertoken === JSON.parse(user).usertoken) {
-        return;
-      } else {
-        notificationSubscription();
+      if (localStorage.getItem("spilleet_anchor") === null) {
+        getNotificationStatus();
       }
     }
-  }, []);
+  });
 
   const [user, setUser] = useState(null);
   const [search, setSearch] = useState("");
   const [showSidebar, setShowSidebar] = useState(false);
+  const [badge, setBadge] = useState("");
+
+  async function getNotificationStatus() {
+    if (!("Notification" in window)) {
+      window.alert("browser does not support notifications");
+    } else if (Notification.permission === "granted") {
+      console.log("browser allows notification");
+      notificationSubscription();
+    } else if (Notification.permission === "default") {
+      console.log("browser needs to allows notification");
+      const permission = await Notification.requestPermission();
+      if (permission === "granted") {
+        notificationSubscription();
+      }
+    }
+  }
 
   return (
     <SearchContext.Provider value={[search, setSearch]}>
@@ -63,68 +83,78 @@ function App() {
         <InterestContext.Provider value={List}>
           <SidebarContext.Provider value={[showSidebar, setShowSidebar]}>
             <Context.Provider value={Items}>
+              {/* <Layout> */}
               <Routes>
-                <Route path="/" element={<Index />} />
-                {/* outlet: for referencing where child routes should appear */}
-                <Route path="posts" element={<Outlets />}>
+                <Route path="/" element={<Layout />}>
                   <Route index element={<Index />} />
-                  <Route path=":id" element={<Details />} />
-                </Route>
-                <Route path="user" element={<User />}>
-                  <Route path="profile" element={<ProfileOut />}>
-                    <Route path=":name" element={<ProfileDeets />} />
+                  <Route path="posts" element={<Outlets />}>
+                    <Route index element={<Index />} />
+                    <Route path=":id" element={<Details />} />
                   </Route>
-                  <Route
-                    path="notifications"
-                    element={
-                      <RequireAuth redirectTo="/login">
-                        <Notifications />
-                      </RequireAuth>
-                    }
-                  />
+                  <Route path="user" element={<User />}>
+                    <Route path="profile" element={<ProfileOut />}>
+                      <Route path=":name" element={<ProfileDeets />} />
+                    </Route>
+                    <Route
+                      path="notifications"
+                      element={
+                        <RequireAuth redirectTo="/login">
+                          {" "}
+                          <Notifications />{" "}
+                        </RequireAuth>
+                      }
+                    />
 
-                  <Route
-                    path="settings"
-                    element={
-                      <RequireAuth redirectTo="/login">
-                        <SettingsOut />
-                      </RequireAuth>
-                    }
-                  >
-                    <Route index element={<Account />} />
-                    <Route path="email_notification" element={<Email />} />
-                    <Route path="privacy" element={<Privacy />} />
+                    <Route
+                      path="settings"
+                      element={
+                        <RequireAuth redirectTo="/login">
+                          {" "}
+                          <SettingsOut />{" "}
+                        </RequireAuth>
+                      }
+                    >
+                      <Route index element={<Account />} />
+                      <Route path="email_notification" element={<Email />} />
+                      <Route path="privacy" element={<Privacy />} />
+                    </Route>
+                    <Route
+                      path="create-post"
+                      element={
+                        <RequireAuth redirectTo="/login">
+                          {" "}
+                          <Createpost />{" "}
+                        </RequireAuth>
+                      }
+                    />
+                    <Route
+                      path="change-password"
+                      element={
+                        <RequireAuth redirectTo="/login">
+                          {" "}
+                          <ChangePassword />{" "}
+                        </RequireAuth>
+                      }
+                    />
                   </Route>
-                  <Route
-                    path="create-post"
-                    element={
-                      <RequireAuth redirectTo="/login">
-                        <Createpost />
-                      </RequireAuth>
-                    }
-                  />
-                  <Route
-                    path="change-password"
-                    element={
-                      <RequireAuth redirectTo="/login">
-                        <ChangePassword />
-                      </RequireAuth>
-                    }
-                  />
                 </Route>
+
                 <Route
                   path="interests"
                   element={
                     <RequireAuth redirectTo="/login">
-                      <Interests />
+                      {" "}
+                      <Interests />{" "}
                     </RequireAuth>
                   }
                 />
+
                 <Route
                   path="admin"
                   element={
                     <AdminRequireAuth redirectTo="/admin/login">
-                      <AdminOutlet />
+                      {" "}
+                      <AdminOutlet />{" "}
                     </AdminRequireAuth>
                   }
                 >
@@ -146,6 +176,7 @@ function App() {
                 <Route path="auth/:token" element={<Authenticate />} />
                 <Route path="*" element={<NotFound />}></Route>
               </Routes>
+              {/* </Layout> */}
             </Context.Provider>
           </SidebarContext.Provider>
         </InterestContext.Provider>

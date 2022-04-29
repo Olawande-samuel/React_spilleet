@@ -53,3 +53,13 @@ border-radius: 119px;
     align-items: center;
     justify-content: center;
 }
+
+@supports not (font-size: clamp(15px, 5vw, 34px)){
+    .icon{
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+}

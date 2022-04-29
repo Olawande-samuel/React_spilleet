@@ -8,6 +8,15 @@
     border-radius: 50%;
     cursor: pointer;
 }
+
+@supports not (width:clamp(37px, 1vw, 57px)){
+    .profileWrapper, .profileWrapper img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+}
 .commentProfileWrapper{
     border-radius: 50%;
 }

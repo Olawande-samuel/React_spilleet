@@ -39,7 +39,7 @@
     font-weight: 600;
     font-size: 13px;
     line-height: 15px;
-    background: #b9b8df;
+    /* background: #b9b8df; */
 }
 
 .hr {
@@ -56,6 +56,13 @@
     font-weight:300;
     font-size: clamp(10px, .8rem,  17.8663px);
 
+}
+
+@supports not (font-size: clamp(15px, 5vw, 34px)){
+    .textValue{
+        font-weight:300;
+        font-size: 12.5px;
+    }
 }
 
 .text {

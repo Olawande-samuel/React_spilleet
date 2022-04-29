@@ -99,7 +99,7 @@ const Index = () => {
   };
   return (
     <div>
-      <Layout setValue={setValue}>
+      {/* <Layout setValue={setValue}> */}
         <main className={styles.main}>
           <div className={styles.deviant}>
             <Box className={styles.mainContainer} padding="10px">
@@ -151,7 +151,7 @@ const Index = () => {
             </div>
           </ErrorBoundary>
         </main>
-      </Layout>
+      {/* </Layout> */}
       {/* <Outlet /> */}
     </div>
   );

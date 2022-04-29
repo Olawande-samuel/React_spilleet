@@ -11,9 +11,9 @@ const Createpost = () => {
         <link rel="icon" href="/favicon.ico" />
         <title>Create new post</title>
       </Head> */}
-    <Layout>
+    {/* <Layout> */}
       <MyComponent />
-    </Layout>
+    {/* </Layout> */}
     </>
   );
 };

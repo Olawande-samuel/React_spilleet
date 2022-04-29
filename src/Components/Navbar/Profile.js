@@ -31,15 +31,23 @@ const Profile = ({ img }) => {
     getUserData();
   }, []);
   const access = localStorage.getItem("Spilleet_user");
-  if (access) {
+  if (access || image) {
     return (
       <Link to={`/user/profile/${data.fullname}-${data.usertoken}`}>
         <div className={Styles.profileWrapper}>
+         { image ? 
           <img
-            src={image === "0" ? Placeholder : image}
+            src={image}
             alt="profile"
             className={Styles.image}
           />
+           :
+           <img
+            src={Placeholder}
+            alt="profile"
+            className={Styles.image}
+          />}
+
         </div>
       </Link>
     );

@@ -5,129 +5,104 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import Styles from "../../../styles/CAB.module.css";
 import { Fetch } from "../../../Trials/Controller";
 import ReplyIcon from "../../../images/reply.svg";
+import axios from "axios";
 
 const CommentActBar = ({
-  upvotes,
-  reply,
-  handleClick,
+  setOpenBoxAndId,
   item,
   reloadComments,
+  totalComments,
 }) => {
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down("sm"));
-
-  const [liked, setLiked] = useState(false);
-  const [commented, setHasCommented] = useState(false);
-
   const [totalLikes, setTotalLikes] = useState("");
-  const [totalComments, setTotalComments] = useState("");
 
   useEffect(() => {
     setTotalLikes(item.all_likes);
-    setTotalComments(item.total_replies);
-    if (item.liked === "Yes") {
-      setLiked(true);
-    }
   }, [item]);
 
-  useEffect(() => {
-    if (reloadComments === true) {
-      setHasCommented(!commented);
-      setTotalComments(totalComments + 1);
-    }
-  }, [reloadComments]);
+  const data = localStorage.getItem("Spilleet_user");
+  const uData = JSON.parse(data);
 
-  if (typeof window !== "undefined") {
-    const data = localStorage.getItem("Spilleet_user");
-    const uData = JSON.parse(data);
-
-    const handleLike = () => {
-      if (liked === true) {
-        setLiked(false);
-        setTotalLikes(totalLikes - 1);
-        const formData = new FormData();
-        formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
-        formData.append("usertoken", uData.usertoken);
-        formData.append("cnt_id", item.cmt_id);
-        Fetch(`${process.env.REACT_APP_END_POINT}/likes`, formData)
-          .then((res) => {
-            setLiked(false);
-          })
-          .catch((err) => {});
-      } else {
-        setTotalLikes(totalLikes + 1);
-        setLiked(!liked);
-        const formData = new FormData();
-        formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
-        formData.append("usertoken", uData.usertoken);
-        formData.append("cnt_id", item.cmt_id);
-        Fetch(`${process.env.REACT_APP_END_POINT}/likes`, formData)
-          .then((res) => {
-            return;
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
+  const handleLike = async () => {
+    setTotalLikes(totalLikes + 1);
+    const payload = {
+      apptoken: process.env.REACT_APP_APP_TOKEN,
+      usertoken: uData.usertoken,
+      cnt_id: item.cmt_id,
     };
+    try {
+       const response = await axios.post(
+          `${process.env.REACT_APP_NODE_ENDPOINT}/like-post`,
+          JSON.stringify(payload),
+          {
+            headers: {
+              "content-type": "application/json",
+            },
+          }
+        );
+      if (response.data.success === false) {
+        window.alert("Error liking post");
+      }
+    } catch (error) {
+      console.error(error);
+      window.alert("Error liking post");
+    }
+  };
 
-    return (
-      <Grid
-        container
-        overflow="hidden"
-        justifyContent="space-between"
-        alignItems="center"
-      >
-        <Grid item xs={9}>
+  return (
+    <Grid
+      container
+      overflow="hidden"
+      justifyContent="space-between"
+      alignItems="center"
+    >
+      <Grid item xs={9}>
+        <Box
+          sx={{ display: "flex", alignItems: "center", gap: ".5rem" }}
+          className={Styles.buttonGroup}
+        >
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <ArrowDropUpIcon
+              sx={{ fontSize: "20px", color: "#30C06A" }}
+              onClick={handleLike}
+            />
+            <span className={Styles.upvoteValue}>
+              {`${item.all_likes !== undefined ? totalLikes : 0}`}
+            </span>
+          </Box>
           <Box
-            sx={{ display: "flex", alignItems: "center", gap: ".5rem" }}
-            className={Styles.buttonGroup}
+            sx={{
+              display: "flex",
+              aligntems: "center",
+              justifyContent: "space-between",
+            }}
+            className={Styles.comment_bookmark}
           >
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-              <ArrowDropUpIcon
-                sx={{ fontSize: "30px", color: "#30C06A" }}
-                onClick={handleLike}
-              />
-              {/* <span>Upvote</span> */}
-              <span className={Styles.upvoteValue}>{`${
-                item.all_likes !== undefined ? totalLikes : 0
-              }`}</span>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                aligntems: "center",
-                justifyContent: "space-between",
-              }}
-              className={Styles.comment_bookmark}
-            >
-              <Box className="comment">
-                <Box
-                  sx={{ display: "flex", gap: ".5rem", alignItems: "center" }}
+            <Box>
+              <Box sx={{ display: "flex", gap: ".5rem", alignItems: "center" }}>
+                <Icon className={Styles.iconWrapper}>
+                  <img src={ReplyIcon} alt="reply" className={Styles.icons} />
+                </Icon>
+                <span
+                  className={Styles.replies}
+                  onClick={() => setOpenBoxAndId(item.cmt_id)}
                 >
-                  <Icon className={Styles.iconWrapper}>
-                    <img src={ReplyIcon} alt="reply" className={Styles.icons} />
-                  </Icon>
-                  <span onClick={handleClick}>
-                    Reply (
-                    {`${item.total_replies !== undefined ? totalComments : 0}`})
-                  </span>
-                </Box>
+                  Reply (
+                  {`${item.total_replies !== undefined ? totalComments : 0}`})
+                </span>
               </Box>
             </Box>
           </Box>
-        </Grid>
-        <Grid item justifySelf="flex-end" xs={2} className={Styles.right}>
-          <div className={Styles.more}>
-            <Box>
-              <MoreHorizIcon sx={{ fontSize: "20px" }} />
-            </Box>
-          </div>
-        </Grid>
+        </Box>
       </Grid>
-    );
-  }
-  return null;
+      <Grid item justifySelf="flex-end" xs={2} className={Styles.right}>
+        <div className={Styles.more}>
+          <Box>
+            <MoreHorizIcon sx={{ fontSize: "12px" }} />
+          </Box>
+        </div>
+      </Grid>
+    </Grid>
+  );
 };
 
 export default CommentActBar;

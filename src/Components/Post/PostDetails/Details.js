@@ -53,7 +53,7 @@ const Details = () => {
         <meta name="description" content="Spilleet social media app" />
         <link rel="icon" href="/favicon.ico" />
       </Head> */}
-      <Layout>
+      {/* <Layout> */}
         <main className={Style.content_Container}>
           <div>
             {showAlert && (
@@ -79,7 +79,7 @@ const Details = () => {
             </>
           )}
         </main>
-      </Layout>
+      {/* </Layout> */}
     </div>
   );
 };

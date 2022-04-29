@@ -1,7 +1,7 @@
 import { Box } from "@mui/system";
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../../Trials/Controller";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Style from "../../styles/Nav.module.css";
 import { BiMenu } from "react-icons/bi";
 import { SidebarContext } from "../Auth/User";
@@ -26,7 +26,7 @@ const NavLinks = () => {
       <Box className={Style.linksWrapper}>
         {NavLinks.length > 0 &&
           NavLinks.map((item) => (
-            <Link
+            <NavLink
               to={
                 item.title === "Profile"
                   ? userData
@@ -37,7 +37,7 @@ const NavLinks = () => {
               key={item.id}
             >
               <p className={Style.link}>{item.title}</p>
-            </Link>
+            </NavLink>
           ))}
       </Box>
       <Box className={Style.hamburger}>

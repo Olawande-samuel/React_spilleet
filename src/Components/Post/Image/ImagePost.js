@@ -8,36 +8,39 @@ import { Context, Fetch } from "../../../Trials/Controller";
 import { Link } from "react-router-dom";
 import Comment from "../Text/Comment";
 import { Box } from "@mui/material";
+import CommentContainer from "../Text/CommentContainer";
+import Actions from "../Actions/Actions";
 
 const ImagePost = ({ item, reloader, key, profile }) => {
-  const [comments, setComments] = useState(false);
+  const [postID, setPostID] = useState(false);
   const [reload, setReload] = useState(false);
   const [reloadComments, setReloadComments] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const [following, setFollowing] = useState("");
   const [username, setUsername] = useState(null);
 
-  const handleShowComment = () => {
+  const handleShowComment = (id) => {
+    setPostID(id)
     setShowComments(!showComments);
   };
 
-  useEffect(() => {
-    if (item) {
-      setFollowing(item.following);
-      const formData = new FormData();
-      formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
-      formData.append("cnt_id", item.cnt_id);
-      Fetch(`${process.env.REACT_APP_END_POINT}/display-comments`, formData)
-        .then((res) => {
-          if (res.data.success !== false) {
-            setComments(res.data);
-          }
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    }
-  }, [reload, item]);
+  // useEffect(() => {
+  //   if (item) {
+  //     setFollowing(item.following);
+  //     const formData = new FormData();
+  //     formData.append("apptoken", process.env.REACT_APP_APP_TOKEN);
+  //     formData.append("cnt_id", item.cnt_id);
+  //     Fetch(`${process.env.REACT_APP_END_POINT}/display-comments`, formData)
+  //       .then((res) => {
+  //         if (res.data.success !== false) {
+  //           setComments(res.data);
+  //         }
+  //       })
+  //       .catch((err) => {
+  //         console.error(err);
+  //       });
+  //   }
+  // }, [reload, item]);
 
   useEffect(() => {
     const data = localStorage.getItem("Spilleet_user");
@@ -132,7 +135,7 @@ const ImagePost = ({ item, reloader, key, profile }) => {
                 </Box>
               ))}
           </span>
-          <ActivityBar
+          {/* <ActivityBar
             reloadComments={reloadComments}
             item={item}
             likes={item.likes}
@@ -146,25 +149,15 @@ const ImagePost = ({ item, reloader, key, profile }) => {
               setReload={setReload}
               setShowComments={setShowComments}
               reloadComments={setReloadComments}
+              postId={setPostID}
+
             />
           )}
-          {showComments === true && comments.length > 0 && (
-            <Box
-              border="1px solid lightgrey"
-              borderTop="none"
-              maxHeight="300px"
-              overflow="scroll"
-              paddingBottom="4px"
-            >
-              <>
-                <Box>
-                  {comments.map((item) => (
-                    <TextComment key={item.id} item={item} />
-                  ))}
-                </Box>
-              </>
-            </Box>
-          )}
+         
+       {showComments === true && <CommentContainer item={item} postID={postID} reload={reloadComments}  />} */}
+      <Actions item={item} />
+
+
         </div>
         <Time time={item.timeago} />
       </div>

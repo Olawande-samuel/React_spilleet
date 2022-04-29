@@ -1,5 +1,16 @@
 @import "./Variables.css";
 
+.category_label {
+  font-size: clamp(15px, 5vw, 34px);
+  align-self: flex-start;
+}
+
+@supports not (font-size: clamp(15px, 5vw, 34px)){
+  .category_label {
+    font-size: 28px;
+    align-self: flex-start;
+  }
+}
 .wrapper {
   position: relative;
   width: 600px;

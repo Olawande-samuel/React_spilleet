@@ -46,14 +46,14 @@ const ProfileDeets = () => {
   // }, [name]);
 
   return (
-    <Layout>
+    <>
       <div>
         {showAlert && (
           <Utils status={status} content={content} handleAlert={close} />
         )}
       </div>
       <Profile data={data} id={name} />
-    </Layout>
+    </>
   );
 };
 

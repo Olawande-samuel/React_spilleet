@@ -7,6 +7,7 @@ export const SearchContext = createContext(null);
 
 export const SidebarContext = createContext(null)
 
+
 export const useUser = () => {
   return useContext(UserContext);
 };
